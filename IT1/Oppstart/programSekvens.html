@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <title>Quiz</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>Velkommen til min quiz!</h1>
+  <p id="pID">Spørsmål 1: Hva heter jeg?</p>
+
+  <button id="knappID">Onne</button>
+  <button id="knappID2">Unni</button>
+  
+  <p id="svarID"></p>
+<script>
+  let pID= document.getElementById("pID")
+  let pIDsvar=document.getElementById("svarID")
+  let knappEL = document.getElementById("knappID");
+  knappEL.addEventListener("click",knappFunk)
+  function knappFunk() {
+    pID.style.backgroundColor = "red";
+    pIDsvar.innerText = "Feil!"
+  }
+
+  let knappEL2 = document.getElementById("knappID2");
+  knappEL2.addEventListener("click",knappFunk)
+  function knappFunk() {
+    pID.style.backgroundColor = "green";
+    pIDsvar.innerText = "Riktig!"
+  }
+</script>
+</body>
+</html>
