@@ -1,1 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #divID2 {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="divID1">
+    <h1>Overskrift 1</h1>
+    <p>Resultatet ble: <span id="spanID"></span></p>
+  </div>
+  <div id="divID2">
+    <h1>Overskrift 2</h1>
+    <p>Resultatet ble: <span id="spanID2"></span></p>
+  </div>
+  
+  <script>
+    let spanEL = document.getElementById("spanID");
+    spanEL.innerText = "5";
+    let divEL1 = document.getElementById("divID1");
+    let divEL2 = document.getElementById("divID2");
+    spanEL.addEventListener("click",byttFunk);
+    function byttFunk() {
+      divEL1.style.display = "none";
+      divEL2.style.display = "block";
+    }
+    
+
+  </script>
+</body>
+</html>
