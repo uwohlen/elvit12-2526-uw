@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    .divCL {
+      background-color: blue;
+      color: white;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body id="bodyID">
+  
+</body>
+<script>
+  let bodyEL = document.getElementById("bodyID");
+  let poeng = 5;
+  let teller = 0;
+  let verdi = ["A","B","C","D"]
+  let knapper = []
+  while (teller < 4) {
+    let divEL = document.createElement("div");
+    divEL.innerHTML = verdi[teller];
+    divEL.className = "divCL";
+    divEL.addEventListener("click",klikkFunk);
+    knapper.push(divEL);
+    bodyEL.appendChild(divEL);
+    teller ++;
+  }
+
+  knapper[0].style.backgroundColor = "red";
+
+  function klikkFunk(event) {
+    event.target.innerHTML = "0";
+  }
+  
+
+</script> 
+</html>
