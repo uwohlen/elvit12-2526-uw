@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    .sirkelCL {
+      height: 50px;
+      width: 50px;
+      background-color: blanchedalmond;
+      float: left;
+      border-radius: 50%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  let sideEL = document.querySelector("body");
+  for (let i=0; i<392; i++) {
+    sideEL.innerHTML += "<div class='sirkelCL' data-verdi='30'></div>";
+  }
+
+  let divver = document.querySelectorAll(".sirkelCL");
+  console.log(divver);
+
+  for (let i=0; i<divver.length; i++) {
+    divver[i].addEventListener("click",fargefunk);
+  }
+
+  function fargefunk(event) {
+    event.target.style.backgroundColor = "red";
+    event.target.innerHTML= "<p>"+event.target.dataset.verdi+"</p>";
+  }
+
+</script>
+</body>
+</html>

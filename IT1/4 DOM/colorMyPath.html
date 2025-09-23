@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    .sirkel {
+      height: 50px;
+      width: 50px;
+      background-color: blanchedalmond;
+      float: left;
+      border-radius: 50%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<script>
+  let sideEL = document.querySelector("body");
+
+  let blink = 42;
+
+  for (let i=0; i<392; i++) {
+    let divEL = document.createElement("div");
+    divEL.className = "sirkel";
+    if (i == blink) {
+      divEL.setAttribute("data-verdi","blink");
+    }
+    else {
+      divEL.setAttribute("data-verdi","bom");
+    }
+    divEL.addEventListener("click",fargefunk);
+    sideEL.appendChild(divEL);
+  }
+
+  function fargefunk(event) {
+    if (event.target.dataset.verdi === "blink") {
+      event.target.style.backgroundColor = "green";
+    }
+    else {
+      event.target.style.backgroundColor = "red";
+    }
+  }
+
+</script>
+</body>
+</html>
