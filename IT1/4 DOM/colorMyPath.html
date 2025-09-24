@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
   <style>
+    #boksID {
+      width: 500px;
+      height: 500px;
+      margin: auto;
+    }
     .sirkel {
       height: 50px;
       width: 50px;
@@ -16,22 +21,27 @@
   </style>
 </head>
 <body>
+  <h1>Gå den grønne stien fra venstre til høyre</h1>
+  <div id="boksID"></div>
 <script>
-  let sideEL = document.querySelector("body");
+  let boksEL = document.getElementById("boksID");
 
-  let blink = 42;
+  let vei = [41,42,43,33,23,24,25,35,36,46,56,66,65,64,74,84,94,95,96,97,98,88,78,68,69,70];
 
-  for (let i=0; i<392; i++) {
+  let i = 1;
+  while (i <= 100) {
     let divEL = document.createElement("div");
     divEL.className = "sirkel";
-    if (i == blink) {
+    //divEL.innerText = i;
+    if (vei.includes(i)) {
       divEL.setAttribute("data-verdi","blink");
     }
     else {
       divEL.setAttribute("data-verdi","bom");
     }
     divEL.addEventListener("click",fargefunk);
-    sideEL.appendChild(divEL);
+    boksEL.appendChild(divEL);
+    i++;
   }
 
   function fargefunk(event) {
