@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <h1>Hva heter hovedstaden i Norge?</h1>
+    <input id="innID">
+    <p>Tilbakemelding: <span id="utID"></span></p>
+
+  </div>
+  <script>
+    let innEL = document.getElementById("innID");
+    let utEL = document.getElementById("utID");
+
+    innEL.addEventListener("keyup",innFunk);
+
+    function innFunk(event) {
+      if (event.key === "Enter") {
+        //console.log(event.key)
+        if (event.target.value.toUpperCase() === "OSLO") {
+          utEL.innerHTML = "Riktig!";
+        }
+        else {
+          utEL.innerHTML = "Feil!";
+        }
+
+
+      }
+    }
+
+
+  </script>
+</body>
+</html>
