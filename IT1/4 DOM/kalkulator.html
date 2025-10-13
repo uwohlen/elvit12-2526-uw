@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <label>Tall 1
+    <input type="number" id="tall1">
+  </label>
+
+  <label>Tall 2
+    <input type="text" id="tall2">
+  </label>
+  
+  <button>Finn summen</button>
+
+  <p id="resultat"></p>
+
+  <script>
+    let tall1EL = document.querySelector("#tall1");
+    let tall2EL = document.querySelector("#tall2");
+    let knappEL = document.querySelector("button");
+    let resultatEL = document.querySelector("#resultat");
+
+    tall1EL.focus()
+    tall1EL.addEventListener("keydown",videreFunk);
+    tall2EL.addEventListener("keydown",videreFunk2);
+
+    function videreFunk(event) {
+      if (event.key === "Enter") {
+        tall2EL.focus()
+      }
+
+    }
+
+    function videreFunk2(event) {
+      if (event.key === "Enter") {
+        beregn();
+      }
+
+    }
+
+    knappEL.addEventListener("click", beregn);
+
+    function beregn() {
+      let tall1 = Number(tall1EL.value);
+      let tall2 = parseInt(tall2EL.value);
+      let sum = tall1 + tall2;
+
+      resultatEL.innerHTML = "Summen blir " + sum;
+    }
+  </script>
+</body>
+</html>

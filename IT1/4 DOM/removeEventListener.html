@@ -16,7 +16,7 @@
   <script>
     let knappEL = document.getElementById("knappID");
     let antallEL = document.getElementById("antallID");
-    let antall = 0
+    let antall = 0;
 
     knappEL.addEventListener("click",knappFunk);
     knappEL.addEventListener("click",knappFunk2);
@@ -25,6 +25,7 @@
       antall ++;
       antallEL.innerText = antall;
       if (antall === 10) {
+        //antall --;
         //knappEL.removeEventListener("click",knappFunk);
         knappEL.disabled = "true";
       }
