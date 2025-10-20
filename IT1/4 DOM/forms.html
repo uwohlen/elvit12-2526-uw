@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <!--
+  <link rel="icon" href="media/favicon.ico">
+  -->
+  <title></title>
+  <style>
+    body {
+      background-color: lemonchiffon;
+    }
+    form {
+      margin: auto;
+      width: 600px;
+    }
+    label {
+      cursor: pointer;
+    }
+    fieldset {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Eksempel på form-taggen</h1>
+  <!-- 
+    <form> omslutter skjemaet som skal fylles inn
+    forms brukes for å sende verdier til en server, men kan brukes av oss for å 
+    lette sjekking av inputfelt - vi må da avbryte default action
+    
+    NB! feilmeldinger virker IKKE om input-feltene ikke er i en form-tagg!
+  -->
+  
+  <form id="formID">
+    <!-- fieldset brukes for inndeling av skjemaet (firkanta boks) -->
+    <fieldset>
+      <!-- legend brukes sammen med fieldset for å vise navn på inndelingen -->
+      <legend>Om meg:</legend>
+      Navn:
+      <!-- 
+          placeholder midlertidig verdi
+          size bredden på feltet
+          required gir feilmelding hvis den mangler, "Vennligst fyll ut dette feltet."
+          autofocus setter cursor til dette feltet 
+          autocomplete = "on" gir en nedtrekksmeny med tidligere verdier - skjuler feilmeldinger
+      -->
+      <input type="text" name="Navn" placeholder="Skriv fornavn:" size="50" required autofocus>
+      <br><br>
+      Alder:
+      <!-- 
+          min og max gir feilmelding hvis verdien er utenfor
+          step angir lovlige verdier, step på 1 betyr heltall HVIS startverdien er heltall
+          value er startverdien
+      -->
+      <input type="number" name="Alder" min="0" max="140" step="0.5" value="18">
+      <br><br>
+      Epost:
+      <!-- Får melding hvis @ mangler, må ha noe@noe -->
+      <input type="email" name="Epost" size="50"> 
+      <br>
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Favorittfag:</legend>
+      Programfag:
+      <!-- readonly hvis det er en opplysning som ikke skal endres -->
+      <input type="text" name="Programfag" value="IT1" readonly>
+      <br><br>
+      Fellesfag:
+      <!-- disabled for informasjon som bare vises men ikke brukes 
+          (kan brukes lokalt, men blir ikke sendt til server) -->
+      <input type="text" name="Fellesfag" value="Who cares..." disabled>
+      <br><br>
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Favorittaktivitet:</legend>
+      <!-- label kan settes rundt en radiobutton eller checkbox - anbefalt metode -->
+      <label><input type="radio" name="Aktivitet" value="Fotball">Fotball</label>
+  
+      <!-- label kan linkes til en radio eller checkbox via id -->
+      <input type="radio" name="Aktivitet" id="idhball" value="Håndball">
+      <label for="idhball">Håndball</label>
+      
+      <!-- hvis man ikke bruker label kan man ikke klikke på teksten -->
+      <input type="radio" name="Aktivitet" value="Klatring" checked>Klatring
+    </fieldset>
+    <br>
+    <!--
+      type = "submit"
+        sjekker alle felter for korrekt input
+        sender data videre eller refresher siden hvis vi ikke stopper default action
+        trigges også av enter-tasten på tastaturet
+    -->
+    <input type="submit">
+    
+    <!-- type="reset" tilbakestiller alle feltene -->
+    <input type="reset">
+  </form> 
+  <p id="pID"></p>
+<script>   
+  let formEL = document.getElementById("formID");
+  let pEL = document.getElementById("pID");
+  console.log(formEL)
+
+  formEL.addEventListener("submit",formFunk);
+  
+  function formFunk(event) {
+    event.preventDefault();
+    
+    pEL.innerHTML = "Oppgitt informasjon er: <br>Navn: "+formEL.Navn.value + "<br>Alder: " + formEL.Alder.value + "<br>Epost: " + formEL.Epost.value + "<br>Favorittfag: " + formEL.Programfag.value + "<br>Hobby: " + formEL.Aktivitet.value;
+
+    console.log(formEL.Fellesfag.value)
+  }
+  
+    
+</script>
+</body>
+</html>

@@ -19,10 +19,14 @@
 
 <script>
   let sideEL = document.querySelector("body");
-  for (let i=0; i<392; i++) {
-    sideEL.innerHTML += "<div class='sirkelCL' data-verdi='30'></div>";
+  let alle = [];
+  for (let i=0; i<300; i++) {
+    tall = Math.floor(Math.random()*100)
+    alle.push(tall);
+    sideEL.innerHTML += "<div class='sirkelCL' data-verdi='" + tall + "'></div>";
   }
 
+  
   let divver = document.querySelectorAll(".sirkelCL");
   console.log(divver);
 
@@ -31,8 +35,8 @@
   }
 
   function fargefunk(event) {
-    event.target.style.backgroundColor = "red";
-    event.target.innerHTML= "<p>"+event.target.dataset.verdi+"</p>";
+    event.currentTarget.style.backgroundColor = "red";
+    event.currentTarget.innerHTML= "<p>"+event.currentTarget.dataset.verdi+"</p>";
   }
 
 </script>
