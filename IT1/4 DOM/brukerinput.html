@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    input, textarea, select {
+      display: block;
+      margin-top: 2px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
   <div id="hoved">
@@ -16,9 +23,9 @@
     <textarea id="beskrivelse" placeholder="Skriv en kort beskrivelse av filmen"></textarea>
 
     <label for="aarstall">Årstall</label>
-    <input type="number" id="aarstall" placeholder="1997">
+    <input type="number" id="aarID" value = "2025">
 
-    <label for="aldersgrense">Aldersgrense</label>
+    <label for="aldersgrense" >Aldersgrense</label>
     <select id="aldersgrense">
       <option value="alle">Tillatt for alle</option>
       <option value="syv">7 år</option>
@@ -27,8 +34,20 @@
       <option value="atten">18 år</option>
     </select>
 
-    <button>Registrer</button>
+    <button id="regID">Registrer</button>
   </div>
+  <script>
+    let regEL = document.getElementById("regID");
+    let aarEL = document.getElementById("aarID");
+    regEL.addEventListener("click",regFunk);
+    function regFunk() {
+      console.log("hei")
+      if (Number(aarEL.value) === 1900 || Number(aarEL.value) === 2025) {
+        console.log("for liten eller for stor")
+      } 
+
+    }
+  </script>
   
 </body>
 </html>
