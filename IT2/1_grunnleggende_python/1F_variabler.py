@@ -1,13 +1,16 @@
-# variabler, kapittel 1F
-a = 5
+tall = 4 
 
+# variabler, kapittel 1F
+a = int(input("skriv tall: "))
+c = None
 if a < 10:
   b = 2
+  print(b)
 else:
   c = 4
 
-print(b)
-#print(c)
+if c != None:
+  print(c)
 
 #v1 = 3
 
