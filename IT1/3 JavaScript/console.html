@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8"> 
+    <title>Console (og arrays)</title>
+</head>
+<body>
+    <button id="idKnapp">Klikk her</button>
+<script>
+
+    let knappEl = document.getElementById("idKnapp");
+
+    knappEl.addEventListener("click",whaat);
+
+    function whaat() {
+        console.log("Vanlig log");
+        console.error("Error-melding");
+        console.warn("Warn-melding");
+        console.info("Info-melding");
+    }
+    //whaat();
+</script>
+
+</body>
+</html>

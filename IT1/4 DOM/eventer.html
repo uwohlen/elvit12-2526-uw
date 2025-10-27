@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="no" id="htmlID">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      background-color: lightgrey;
+      /*height: 100%;*/
+    }
+    body {
+      background-color: lemonchiffon;
+      cursor: pointer;
+      /*margin: 0;*/
+      /*height: 100%;*/
+    }
+    div {
+      border: solid black 20px;
+      padding: 20px;
+      margin: 20px;
+      width: 420px;
+      height: 420px;
+      background-color: green;
+      /*margin:0;*/
+    }
+    h1 {
+      border: solid red 20px;
+      padding: 20px;
+      margin: 20px;
+      width: 300px;
+      border-radius: 50%;
+      background-color: white;
+    }
+    h2 {
+      border: solid red 20px;
+      padding: 20px;
+      margin: 20px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body id="bodyID">
+  <div id="divID">
+    <h1 id="h1_1_ID">Tekst1</h1>
+    <h1 id="h1_2_ID">Tekst2</h1>
+    <h2 id="h1_3_ID">Tekst3</h2>
+  </div>
+  <script>
+    let divEL = document.getElementById("divID");
+    
+    //addEventListener("click",klikkfunk);
+    divEL.addEventListener("click",klikkfunk);
+    
+    function klikkfunk(event) {
+      event.target.style.backgroundColor = "blue";
+      console.log("target: ",event.target.id);
+
+      // for addEventListener på divEL:
+      //console.log("currentTarget: ",event.currentTarget.id); 
+    }
+  </script>
+</body>
+</html>
