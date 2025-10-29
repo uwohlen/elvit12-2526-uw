@@ -1,3 +1,4 @@
+# Datasett fra eksamen Våren 2023
 appdata = [
  {
    "App": "Photo Editor & Candy Camera & Grid & ScrapBook",
