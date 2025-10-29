@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Idiot Game</title>
+    <style>
+      body {
+        user-select: none;
+      }
+      #knappID {
+        position: absolute;
+        top: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>The idiot game!</h1>
+    <button id="knappID">Trykk på meg 10 ganger. Fort!</button>
+    <h2>Antall klikk: <span id="antallID">0</span></h2>
+    <script>
+        
+      addEventListener("click",knappFunk);
+      
+      function knappFunk(event) {
+        if (event.target.id === "knappID") {
+          document.getElementById("antallID").innerHTML = Number(document.getElementById("antallID").innerHTML)+1;
+          if (Number(document.getElementById("antallID").innerHTML) === 7) {
+            document.getElementById("knappID").style.top = "200px";
+          }
+          else if (Number(document.getElementById("antallID").innerHTML) === 10) {
+            document.getElementById("antallID").innerHTML += " Gratulerer! Du er en god idiot! <a href='theidiotgame2.html'>Neste spill</a>"
+            removeEventListener("click",knappFunk);
+          }
+        }
+        else {
+          document.getElementById("antallID").innerHTML += " Du bomma! Loooser!!!"
+          removeEventListener("click",knappFunk);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+  </head>
+  <body>
+    <script>
+      // Enkle variabler: en kopi får VERDIEN til originalen
+      let tallA = 5;
+      let tallB = tallA;
+      tallB = 10;
+      console.log("Kan endre tallB uten å endre tallA:");
+      console.log("a:",tallA,"b:",tallB);
+
+      // Komplekse variabler: kopi får ADRESSEN til originalen
+      let arrayA = [3,6,4,1];
+      let arrayB = arrayA;
+      arrayB[2] = 5;
+      arrayB.sort();
+      console.log("Endringer i kopien ødelegger originalen:");
+      console.log("a:",arrayA,"b:",arrayB);
+
+      // ENDIMENSJONALE arrays kan kopieres:
+      let array1D = [3,6,4,1];
+      let array1DKopi = Array.from(array1D);
+      array1DKopi[2] = 5;
+      array1DKopi.sort();
+      console.log("Originalen bevares:");
+      console.log("1D:",array1D,"Kopi:",array1DKopi);
+
+      // Arrays i FLERE DIMENSJONER - må bruke løkker
+      let array2D = [
+        ["c",1],
+        ["a",2],
+        ["b",3]
+      ]
+      let array2DKopi = []
+      for (let rad of array2D) {
+        array2DKopi.push(Array.from(rad))
+      }
+      array2DKopi[1][1] = 34
+      array2DKopi.sort()
+      console.log("Originalen bevares:")
+      console.log("2D:",array2D,"Kopi",array2DKopi)
+    </script>
+  </body>
+</html>

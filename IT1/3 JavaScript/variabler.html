@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variabler</title>
+  </head>
+  <body>
+    <h1>Testing</h1>
+    <p>Resultater:</p>
+    <p id="resID"></p>
+  </body>
+  <script>
+    let resEL = document.getElementById("resID");
+
+    let x = 1; // gamle programmer bruker var
+    let y = 5; // global variabel
+    var a = 0; // global variabel
+    
+    let b; // global variabel uten innhold
+    console.log("Verdi b: ",b); // undefined
+    
+    if (x < 5) {
+        let w = 10; // lokal variabel
+        var z = 20; // global variabel
+        b = 50;     // den globale variabelen får verdi
+        let y = 80; // lokal variabel, IKKE SAMME Y
+    }
+    //console.log("Verdi w: ",w);// gir feilmelding
+    console.log("Verdi z: ",z); // ingen feilmelding 
+    console.log("Verdi b: ",b); // ingen feilmelding
+    console.log("Verdi y: ",y); // ikke endret til 80!
+
+    //Console log av variabelverdier brukes av programmerere 
+    //for å sjekke at programmet kjører riktig
+    
+    function test(tall1) {
+        let tall3 = 40; // lokal variabel
+        var tall4 = 50; // lokal variabel
+        if (tall1 < 5) {
+            tall3 = 100;
+        }
+        return tall3;
+    }
+    
+    y = test(x); // y får verdien til tall3, altså 100
+    //console.log(tall3) //feilmelding
+    //console.log(tall4) //feilmelding
+
+    console.log("Ny verdi y:", y);
+
+    // Kan påvirke nettsiden raskt og ufint:
+    document.write("Document write lagt til: ",y);
+
+    // Kan påvirke nettsiden på skikkelig vis:
+    resEL.innerHTML = "Endring av p-tagg: " + y;
+    
+  </script>
+</html>

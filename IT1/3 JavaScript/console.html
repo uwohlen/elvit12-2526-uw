@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="no">
-<head>
+  <head>
     <meta charset="UTF-8"> 
-    <title>Console (og arrays)</title>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console</title>
+  </head>
+  <body>
     <button id="idKnapp">Klikk her</button>
-<script>
+    <script>
+      let knappEL = document.getElementById("idKnapp");
 
-    let knappEl = document.getElementById("idKnapp");
+      knappEL.addEventListener("click",knappFunk);
 
-    knappEl.addEventListener("click",whaat);
-
-    function whaat() {
+      function knappFunk() {
         console.log("Vanlig log");
         console.error("Error-melding");
         console.warn("Warn-melding");
-        console.info("Info-melding");
-    }
-    //whaat();
-</script>
+        console.info("Info-melding"); // Ikke noe spesielt med denne i Edge...?
+      }
+      whaat(); // man kan kjøre funksjonen uten å vente på knappen...
 
-</body>
+      console.log("Skrives til loggen med en gang.");
+    </script>
+
+  </body>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Idiot Game</title>
+  <style>
+    body {
+      user-select: none;
+    }
+    .kuleCL {
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>The idiot game!</h1>
+  <h2>Klikk 10 ganger på den røde sirkelen. Kjapp deg!</h2>
+  <h2>Antall klikk: <span id="antallID"></span></h2>
+  <div id="kule1ID" class="kuleCL"></div>
+  <div id="kule2ID" class="kuleCL"></div>
+  <script>
+    let kule1EL = document.getElementById("kule1ID");
+    let kule2EL = document.getElementById("kule2ID");
+    let antallEL = document.getElementById("antallID");
+    let antall = 0;
+    antallEL.innerHTML = antall;
+    kule1EL.style.backgroundColor = "yellow";
+    kule2EL.style.backgroundColor = "red";
+  
+    
+    addEventListener("click",kuleFunk);
+       
+
+    function kuleFunk(event) {
+      console.log(event.target.id);
+      if (event.target.id === "kule2ID" && antall < 6) {
+        antall ++;
+        antallEL.innerHTML = antall;
+        if (antall === 6) {
+          kule1EL.style.backgroundColor = "red";
+          kule2EL.style.backgroundColor = "yellow";
+        }
+      }
+      else if (event.target.id === "kule1ID" && antall >= 6 && antall < 10) {
+        antall ++;
+        antallEL.innerHTML = antall;
+        if (antall === 10) {
+          antallEL.innerHTML += " Gratulerer! Du er en god idiot!"
+          removeEventListener("click",kuleFunk);
+        }
+      }
+      else {
+        antallEL.innerHTML += " Du bomma! Loooser!!!"
+        removeEventListener("click",kuleFunk);
+      }
+    }
+  </script>
+</body>
+</html>
