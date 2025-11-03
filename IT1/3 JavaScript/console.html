@@ -6,9 +6,9 @@
     <title>Console</title>
   </head>
   <body>
-    <button id="idKnapp">Klikk her</button>
+    <button id="knappID">Klikk her</button>
     <script>
-      let knappEL = document.getElementById("idKnapp");
+      let knappEL = document.getElementById("knappID");
 
       knappEL.addEventListener("click",knappFunk);
 
@@ -18,7 +18,7 @@
         console.warn("Warn-melding");
         console.info("Info-melding"); // Ikke noe spesielt med denne i Edge...?
       }
-      whaat(); // man kan kjøre funksjonen uten å vente på knappen...
+      knappFunk(); // man kan kjøre funksjonen uten å vente på knappen...
 
       console.log("Skrives til loggen med en gang.");
     </script>

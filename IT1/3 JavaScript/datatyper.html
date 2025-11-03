@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Datatyper</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Skriv inn tall, eller noe som ikke er tall</h1>
+    <h2>Sjekk Console (høyre-klikk & inspiser eller undersøk)</h2>
+    <!--
+        <input id="innID" type="number">
+    -->
+    <input id="innID" type="text">
+    <script>
+        let innEL = document.getElementById("innID");
+        innEL.focus();
+        innEL.addEventListener("keydown",innfunk);
+        
+        function innfunk (event){
+            if(event.key === "Enter") {
+                //Test av hva som skjer med verdier når type = text eller type = number i html:
+
+                let verdi = innEL.value;
+                console.log("")
+                console.log("Fra inntekstfelt: typeof(verdi): ",typeof(verdi));
+                console.log("Verdi: ",verdi);
+                console.log("isNaN(verdi): ",isNaN(verdi));
+                console.log("Number.isInteger(verdi): ",Number.isInteger(verdi));
+                console.log("");
+                console.log("parseFloat");
+                let f = parseFloat(verdi);
+                console.log(typeof(f),f,isNaN(f),Number.isInteger(f));
+                console.log("");
+                console.log("parseInt");
+                let i = parseInt(verdi);
+                console.log(typeof(i),i,isNaN(i),Number.isInteger(i));
+                console.log("");
+                console.log("Number");
+                let n = Number(innEL.value);
+                console.log(typeof(n),n,isNaN(n),Number.isInteger(n));
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

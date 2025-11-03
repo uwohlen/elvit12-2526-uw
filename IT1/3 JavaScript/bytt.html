@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Boolske verdier</title>
+    <style>
+        body {
+            user-select: none;
+        }
+        .handCL {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="overID" class="handCL">Overskrift</h1>
+    <script>
+        let overEL = document.getElementById("overID");
+        overEL.addEventListener("click",byttFunk);
+
+        let bytt = true;
+
+        function byttFunk() {
+            if (bytt) {
+                overEL.innerHTML = "Ny overskrift";
+                bytt = false;
+            }
+            else {
+                overEL.innerHTML = "Overskrift";
+                bytt = true;
+            }
+        }
+    </script>
+</body>
+</html>
