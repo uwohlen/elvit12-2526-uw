@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regning</title>
+</head>
+<body>
+  <script>
+    console.log("Regnerekkefølge ()  **  *&/  +&-");
+    console.log("100 / 5 * 2 = ",100 / 5 * 2);
+    console.log("4 * 3 ** 2 = ",4 * 3 ** 2);
+
+    console.log("");
+    console.log("Vi kan ikke stole på desimaltall");
+
+    desimaltall = 0.1 + 0.2;
+    console.log("0.1 + 0.2 = ",desimaltall);
+    avrundet = Math.round(desimaltall*10)/10;
+    console.log("Med 1 desimal: ",avrundet);
+
+    if (desimaltall === 0.3) {
+      console.log("0.1 + 0.2 === 0.3 OK");
+    }
+    else {
+      console.log("0.1 + 0.2 er ikke lik 0.3");
+    }
+
+    if (Math.abs(desimaltall - 0.3) < 0.001) {
+      console.log("0.1 + 0.2 - 0.3 er nesten 0")
+    }
+    else {
+      console.log("0.1 + 0.2 - 0.3 er langt fra 0");
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operatorer</title>
+</head>
+<body>
+  <script>
+    //Sjekk av typeof og modulus
+        
+    let tall  = 17;
+    console.log("Type of 17: ",typeof(tall));
+    
+    let talltxt  = "17";
+    console.log('Type of "17": ',typeof(talltxt));
+    
+    let sant = true;
+    console.log("Type of true: ",typeof(sant));
+    
+    let liste = [1,2,3,"a"];
+    console.log("Type of array: ",typeof(liste));
+
+    let tall1 = 13;
+    let tall2 = 3;
+    console.log("Hvor mange ganger går 3 opp i 13? ",Math.floor(tall1/tall2));
+    console.log("Hva er resten? ",tall1%tall2);
+
+    if (tall1 % 2 === 0) {
+      console.log("Tall nr 1 er partall");
+    }
+    else {
+      console.log("Tall nr 1 er oddetall");
+      console.log("13%2 = ",tall1%2);
+    }
+
+    console.log("7-gangen");
+    teller = 1;
+    while (teller < 100) {
+      if (teller % 7 == 0) {
+        console.log(teller)
+      }
+      teller ++;
+    }
+
+
+  </script>
+</body>
+</html>
