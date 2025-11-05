@@ -7,9 +7,15 @@ class Dyr:
     self.rase = rase
     self.farge = farge
     self.bolig = bolig
+    self.alder = 0
 
   def dyr_info(self):
     print(self.navn,"er en",self.farge.lower(),self.rase.lower(),"som bor",self.bolig)
+
+  def aldring(self,antall):  
+    self.alder += antall
+    print(self.navn,"er nå",self.alder,"år")
+
 
 # Arv
 
@@ -33,8 +39,8 @@ class Hund(Dyr):
   def __init__(self,navn,rase,farge):       # Hunden har akkurat de samme parametrene som Dyr
     super().__init__(navn,rase,farge)
   
-  def snakk(self):                          # Ny metode for hunden
-    print(self.navn,'sier "Voff"')
+  def snakk(self):                          # Ny metode for hunden - samme metode-navn som for katten
+    print(self.navn,'sier "Voff"')          # Annet innhold enn for katten = polymorfisme
 
 
 # kattene har ett argument mer enn hunden... for kattene kan ha 9 liv:
@@ -46,8 +52,8 @@ mine_dyr = [
 
 for dyr in mine_dyr:
   dyr.dyr_info()
-  dyr.snakk()
+  dyr.snakk() # samme metode-navn vil gi ulikt uttrykk pga polymorfisme
   print(type(dyr))
 
 for i in range(10):
-  mine_dyr[0].antall_liv()
+  mine_dyr[0].antall_liv() # metoden er bare for katter
