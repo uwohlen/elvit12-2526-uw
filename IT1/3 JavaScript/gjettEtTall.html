@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gjett et tall</title>
+</head>
+<body>
+  <h1>Gjett et tall mellom 1 og 100</h1>
+  <p>Både 1 og 100 er inkludert i tallene du kan gjette.</p>
+  <!-- kunne lagd en <form> slik at man får sjekket at det skrives tall mellom 1 og 100 -->
+  <h2>Skriv inn et tall:</h2>
+  <input id="tekstID" type="number"> <button id="knappID">Svaret avgitt</button>
+  <h3>Tilbakemelding: <span id="tilbakeID"></span></h3>
+  <script>
+    let tekstEL = document.getElementById("tekstID");
+    let knappEL = document.getElementById("knappID");
+    let tilbakeEL = document.getElementById("tilbakeID");
+
+    let fasit = Math.floor(Math.random()*100)+1;
+    let antall = 0;
+
+    tekstEL.addEventListener("keydown",tekstFunk);
+    knappEL.addEventListener("click",knappFunk);
+    tekstEL.focus();
+
+    function tekstFunk(event) {
+      if (event.key === "Enter") {
+        knappFunk();
+      }
+    }
+
+    function knappFunk() {
+      tekst = tekstEL.value;
+      tall = Number(tekst);
+      if (isNaN(tall) || tall < 1 || tall > 100) {
+        // sjekkes her istedenfor via <form> og max, min i <input>
+        tilbakeEL.innerText = "Du må skrive inn et tall mellom 1 og 100...";
+      }
+      else {
+        antall ++
+        if (tall > fasit) {
+          tilbakeEL.innerText = tekst + " er for høyt! Antall forsøk: " + antall;
+        }
+        else if (tall < fasit) {
+          tilbakeEL.innerText = tekst + " er for lavt! Antall forsøk: " + antall;
+        }
+        else {
+          tilbakeEL.innerText = tekst + " er riktig! Antall forsøk: " + antall;
+          tekstEL.disabled = true;
+          knappEL.disabled = true;
+        }
+      } 
+      tekstEL.value = "";
+      tekstEL.focus();
+    }
+
+  </script>
+</body>
+</html>
