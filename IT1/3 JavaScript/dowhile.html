@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='no'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do While</title>
+  </head>
+  <body>
+    <h1>Sjekk console.log</h1>
+    <h2>Terningspill - kast en terning helt til du får en 1-er</h2>
+    <script>
+      //Varianter når man ikke vet hvor mange runder
+      let terning1 = Math.floor(Math.random()*6) + 1; // tilfeldig tall mellom 1 og 6
+
+      while (terning1 != 1) {
+        console.log(terning1);
+        terning1 = Math.floor(Math.random()*6) + 1;
+      }
+      console.log("Ferdig: ",terning1);
+
+
+      //Samme eksempel med for, vanskeligere å lese:
+      let terning2;
+      for (terning2 = Math.floor(Math.random()*6)+1; terning2 != 1; terning2 = Math.floor(Math.random()*6)+1) {
+        console.log(terning2);
+      }
+      console.log("Ferdig: ",terning2);
+
+
+      //Samme eksempel med do - while:
+      let terning3;
+      do {
+        terning3 = Math.floor(Math.random()*6) + 1;
+        console.log(terning3);
+      } 
+      while (terning3 != 1)
+      console.log("Ferdig!");
+
+    </script>
+  </body>
+</html>

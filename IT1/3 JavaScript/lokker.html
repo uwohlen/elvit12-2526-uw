@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang='no'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Løkker</title>
+  </head>
+  <body>
+    <h1>Sjekk console.log</h1>
+    <h1 id="vis1ID"></h1>
+    <h1 id="vis2ID"></h1>
+    <h1 id="vis3ID"></h1>
+    <h1 id="vis4ID"></h1>
+    <script>
+      let vis1EL = document.getElementById("vis1ID");
+      let vis2EL = document.getElementById("vis2ID");
+      let vis3EL = document.getElementById("vis3ID");
+      let vis4EL = document.getElementById("vis4ID");
+
+      let tekst = "May the force be with you";
+
+      //Eksempel med while
+      let i = 0;  // global i
+      while (i < tekst.length) {
+        console.log(tekst[i]);
+        i++;
+      }
+
+      //Samme eksempel med for, lettere å skrive, betyr det samme:
+      for (let i = 0; i < tekst.length; i++) {  // lokal i
+        console.log(tekst[i]);
+      }
+
+
+      //Enda raskere når vi skal gjøre noe for ALLE verdiene:
+      for (let x of tekst) {
+        console.log(x);
+      }
+
+
+      // Andre varianter
+      for (let j = 10; j > 0; j--) {
+        console.log(j);
+      }
+      
+      // j finnes ikke utenom for-løkka, lokal j
+      // variabelen j kan dermed brukes om igjen, lokalt
+      for (let j = 0; j < 5; j++) {
+        console.log(j);
+      }    
+
+
+      // mellomrom blir til ingenting om jeg legger en og en bokstav til innerText
+      for (let x of tekst) {
+        vis1EL.innerText += x;
+      }
+
+      // bedre å lagre i en tekstvariabel først, og så legge ut på nettsiden etterpå
+      let alt = "";
+      for (let x of tekst) {
+        alt += x;
+      }
+      vis2EL.innerText = alt;
+
+      // alternativ: bruk innerHTML istedenfor innerText
+      for (let x of tekst) {
+        vis3EL.innerHTML += x;
+      }
+
+
+      // en liten pause - med en kunstig løkke
+      let delvis = setInterval(vis4,100);
+      let j = 0;
+      function vis4() {
+        vis4EL.innerHTML += tekst[j];
+        j++;
+        if (j == tekst.length) {
+          clearInterval(delvis);
+        }
+      }
+
+    </script>
+  </body>
+</html>

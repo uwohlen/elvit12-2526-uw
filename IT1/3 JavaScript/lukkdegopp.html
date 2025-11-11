@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kommer du inn?</title>
+  </head>
+  <body>
+    <h1>Velkommen! Skriv koden for å åpne neste side!</h1>
+  
+    <script>
+      let kode = "";
+  
+      addEventListener("keyup",kodeFunk);
+  
+
+      function kodeFunk(event) {
+        kode += event.key;
+        console.log(kode);
+        if (kode === "sesam" || kode === "koden") {
+          window.open("kryptering.html",name="_self");
+        }
+      }
+
+    </script>
+  </body>
+</html>
