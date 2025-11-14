@@ -15,7 +15,7 @@ mine_dyr["Silkesvarten"].antall_liv()  # Antall liv har verdi liv=2, og får +1 
 # forskjellen fra lister: man må skrive .values() for å få tak i verdiene bak :
 # og .keys() for å få tak i verdiene foran : i ordlisten over
 for dyr in mine_dyr.values():
-  dyr.__str__()
+  print(dyr)
   dyr.aldring(3)
   dyr.snakk()
   print(type(dyr))        # dyreklasser.Katt viser at klassen er definert i filen dyreklasser.py
