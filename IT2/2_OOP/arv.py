@@ -10,7 +10,7 @@ class Dyr:
     self.alder = 0
 
   def dyr_info(self):
-    print(self.navn,"er en",self.farge.lower(),self.rase.lower(),"som bor",self.bolig)
+    print(self.navn,"er en",self.farge.lower(),self.rase.lower(),"som bor",self.bolig.lower())
 
   def aldring(self,antall):  
     self.alder += antall
