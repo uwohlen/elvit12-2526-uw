@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>1000</button>
+  <button>2000</button>
+  <p id="utID"></p>
+  <script>
+    let knappEL = document.getElementsByTagName("button");
+    let utEL = document.getElementById("utID");
+
+    for (knapp of knappEL) {
+      knapp.addEventListener("click",knappfunk);
+    }
+    
+    function knappfunk(event) {
+      let tall = Number(event.target.innerText) + 5;
+      utEL.innerText = tall;
+    }
+
+  </script>
+</body>
+</html>

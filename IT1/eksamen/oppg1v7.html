@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="tusenKnappID"></button>
+  <button id="toTusenKnappID"></button>
+  <p id="utID"></p>
+ 
+  <script>
+    let knapp1 = 1000;
+    let knapp2 = 2000;
+    let leggeTil = 5;
+    let tusenKnappEL = document.getElementById("tusenKnappID");
+    let toTusenKnappEL = document.getElementById("toTusenKnappID");
+    let utEL = document.getElementById("utID");
+ 
+    tusenKnappEL.innerHTML = knapp1;
+    toTusenKnappEL.innerHTML = knapp2;
+    
+    tusenKnappEL.addEventListener("click",TusenKnappFunk);
+    toTusenKnappEL.addEventListener("click",TusenKnappFunk);
+    
+    function TusenKnappFunk(event){
+      //console.log (event.target.innerHTML)
+       utEL.innerHTML = Number(event.target.innerHTML) + leggeTil;
+    }
+ 
+    
+  
+  </script>
+ 
+</body>
+ 
+</html>

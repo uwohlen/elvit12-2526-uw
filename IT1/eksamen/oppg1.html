@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="knapp1ID">1000</button>
+  <button id="knapp2ID">2000</button>
+  <p id="utID"></p>
+  <script>
+    let knapp1EL = document.getElementById("knapp1ID");
+    let knapp2EL = document.getElementById("knapp2ID");
+    let utEL = document.getElementById("utID");
+
+    knapp1EL.addEventListener("click",knapp1funk);
+    knapp2EL.addEventListener("click",knapp2funk);
+
+    function knapp1funk() {
+      let tekst = knapp1EL.innerText;
+      let tall = Number(tekst);
+      let pluss5 = tall + 5;
+      utEL.innerText = pluss5;
+    }
+
+    function knapp2funk() {
+      let tekst = knapp2EL.innerText;
+      let tall = Number(tekst);
+      let pluss5 = tall + 5;
+      utEL.innerText = pluss5;
+    }
+  </script>
+</body>
+</html>

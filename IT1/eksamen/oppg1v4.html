@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="divID"></div>
+  <p id="utID"></p>
+  <script>
+    let divEL = document.getElementById("divID");
+    let utEL = document.getElementById("utID");
+    let verdier = [1000,2000];
+
+    for (let i=0; i<verdier.length; i++) {
+      divEL.innerHTML += "<button class='knappCL'>" + verdier[i] +  "</button> ";
+    }
+
+    let knappEL = document.getElementsByClassName("knappCL");
+    for (knapp of knappEL) {
+      knapp.addEventListener("click",knappfunk);
+    }
+    
+    function knappfunk(event) {
+      let tall = Number(event.target.innerText) + 5;
+      utEL.innerText = tall;
+    }
+
+  </script>
+</body>
+</html>
