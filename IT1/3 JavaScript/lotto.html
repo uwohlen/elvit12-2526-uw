@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lotto</title>
+  <style>
+    table, th, td {
+      border: solid black 1px;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lotto-rekka de neste 3 ukene</h1>
+  <table>
+    <tbody id="tabellID">
+    </tbody>
+  </table>
+  <script>
+    let tabellEL = document.getElementById("tabellID");
+
+    // Versjon 1 - to lister - fjerner fra den ene, legger til i den andre
+
+    // Lotto har 34 tall
+    let velgFra = [];
+    for (let i=1; i<=34; i++) {
+      velgFra.push(i);
+    }
+    console.log(velgFra);
+
+    let velgTil = [];
+    // Trekker 7 tilfeldige tall fra listen med 34
+    for (let i=1; i<=7; i++) {
+      // Trekker en indeks av en stadig kortere liste med gjenværende tall
+      let trekk = Math.floor(Math.random()*velgFra.length); 
+      velgTil.push(velgFra[trekk]);
+      // Fjerner brukt verdi
+      velgFra.splice(trekk,1); 
+    }
+
+    function numerisk(a,b) {
+      return a-b;
+    }
+
+    velgTil.sort(numerisk);
+    console.log(velgTil);
+    
+    let tekst = "<tr>";
+    for (let tall of velgTil) {
+      tekst += "<td>" + tall + "</td>";
+    }
+    tekst += "</tr>";
+    tabellEL.innerHTML += tekst;
+  
+
+
+
+
+
+
+    // Versjon 2 - en liste m 7 tall, sjekker om tallet allerede er brukt
+
+    let rekka = []
+    // Trekker tilfeldige tall fra 1 - 34 til vi har 7 forskjellige
+    while (rekka.length < 7) {
+      let tilfeldigTall = Math.floor(Math.random()*34)+1;
+      // Sjekker at tallet ikke er brukt før
+      if (!rekka.includes(tilfeldigTall)) {
+        rekka.push(tilfeldigTall);
+      }
+    }
+
+    rekka.sort(numerisk);
+    console.log(rekka);
+
+    let radEL = document.createElement("tr");
+    for (let tall of rekka) {
+      let kolEL = document.createElement("td");
+      kolEL.innerText = tall;
+      radEL.appendChild(kolEL);
+    }
+    tabellEL.appendChild(radEL);
+
+
+
+
+
+    // Versjon 3 - en liste med 34 tall, sjekker om tallet allerede er brukt
+
+    // Lott har 34 tall
+    let alle = 34;
+    let resten = [];
+    let i = 1;
+    while (resten.length < alle) {
+      resten.push(i);
+      i++;
+    }
+    console.log(resten);
+
+    // Skal trekke 7 ganger
+    let nr = 1;
+    while (nr <= 7) {
+      while (true) {
+        // Velg et tilfeldig tall 1 - 34
+        let trekt = Math.floor(Math.random()*alle)+1;
+        console.log(trekt);
+        // Hvis det ikke er brukt
+        if (resten.includes(trekt)) {
+          // Sett tallet til 0, indeksen er 1 mindre enn verdien
+          resten[trekt-1] = 0;
+          // Avslutt indre løkka "while(true)"
+          break;
+        }
+      }
+      nr ++;
+    }
+    console.log(resten);
+
+    // Utskriften feiler: sjekk versjon 1 og 2 for riktige metoder
+    tabellEL.innerHTML += "<tr>";
+    for (let i=0; i<resten.length; i++) {
+      // Vis bare tallene som ble trekt i løkka over
+      if (resten[i] === 0) {
+        // Verdien er 1 mer enn indeksen
+        tabellEL.innerHTML += "<td>" + (i+1) + "</td>";
+      }
+    }
+    tabellEL.innerHTML += "</tr>";
+
+
+    // Versjon 4 
+    // ...
+
+
+  </script>
+  
+</body>
+</html>
