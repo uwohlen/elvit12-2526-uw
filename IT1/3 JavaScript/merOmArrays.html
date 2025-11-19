@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>merOmArrays</title>
+</head>
+<body>
+  <script>
+    let tall = [5,8,2,4,6]
+    for (let i = 0; i < tall.length; i++) {
+      if (tall[i] === 2) {
+        tall.splice(i,1);
+      } else {
+        console.log(tall[i])
+      }
+    }
+    console.log(tall)
+
+    tall = [5,8,2,2,6]
+    for (let i = 0; i < tall.length; i++) {
+      if (tall[i] === 2) {
+        tall.splice(i,1);
+      } else {
+        console.log(tall[i])
+      }
+    }
+    console.log(tall)
+
+
+    tall = [5,8,2,4,6]
+    for (let i = tall.length-1; i >= 0; i--) {
+      if (tall[i] === 2) {
+        tall.splice(i,1)
+      } else {
+        console.log(tall[i])
+      }
+    }
+    console.log(tall)
+
+
+
+    tall = [5,8,2,4,6]
+    for (let i = 0; i < tall.length; i++) {
+      if (tall[i] === 2) {
+        tall.splice(i,1);
+        i--;
+      } else {
+        console.log(tall[i])
+      }
+    }
+    console.log(tall)
+    
+    
+
+
+
+
+    tall = [5,8,2,4,6]
+    for (let i=0; i<tall.length; i++) {
+      if (tall[i] === 4) {
+        tall[i] = 14;
+      }
+      console.log(tall[i]);
+    }
+    console.log(tall)
+    
+    
+    
+    
+    tall = [5,8,2,4,6]
+    for (let siffer of tall) {
+      if (siffer === 8) {
+        siffer = 18;
+      }
+      console.log(siffer);
+    } 
+    console.log(tall)
+
+
+    tall = [5,8,4,6]
+    let sum = 0;
+    for (let i = 0; i < tall.length; i++) {
+      sum += tall[i];
+    }
+    console.log(sum);
+
+
+    tall = [5,8,4,6]
+    let produkt = 1;
+    for (let i = 0; i < tall.length; i++) {
+      produkt *= tall[i];
+    }
+    console.log(produkt);
+
+
+    let bokstaver = ["a","b","c","d"]
+    let tekst = "";
+    for (let i = 0; i < tall.length; i++) {
+      tekst += bokstaver[i];
+    }
+    console.log(tekst);
+
+    tall = [5,8,4,6]
+    produkt = tall[0];
+    for (let i = 1; i < tall.length; i++) {
+      produkt *= tall[i];
+    }
+    console.log(produkt);
+
+
+    let liste = [];
+    for (let i=1; i<=100; i++) {
+      liste.push(i);
+    }
+    console.log(liste)
+  </script>
+  
+</body>
+</html>
