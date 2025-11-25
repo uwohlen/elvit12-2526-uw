@@ -19,6 +19,8 @@ class Test:
   def set_ekstra(self,verdi:int) -> None:
     if type(verdi) == int:
       self.__privat_ekstra = verdi
+    else:
+      print("Feilmelding for ekstra verdi")
 
   def get_ekstra(self) -> int:
     return self.__privat_ekstra
