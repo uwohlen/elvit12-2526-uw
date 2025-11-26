@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="media/sekskant.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BildeKarusell</title>
+</head>
+<body>
+  <h1>Se mine vakre bilder</h1>
+  <p>Test etter ikon</p>
+  <div>
+    <button id="tilbakeID">Forrige bilde</button>
+    <img id="bildeID" src="#">
+    <button id="nesteID">Neste bilde</button>
+  </div>
+  <script>
+    let bildeEL = document.getElementById("bildeID");
+    let bilder = ["firkant","hjerte","kryss","pil","rombe","sekskant","sirkel","stjerne","trekant"];
+    let alt = ["en oransje","et rødt","et blått","en grå","en grønn","en todelt","en rød","en gul","en lilla"];
+  
+    let i = 0;
+    function finnBilde(indeks) {
+      bildeEL.src = "media/" + bilder[indeks] + ".png";
+      bildeEL.alt = "Tegning av " + alt[indeks] + " " + bilder[indeks];
+    }
+    finnBilde(i);
+
+    let tilbakeEL = document.getElementById("tilbakeID");
+    let nesteEL = document.getElementById("nesteID");
+    tilbakeEL.addEventListener("click",tilbakeFunk);
+    nesteEL.addEventListener("click",nesteFunk);
+
+    function tilbakeFunk() {
+      if (i === 0) {
+        i = bilder.length;
+      }
+      i--
+      finnBilde(i);
+    }
+    function nesteFunk() {
+      i++
+      if (i === bilder.length) {
+        i = 0
+      }
+      finnBilde(i);
+    }
+    
+  </script>
+  
+</body>
+</html>

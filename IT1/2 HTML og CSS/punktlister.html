@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <link rel='icon' href='media/favicon.ico'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Punktlister</title>
+  <style>
+    .handCL {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <ul id="liste1ID"></ul>
+  <ul id="liste2ID"></ul>
+  <ol id="liste3ID"></ol>
+  <ol id="liste4ID"></ol>
+  <script>
+    let liste1EL = document.getElementById("liste1ID");
+    let liste2EL = document.getElementById("liste2ID");
+    let liste3EL = document.getElementById("liste3ID");
+    let liste4EL = document.getElementById("liste4ID");
+    
+    let navn = ["Anne","Berit","Cecilie","Dorthe"];
+    
+    // Liste nr 1
+    for (let i=0; i<navn.length; i++) { // Hvis man skal gjøre noe spesielt med noen av verdiene
+      if (i < navn.length - 1) {
+        liste1EL.innerHTML += "<li>" + navn[i] + " og</li>"; // Grei metode når html-koden ikke er så omfattende
+      }
+      else {
+        liste1EL.innerHTML += "<li>" + navn[i] + "</li>";
+      }
+    }
+    
+    // Liste nr 2
+    for (let fornavn of navn) { // Hvis man skal gjøre det samme med alle verdiene
+      liste2EL.innerHTML += "<li>" + fornavn + "</li>"; // Grei metode når html-koden ikke er så omfattende
+    }
+    
+
+    // Liste nr 3
+    let elementer1 = [];
+    
+    for (let fornavn of navn) {
+      let linje = document.createElement("li"); // Grei metode når man skal gjøre mye med hver tagg
+      linje.innerText = fornavn + " og";
+      linje.className = "handCL";
+      linje.addEventListener("click",linjeFunk); // Gi elementene addEventListener før løkka går videre, slipper å gjøre det i en løkke senere
+      liste3EL.appendChild(linje);
+      elementer1.push(linje); // Ta vare på elementene før løkka går videre, slipper getElementsByTagName eller getElementsByClassName senere
+    }
+
+    // Kan programmere videre på hver enkelt linje i lista, i løkker eller rett på en om gangen
+    elementer1[elementer1.length-1].innerText = navn[navn.length-1]
+    
+
+
+    // Liste nr 4
+    for (let fornavn of navn) {
+      let linje = document.createElement("li");
+      linje.innerText = fornavn;
+      linje.className = "eksempelCL";
+      liste4EL.appendChild(linje);
+    }
+
+    let elementer2 = document.getElementsByClassName("eksempelCL"); // henter linjene inn etter at de er lagd
+    for (let linje of elementer2) {
+      linje.addEventListener("click",linjeFunk); // Linjene kan klikkes på
+    }
+
+    function linjeFunk(event) {
+      event.target.style.backgroundColor = "green";
+    }
+
+  </script>
+</body>
+</html>

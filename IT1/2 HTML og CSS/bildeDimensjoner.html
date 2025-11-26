@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title></title>
+  <style>
+    .handCL {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kalkulator for bildedimensjoner</h1>
+  <h2>Skriv inn både original bredde og original høyde på bildet</h2>
+  <h2>Skriv inn ENTEN den nye bredden, ELLER den nye høyden</h2>
+  <div>
+    <input id='orgBID' type='number' placeholder="Original bredde">
+    <input id='orgHID' type='number' placeholder="Original høyde">
+    <input id='nyBID' type='number' placeholder="Ny bredde">
+    <input id='nyHID' type='number' placeholder="Ny høyde">
+    <button id='knappID' class='handCL'>Regn ut</button>
+    <p>Resultat: <span id='tilbakeID'></span></p>
+  </div>
+  <script>
+    let orgBEL = document.getElementById('orgBID');
+    let orgHEL = document.getElementById('orgHID');
+    let nyBEL = document.getElementById('nyBID');
+    let nyHEL = document.getElementById('nyHID');
+    let knappEL = document.getElementById('knappID');
+    let tilbakeEL = document.getElementById('tilbakeID');
+
+    orgBEL.focus()
+    knappEL.addEventListener('click',knappFunk);
+    function knappFunk() {
+      ob = Number(orgBEL.value);
+      oh = Number(orgHEL.value);
+      nb = Number(nyBEL.value);
+      nh = Number(nyHEL.value);
+      if (nb === 0 && nh === 0 || ob === 0 || oh === 0) {
+        tilbakeEL.innerText = "Du må skrive inn ordentlige tall";
+      }
+      else if (nb === 0) {
+        tilbakeEL.innerText = "Ny bredde er: " + Math.round(ob/oh*nh);
+      }
+      else if (nh === 0) {
+        tilbakeEL.innerText = "Ny høyde er: " + Math.round(oh/ob*nb);
+      }
+      else {
+        tilbakeEL.innerText = "Den ene ny verdien må mangle.";
+      }
+    }
+  </script>
+</body>
+</html>
