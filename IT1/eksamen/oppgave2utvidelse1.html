@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Skriv et tall:</h1>
+  <input id="tallID" type="number">
+  <h1>Skriv et navn:</h1>
+  <input id="navnID" type="text">
+  <button id="knappID">Lagre</button>
+  <p id="svarID"></p>
+  <script>
+    let tallEL = document.getElementById("tallID"); // Det er fremdeles et tekst felt, men nå har vi to
+    let navnEL = document.getElementById("navnID"); // Skiller tekstfeltene fra hverandre ved å gi dem unike id-er
+    let knappEL = document.getElementById("knappID");
+    let svarEL = document.getElementById("svarID");
+
+    knappEL.addEventListener("click",klikkFunk)
+
+    function klikkFunk() {
+      let tall = Number(tallEL.value);
+      let navn = navnEL.value;
+      if (navn === "Unni") {
+        tall = tall + 5; // ny verdi settes lik gammel verdi pluss 5
+      }
+      else {
+        tall = tall - 5;
+      }
+      svarEL.innerText = tall;
+    }
+  </script>
+</body>
+</html>

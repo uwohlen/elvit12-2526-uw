@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <link rel='icon' href='media/favicon.ico'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title></title>
+  <style>
+    .handCL {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Skriv ett tall (og avslutt med Enter):</h1>
+  <input id="tekstID" type="number">
+  <p id="svarID"></p>
+  <script>
+    let tekstEL = document.getElementById("tekstID");
+    let svarEL = document.getElementById("svarID");
+
+    tekstEL.addEventListener("keydown",skrivFunk);
+
+    function skrivFunk(event) {
+      if (event.key === "Enter") {
+        svarEL.innerText = Number(tekstEL.value) + 5;
+      } 
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <link rel='icon' href='media/favicon.ico'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title></title>
+  <style>
+    .handCL {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Skriv et tall:</h1>
+  <input id="tekstID" type="number">
+  <button id="knappID" class="handCL">Lagre</button>
+  <p id="svarID"></p>
+  <script>
+    let tekstEL = document.getElementById("tekstID"); //Det er et tekstfelt selv om type er number
+    let knappEL = document.getElementById("knappID");
+    let svarEL = document.getElementById("svarID");
+
+    knappEL.addEventListener("click",klikkFunk)
+
+    function klikkFunk() {
+      let tekst = tekstEL.value;
+      let tall = Number(tekst);
+      let pluss5 = tall + 5;
+      svarEL.innerText = pluss5;
+    }
+  </script>
+</body>
+</html>
