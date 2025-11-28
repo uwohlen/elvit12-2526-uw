@@ -18,7 +18,7 @@ class Batteri:
     """
     Batteri.batteriID_nr += 1
     self.__batteriID:str = "B" + str(Batteri.batteriID_nr)
-    self.__energinivaa = energinivå
+    self.__energiniva = energinivå
     self.__energikapasitet = energikapasitet
 
   def ladOpp(self, energi:float) -> None:
@@ -27,7 +27,7 @@ class Batteri:
       Parametre
         energi: float - energimengden som batteriet lades med
     """
-    self.__energinivaa += energi
+    self.__energiniva += energi
 
   def brukEnergi(self, energi:float) -> None:
     """
@@ -35,13 +35,20 @@ class Batteri:
       Parametre
         energi: float - energimengden som batteriet tappes med
     """
-    self.__energinivaa -= energi
+    self.__energiniva -= energi
 
   def visEnerginivå(self) -> float:
     """
     Vis nåværende energinivå
     """
-    return self.__energinivaa
-  
+    return self.__energiniva
+
+  def __str__(self) -> str:
+    """
+    Returnerer en tekst-streng som blir brukt ved print(objekt)
+    """
+    return f"Batteri ID {self.__batteriID}: Nivå: {self.__energiniva} Kapasitet: {self.__energikapasitet}"
+
+
 
 
