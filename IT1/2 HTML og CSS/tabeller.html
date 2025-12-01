@@ -4,7 +4,7 @@
   <meta charset='UTF-8'>
   <link rel='icon' href='media/favicon.ico'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title></title>
+  <title>Tabeller</title>
   <style>
     .handCL {
       cursor: pointer;
@@ -17,7 +17,7 @@
   </style>
 </head>
 <body>
-  <h1></h1>
+  <h1>Tabeller intro</h1>
   <table>
     <thead>
       <tr id='taboverID'>
@@ -38,14 +38,26 @@
     let navn = ["Anne","Berit","Cecilie","Dorthe"];
     let alder = [55,32,46,34];
 
-    //for (let i=0; i<navn.length; i++) {
-    //  tabellEL.innerHTML += "<tr><td>" + navn[i] + "</td><td>" + alder[i] + "</td></tr>";
-    //}
+    for (let i=0; i<navn.length; i++) {
+      tabellEL.innerHTML += "<tr><td>" + navn[i] + "</td><td>" + alder[i] + "</td></tr>";
+    }
 
     let alle = [
       ["Anne","Berit","Cecilie","Dorthe"],
       [55,32,46,34]
     ]
+
+    
+    let tekst = "";
+    for (let i=0; i<alle[0].length; i++) {
+      tekst += "<tr>";
+      for (let j=0; j<alle.length; j++) {
+        tekst += "<td>" + alle[j][i] + "</td>";
+      }
+      tekst += "</tr>";
+    }
+    tabellEL.innerHTML += tekst;
+
 
     let personer = [
       ["Anne",55,4,5,7],
@@ -55,16 +67,6 @@
       ["Elise",76,1,1,1],
       ["Fredrikke",22,5,4,4]
     ]
-
-    let tekst = "";
-    for (let i=0; i<alle[0].length; i++) {
-      tekst += "<tr>";
-      for (let j=0; j<alle.length; j++) {
-        tekst += "<td>" + alle[j][i] + "</td>";
-      }
-      tekst += "</tr>";
-    }
-    //tabellEL.innerHTML += tekst;
 
 
     tekst = "";
