@@ -25,7 +25,7 @@
     let navn = ["Anne","Berit","Cecilie","Dorthe"];
     
     // Liste nr 1
-    for (let i=0; i<navn.length; i++) { // Hvis man skal gjøre noe spesielt med noen av verdiene
+    for (let i=0; i<navn.length; i++) { // Hvis man skal gjøre noe spesielt med noen av verdiene basert på plassering eller verdi
       if (i < navn.length - 1) {
         liste1EL.innerHTML += "<li>" + navn[i] + " og</li>"; // Grei metode når html-koden ikke er så omfattende
       }
@@ -35,7 +35,7 @@
     }
     
     // Liste nr 2
-    for (let fornavn of navn) { // Hvis man skal gjøre det samme med alle verdiene
+    for (let fornavn of navn) { // Hvis man skal gjøre det samme med alle verdiene, eller forskjellig basert på verdi
       liste2EL.innerHTML += "<li>" + fornavn + "</li>"; // Grei metode når html-koden ikke er så omfattende
     }
     
@@ -60,7 +60,12 @@
     // Liste nr 4
     for (let fornavn of navn) {
       let linje = document.createElement("li");
-      linje.innerText = fornavn;
+      if (fornavn == "Cecilie") {
+        linje.innerText = "Cæsar";
+      }
+      else {
+        linje.innerText = fornavn;
+      }
       linje.className = "eksempelCL";
       liste4EL.appendChild(linje);
     }

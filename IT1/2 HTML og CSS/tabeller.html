@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <link rel='icon' href='media/favicon.ico'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title></title>
+  <style>
+    .handCL {
+      cursor: pointer;
+    }
+    table,th,td {
+      border: solid black 1px;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1></h1>
+  <table>
+    <thead>
+      <tr id='taboverID'>
+        <th>Navn</th>
+        <th>Alder</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+      </tr>
+    </thead>
+    <tbody id='tabellID'>
+    </tbody>
+  </table>
+  <script>
+    let taboverEL = document.getElementById('taboverID');
+    let tabellEL = document.getElementById('tabellID');
+
+    let navn = ["Anne","Berit","Cecilie","Dorthe"];
+    let alder = [55,32,46,34];
+
+    //for (let i=0; i<navn.length; i++) {
+    //  tabellEL.innerHTML += "<tr><td>" + navn[i] + "</td><td>" + alder[i] + "</td></tr>";
+    //}
+
+    let alle = [
+      ["Anne","Berit","Cecilie","Dorthe"],
+      [55,32,46,34]
+    ]
+
+    let personer = [
+      ["Anne",55,4,5,7],
+      ["Berit",32,4,3,5],
+      ["Cecilie",46,5,2,6],
+      ["Dorthe",34,5,7,3],
+      ["Elise",76,1,1,1],
+      ["Fredrikke",22,5,4,4]
+    ]
+
+    let tekst = "";
+    for (let i=0; i<alle[0].length; i++) {
+      tekst += "<tr>";
+      for (let j=0; j<alle.length; j++) {
+        tekst += "<td>" + alle[j][i] + "</td>";
+      }
+      tekst += "</tr>";
+    }
+    //tabellEL.innerHTML += tekst;
+
+
+    tekst = "";
+    for (let i=0; i<personer.length; i++) {
+      tekst += "<tr>";
+      for (let j=0; j<personer[i].length; j++) {
+        tekst += "<td>" + personer[i][j] + "</td>";
+      }
+      tekst += "</tr>";
+    }
+    tabellEL.innerHTML += tekst;
+
+
+  </script>
+</body>
+</html>
