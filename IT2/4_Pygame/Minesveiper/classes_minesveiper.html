@@ -1,0 +1,43 @@
+<html>
+  <body>
+    <script src="uml.js"></script>
+    <h1>UML-diagram for Minesveiper</h1>
+      <div class="mermaid">
+    
+        classDiagram
+          class Firkant {
+            bredde : int
+            farge : str
+            hoyde : int
+            obj : Rect
+            vindu : Surface
+            x : int
+            y : int
+            tegn(bredde: int, farge: str, radius: int) None
+            tegn3D(nedre: str, ovre: str, hoved: str, kant: int) None
+          }
+          class Knapp {
+            font : Font
+            mine : bool
+            status : str
+            tekst : int
+            visning : bool
+            vis_tekst(farge: str, tekst: str) None
+          }
+          class Rutenett {
+            antall_miner : int
+            antall_x : int
+            antall_y : int
+            ruter : list[Knapp]
+            vindu : Surface
+            vist : int
+            lag_miner() None
+            lag_nytt_rutenett(font: pg.font.Font, farge: str) None
+            tell_nabo_miner() None
+          }
+          Knapp --|> Firkant
+          Rutenett *-- Knapp : Rutenett lager Knapper 0..1 / *
+  
+       </div>
+  </body>
+</html>
