@@ -31,7 +31,7 @@
     let tabellEL = document.getElementById("tabellID");
 
     // Versjon 1
-    //let bilder = ["kryss.png","sirkel.png","stjerne.png"];
+    //let bilder = ["kryss","sirkel","stjerne"];
 
     // Versjon 2-4
     let bilder = ["kryss","sirkel","stjerne","pil"];
@@ -42,8 +42,8 @@
         
       for (let j=0; j<bilder.length; j++) {
         // Versjon 1-2
-        /*  tekst += "<td><img src='media/" + bilder[j] + ".png'></td>"; 
-        */
+        //  tekst += "<td><img src='media/" + bilder[j] + ".png'></td>"; 
+        
         // Versjon 3
         
         if (j-i >= 0) {
@@ -63,6 +63,7 @@
         }
         */
       }
+      tekst += "</tr>";
     }
     tabellEL.innerHTML = tekst;
   </script>
