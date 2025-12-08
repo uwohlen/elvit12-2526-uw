@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table,td,th {
+      border: solid black 1px;
+      /*border-collapse: collapse;*/
+      padding: 5px;
+    }
+    /* Bakgrunnsfarger */
+    /*
+    td {
+      background-color: bisque;
+    }
+    table {
+      background-color: blue;
+    }
+    */
+  </style>
+</head>
+<body>
+  <table>
+    <tbody id="tabellID">
+    </tbody>
+  </table>
+
+  <script>
+    let tabellEL = document.getElementById("tabellID");
+
+    // Versjon 1
+    //let bilder = ["kryss.png","sirkel.png","stjerne.png"];
+
+    // Versjon 2-4
+    let bilder = ["kryss","sirkel","stjerne","pil"];
+
+    let tekst = "";
+    for (let i=0; i<bilder.length; i++) {
+      tekst += "<tr>";
+        
+      for (let j=0; j<bilder.length; j++) {
+        // Versjon 1-2
+        /*  tekst += "<td><img src='media/" + bilder[j] + ".png'></td>"; 
+        */
+        // Versjon 3
+        
+        if (j-i >= 0) {
+          tekst += "<td><img src='media/" + bilder[j-i] + ".png'></td>"; 
+        }
+        else {
+          tekst += "<td><img src='media/" + bilder[j-i+bilder.length] + ".png'></td>"; 
+        }
+
+        // Versjon 4
+        /*
+        if (j+i < bilder.length) {
+          tekst += "<td><img src='media/" + bilder[j+i] + ".png'></td>"; 
+        }
+        else {
+          tekst += "<td><img src='media/" + bilder[j+i-bilder.length] + ".png'></td>"; 
+        }
+        */
+      }
+    }
+    tabellEL.innerHTML = tekst;
+  </script>
+</body>
+</html>
