@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table,td,th {
+      border: solid black 1px;
+      /*border-collapse: collapse;*/
+      padding: 5px;
+    }
+    /* Bakgrunnsfarger 
+    
+    td {
+      background-color: bisque;
+    }
+    table {
+      background-color: blue;
+    }
+*/
+  </style>
+</head>
+<body>
+  <table>
+    <tbody id="tabellID">
+    </tbody>
+  </table>
+  <div id="bilde1ID"></div>
+  <div id="bilde2ID"></div>
+  <p>Bildene er <span id="meldingID"></span></p>
+
+  <script>
+    let tabellEL = document.getElementById("tabellID");
+    let bilde1EL = document.getElementById("bilde1ID");
+    let bilde2EL = document.getElementById("bilde2ID");
+    let meldingEL = document.getElementById("meldingID");
+
+    let bilder = ["kryss","sirkel","stjerne","pil"];
+
+
+    let tekst = "<tr>";
+    for (let i=0; i<bilder.length+1; i++) {
+      let j = Math.floor(Math.random()*bilder.length)
+      tekst += "<td><img data-i=" + i + " data-j=" + j + " src='media/" + bilder[j] + ".png'></td>"; 
+    }
+
+    tabellEL.innerHTML = tekst + "</tr>";
+
+    let bilderEL = document.getElementsByTagName("img");
+    for (plass of bilderEL) {
+      plass.addEventListener("click",sjekkFunk);
+    }
+
+    oppstart = true;
+    valgtPlass = -1;
+    valgtBilde = "";
+
+
+
+    function sjekkFunk(event) {
+      if (oppstart) {
+        valgtPlass = event.target.dataset.i
+        valgtBilde = event.target.dataset.j
+        bilde1EL.innerHTML = "<img src='media/" + bilder[valgtBilde] + ".png'>";
+        event.target.parentElement.style.backgroundColor = "red";
+        oppstart = false
+        meldingEL.innerHTML = "";
+        bilde2EL.innerHTML = "";
+      }
+      else {
+        if (event.target.dataset.i !== valgtPlass) {
+          bilde2EL.innerHTML = "<img src='media/" + bilder[event.target.dataset.j] + ".png'>";
+          if (event.target.dataset.j === valgtBilde) {
+            meldingEL.innerHTML = "LIKE";
+          }
+          else {
+            meldingEL.innerHTML = "ULIKE";
+          }
+          bilderEL[valgtPlass].parentElement.style.backgroundColor = "white";
+          oppstart = true
+        }
+      }
+    }
+
+  </script>
+</body>
+</html>
