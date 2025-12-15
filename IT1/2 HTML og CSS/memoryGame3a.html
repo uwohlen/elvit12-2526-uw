@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table,td,th {
+      border: solid black 1px;
+      /*border-collapse: collapse;*/
+      padding: 5px;
+    }
+    /* Bakgrunnsfarger 
+    
+    td {
+      background-color: bisque;
+    }
+    table {
+      background-color: blue;
+    }
+*/
+  </style>
+</head>
+<body>
+  <table>
+    <tbody id="tabellID">
+    </tbody>
+  </table>
+  <p>Bildene er <span id="meldingID"></span></p>
+  <script>
+    let tabellEL = document.getElementById("tabellID");
+    let meldingEL = document.getElementById("meldingID");
+    let bilder = [
+      ["stjerne","sirkel","stjerne"],
+      ["pil","pil","sirkel"]
+    ];
+
+   
+    tekst = "";
+    for (let i=0; i<bilder.length; i++) {
+      tekst += "<tr>";
+      for (let j=0; j<bilder[i].length; j++) {
+        tekst += "<td><img class='kryss' src='media/kryss.png'></td>"; 
+      }
+      tekst += "</tr>";
+    }
+    tabellEL.innerHTML += tekst;
+
+    let alle = document.getElementsByClassName("kryss");
+    for (let bilde of alle) {
+      bilde.addEventListener("click",sjekkFunk);
+    }
+   
+
+    let bilde1 = "";
+
+    function sjekkFunk(event) {
+      rad = event.target.parentElement.parentElement.rowIndex; // alternativ til data-attributten
+      kol = event.target.parentElement.cellIndex; // alternativ til data-attributten
+      if (bilde1 === "") {
+        bilde1 = event.target;
+        bilde1.src = "media/" + bilder[rad][kol] + ".png";
+        //bilde1.removeEventListener("click",sjekkFunk);
+        meldingEL.innerHTML = ""
+      } else {
+        let bilde2 = event.target;
+        bilde2.src = "media/" + bilder[rad][kol] + ".png";
+        //bilde2.removeEventListener("click",sjekkFunk);
+        if (bilde1.src === bilde2.src) {
+          meldingEL.innerHTML = "LIKE";
+        }
+        else {
+          meldingEL.innerHTML = "ULIKE";
+          //bilde1.addEventListener("click",sjekkFunk);
+          //bilde2.addEventListener("click",sjekkFunk);
+          //bilde2.src = "media/kryss.png";
+          //bilde1.src = "media/kryss.png";
+        }
+        bilde1 = "";
+      }
+    }
+
+  </script>
+</body>
+</html>
