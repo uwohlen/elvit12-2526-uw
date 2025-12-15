@@ -60,21 +60,21 @@
       if (bilde1 === "") {
         bilde1 = event.target;
         bilde1.src = "media/" + bilder[rad][kol] + ".png";
-        //bilde1.removeEventListener("click",sjekkFunk);
+        bilde1.removeEventListener("click",sjekkFunk);
         meldingEL.innerHTML = ""
       } else {
         let bilde2 = event.target;
         bilde2.src = "media/" + bilder[rad][kol] + ".png";
-        //bilde2.removeEventListener("click",sjekkFunk);
+        bilde2.removeEventListener("click",sjekkFunk);
         if (bilde1.src === bilde2.src) {
           meldingEL.innerHTML = "LIKE";
         }
         else {
           meldingEL.innerHTML = "ULIKE";
-          //bilde1.addEventListener("click",sjekkFunk);
-          //bilde2.addEventListener("click",sjekkFunk);
-          //bilde2.src = "media/kryss.png";
-          //bilde1.src = "media/kryss.png";
+          bilde1.addEventListener("click",sjekkFunk);
+          bilde2.addEventListener("click",sjekkFunk);
+          bilde2.src = "media/kryss.png";
+          bilde1.src = "media/kryss.png";
         }
         bilde1 = "";
       }
