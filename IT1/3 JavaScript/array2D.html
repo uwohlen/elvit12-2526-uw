@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    td,th {
+      border: solid black 1px;
+      padding: 5px;
+    }
+    table {
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Navn</th>
+        <th>Alder</th>
+        <th>Poeng</th>
+        <th>Nr</th>
+      </tr>
+    </thead>
+    <tbody id="tabellID">
+    </tbody>
+  </table>
+  <script>
+    let tabellEl = document.getElementById("tabellID");
+    let resultater = [
+      ["Are",52,78,1],
+      ["Benjamin",20,90,2],
+      ["Cathrine",19,45,""],
+      ["Dennis",76,12,4],
+      ["Elvis",90,54,5,"ojsann"],
+      ["Fredrikke",34,63,6]
+    ];
+    let tekst = "";
+    for (let i = 0; i < resultater.length; i++) {
+      tekst += "<tr>";
+      for (let j = 0; j < resultater[0].length; j++) {
+        tekst += "<td>"+resultater[i][j] + "</td>";
+      }
+      tekst += "</tr>";
+    }
+    tabellEl.innerHTML = tekst;
+  </script>
+  
+</body>
+</html>

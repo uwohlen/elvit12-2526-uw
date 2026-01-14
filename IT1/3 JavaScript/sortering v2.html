@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang='no'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Sort v2</title>
+    <style>
+        table, th, td {
+            border: solid 1px black;
+            padding: 5px;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Registrer resultater</h1>
+        <hr>
+        <p>Skriv inn navn: <input id="navnID" type="text"></p>
+        <hr>
+        <p>Skriv inn poeng: <input id="poengID" type="number"></p>
+        <p></p>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Navn</th>
+                    <th>Poeng</th>
+                </tr>
+            </thead>
+            <tbody id="resultatID">
+                
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let navnEl = document.getElementById("navnID");
+        let poengEl = document.getElementById("poengID");
+        let resultatEl = document.getElementById("resultatID");
+
+        let resultat = [];
+
+        navnEl.focus();
+        navnEl.addEventListener("keydown", navnFunk);
+        poengEl.addEventListener("keydown",poengFunk);
+
+        function navnFunk(event) {
+            if (event.code === "Enter") {
+                poengEl.focus();
+            }
+        }
+
+        function poengFunk(event) {
+            if (event.code === "Enter") {
+                resultat.push([navnEl.value,Number(poengEl.value)]);
+                resultat.sort();
+                let tekst = "";
+                for (let i = 0; i <resultat.length; i++) {
+                    tekst += "<tr>";
+                    for (let j = 0; j< resultat[i].length; j++) {
+                        tekst += "<td>" + resultat[i][j] + "</td>";
+                    }    
+                    tekst += "</tr>";
+                }
+                resultatEl.innerHTML = tekst;
+
+                navnEl.value = "";
+                poengEl.value = "";
+                navnEl.focus();
+            }
+        }
+
+    </script>
+</body>
+
+</html>

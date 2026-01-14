@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang='no'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Sort v3</title>
+    <style>
+        table, th, td {
+            border: solid 1px black;
+            padding: 5px;
+            border-collapse: collapse;
+        }
+        .tallkolonne {
+            text-align: right; /* Tall høyrejusteres i tabeller */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Registrer resultater</h1>
+        <hr>
+        <p>Skriv inn navn: <input id="navnID" type="text"></p>
+        <hr>
+        <p>Skriv inn poeng: <input id="poengID" type="number"></p>
+        <p></p>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Navn</th>
+                    <th>Poeng</th>
+                </tr>
+            </thead>
+            <tbody id="resultatID">
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let navnEl = document.getElementById("navnID");
+        let poengEl = document.getElementById("poengID");
+        let resultatEl = document.getElementById("resultatID");
+
+        let resultat = [];
+
+        navnEl.focus();
+        navnEl.addEventListener("keydown", navnFunk);
+        poengEl.addEventListener("keydown",poengFunk);
+
+        function navnFunk(event) {
+            if (event.code === "Enter") {
+                poengEl.focus();
+            }
+        }
+
+        function poengFunk(event) {
+            if (event.code === "Enter") {
+                
+                //Fyll arrayen med arrayer:
+                resultat.push([navnEl.value, Number(poengEl.value)]);
+
+                //Sorter på kolonne med index 1 (se funksjonen sammenlign1 nedenfor)
+                resultat.sort(sammenlign1D);
+
+                let tekst = "";
+                for (let i = 0; i <resultat.length; i++) {
+                    tekst += "<tr>";
+                    for (let j = 0; j< resultat[i].length; j++) {
+                        //tall skal høyrestilles. Hvis det brukes desimaltall, så bør de vises med like mange desimaler.
+                        if (typeof(resultat[i][j]) === "number") {
+                            tekst += "<td class='tallkolonne'>" + resultat[i][j]/*.toFixed(2)*/ + "</td>";
+                        }
+                        else {
+                            tekst += "<td>" +  resultat[i][j] + "</td>";
+                        }
+                    }    
+                    tekst += "</tr>";
+                }
+                resultatEl.innerHTML = tekst;
+
+                navnEl.value = "";
+                poengEl.value = "";
+                navnEl.focus();
+            }
+        }
+
+        // Sammenligningsfunksjon for sort()-funksjonen til 2D-arrays
+        // Sorterer fra størst til minst
+        // Sorterer på kolonne med index 1
+        function sammenlign1D(a,b) {
+            if (a[1] > b[1]) {
+                return -1;
+            }
+            else if (a[1] < b[1]) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
