@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      <div class="mermaid">
+    
+        classDiagram
+          note "UML-diagram for ..."
+          class Super_klasse {
+            +attributt1 : str
+            +attributt2 : int
+            +__ str __()  str
+            +funksjon1()  str
+          }
+          class Klasse_som_arver {
+            -__id_nr: int
+            +attributt3 : str
+            +__ str __()  str
+            +funksjon2(parameter1: int)  int
+          }
+          Super_klasse <|-- Klasse_som_arver
+
+       </div>
+  </body>
+</html>

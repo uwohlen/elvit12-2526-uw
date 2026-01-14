@@ -31,12 +31,12 @@ for data in grafdata:
     antall[2] += 1
 
 
-#plt.scatter(xverdier, yverdier)  # Lager punkter
-#plt.plot(xverdier, yverdier)  # Lager grafer
-#plt.show()
+plt.scatter(xverdier, yverdier)  # Lager punkter
+plt.plot(xverdier, yverdier)  # Lager grafer
+plt.show()
 
-#plt.bar(kjonn,antall)         # Lager søyler
-#plt.show()                   
+plt.bar(kjonn,antall)         # Lager søyler
+plt.show()                   
 
 
 
@@ -50,8 +50,8 @@ for xverdi in range(0,11,2):
   xverdier.append(xverdi)
   yverdier.append(f(xverdi))
 
-#plt.plot(xverdier, yverdier)
-#plt.show()
+plt.plot(xverdier, yverdier)
+plt.show()
 
 
 xverdier = []
@@ -63,8 +63,8 @@ while xverdi <= 10:
   yverdier.append(f(xverdi))
   xverdi += 0.1
 
-#plt.plot(xverdier, yverdier)
-#plt.show()
+plt.plot(xverdier, yverdier)
+plt.show()
 
 
 import numpy as np
