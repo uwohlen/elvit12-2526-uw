@@ -1,0 +1,4 @@
+Dette er en tekstfil med informasjon
+Her er det en ny linje, med æøå
+
+Det er en tom linje over denne siste linjen.
