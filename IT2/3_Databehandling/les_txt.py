@@ -34,14 +34,14 @@ filnavn = "ny_tekst_v2.txt"
 with open(filnavn, "w") as fil:
   fil.write("Hei\n")
   fil.write("Ha det bra\n")
+  fil.write("tredje linje\n")
 
 with open(filnavn, "w") as fil:
   fil.write("Linje 3\n")
   fil.write("Linje 4\n")
-"""
 
 """
-filnavn = "../intro/ny_tekst_v3.txt"
+filnavn = "ny_tekst_v3.txt"
 with open(filnavn, "w") as fil:
   for i in range(10):
     tekst = str(i) +  ";" + str(i*i) + "\n"
@@ -52,4 +52,3 @@ with open(filnavn, "a") as fil:
     tekst = str(i) +  ";" + str(i*i) + "\n"
     fil.write(tekst)
 
-"""
