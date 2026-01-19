@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <link rel='icon' href='media/favicon.ico'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title></title>
+  <style>
+    .handCL {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  
+  <script>
+
+    let liste1 = [4,16,3,8]
+    let liste2 = [
+      ["c","x",4],
+      ["a","r",16],
+      ["f","t",3],
+      ["b","m",8]
+    ]
+
+    liste1.sort((a,b) => a-b) // virker bare for tall
+    console.log(liste1)
+
+    liste2.sort(sammenlign1)    
+    console.log(liste2)
+
+
+    // Funksjonene under virker både for tekst og tall
+    function sammenlign(a,b){
+      if (a < b) {
+        return -1
+      }
+      else if (a > b) {
+        return 1
+      } 
+      else {
+        return 0
+      }
+    }
+
+    function sammenlign0(a,b){
+      if (a[0] < b[0]) {
+        return -1
+      }
+      else if (a[0]> b[0]) {
+        return 1
+      } 
+      else {
+        return 0
+      }
+    }
+
+    function sammenlign1(a,b){
+      if (a[1] < b[1]) {
+        return -1
+      }
+      else if (a[1]> b[1]) {
+        return 1
+      } 
+      else {
+        return 0
+      }
+    }
+
+    function sammenlign2(a,b){
+      if (a[2] < b[2]) {
+        return -1
+      }
+      else if (a[2]> b[2]) {
+        return 1
+      } 
+      else {
+        return 0
+      }
+    }
+
+
+
+
+  </script>
+</body>
+</html>
