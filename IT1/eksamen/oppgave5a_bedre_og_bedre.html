@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 5</title>
+  <style>
+  </style>
+</head>
+<body>
+  <h1>Knapper og tekstfelt</h1>
+  <button value="22">Anne</button>
+  <button value="55">Berit</button>
+  <button value="77">Cecilie</button>
+  <button value="45">Dagny</button>
+  <p id="tekstID"></p>
+  <script>
+    let knappELs = document.getElementsByTagName("button");
+    let tekstEL = document.getElementById("tekstID");
+
+    for (let i=0; i<knappELs.length; i++) {
+      knappELs[i].addEventListener("click",alderFunk);
+    }
+
+    function alderFunk(event) {
+      tekstEL.innerText = event.target.innerText + " er " + event.target.value + " år.";
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 6</title>
+  <style>
+    table,th,td {
+      border: solid black 1px;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Knapper og tabell</h1>
+  <div>
+    <br>
+    <table>
+      <thead>
+        <tr id="knapperID">
+        </tr>
+      </thead>
+      <tbody id="tabellID"></tbody>
+    </table>
+  </div>
+  <script>
+    let knapperEL = document.getElementById("knapperID");
+    let tabellEL = document.getElementById("tabellID");
+
+    let info = [
+      ["Trine",23,15],
+      ["Lise",12,93],
+      ["Ole",45,55],
+      ["Anne",34,10]
+    ];
+
+    function visTabell(liste) {
+      let tekst = ""
+      for (let i=0; i<info.length; i++) {
+        tekst += "<tr>";
+        for (let j=0; j<info[i].length; j++) {
+          tekst += "<td>" + info[i][j] + "</td>";
+        }
+        tekst += "</tr>";
+      }
+      return tekst;
+    }
+
+    tabellEL.innerHTML = visTabell(info);
+
+    let overskrifter = ["Navn","Runde 1","Runde 2"];
+
+    let HTMLtekstForKnapper = "";
+    for (let overskrift of overskrifter) {
+      HTMLtekstForKnapper += "<th><button>" + overskrift + "</button></th>";
+    }
+    knapperEL.innerHTML = HTMLtekstForKnapper;
+
+    let knapperELs = document.getElementsByTagName("button");
+
+    for (let knapp of knapperELs) {
+      knapp.addEventListener("click",sorterFunk);
+    }
+
+    function sorterFunk(event) {
+      if (event.target.innerText === overskrifter[0]) {
+        info.sort()
+      }
+      else if (event.target.innerText === overskrifter[1]) {
+        info.sort(sortKol1)
+      }
+      else {
+        info.sort(sortKol2)
+      }
+      tabellEL.innerHTML = visTabell(info);
+    }
+
+    function sortKol1(a,b) {
+      return a[1] - b[1];
+    }
+    
+    function sortKol2(a,b) {
+      return a[2] - b[2];
+    }
+
+
+  </script>
+</body>
+</html>

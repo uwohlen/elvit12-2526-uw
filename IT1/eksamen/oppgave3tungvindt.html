@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>7-gangen</h1>
+  <button id="knapp1">1</button>
+  <button id="knapp2">2</button>
+  <button id="knapp3">3</button>
+  <button id="knapp4">4</button>
+  <button id="knapp5">5</button>
+  <button id="knapp6">6</button>
+  <button id="knapp7">7</button>
+  <button id="knapp8">8</button>
+  <button id="knapp9">9</button>
+  <button id="knapp10">10</button>
+  <p id="svarID"></p>
+  <script>
+    let knapp1 = document.getElementById("knapp1");
+    let knapp2 = document.getElementById("knapp2");
+    let knapp3 = document.getElementById("knapp3");
+    let knapp4 = document.getElementById("knapp4");
+    let knapp5 = document.getElementById("knapp5");
+    let knapp6 = document.getElementById("knapp6");
+    let knapp7 = document.getElementById("knapp7");
+    let knapp8 = document.getElementById("knapp8");
+    let knapp9 = document.getElementById("knapp9");
+    let knapp10 = document.getElementById("knapp10");
+    let svar = document.getElementById("svarID");
+    
+    knapp1.addEventListener("click",knapp1funk);
+    knapp2.addEventListener("click",knapp2funk);
+    knapp3.addEventListener("click",knapp3funk);
+    knapp4.addEventListener("click",knapp4funk);
+    knapp5.addEventListener("click",knapp5funk);
+    knapp6.addEventListener("click",knapp6funk);
+    knapp7.addEventListener("click",knapp7funk);
+    knapp8.addEventListener("click",knapp8funk);
+    knapp9.addEventListener("click",knapp9funk);
+    knapp10.addEventListener("click",knapp10funk);
+    
+    function knapp1funk() {
+      svar.innerHTML = Number(knapp1.innerText) * 7;
+    }
+    function knapp2funk() {
+      svar.innerHTML = Number(knapp2.innerText) * 7;
+    }
+    function knapp3funk() {
+      svar.innerHTML = Number(knapp3.innerText) * 7;
+    }
+    function knapp4funk() {
+      svar.innerHTML = Number(knapp4.innerText) * 7;
+    }
+    function knapp5funk() {
+      svar.innerHTML = Number(knapp5.innerText) * 7;
+    }
+    function knapp6funk() {
+      svar.innerHTML = Number(knapp6.innerText) * 7;
+    }
+    function knapp7funk() {
+      svar.innerHTML = Number(knapp7.innerText) * 7;
+    }
+    function knapp8funk() {
+      svar.innerHTML = Number(knapp8.innerText) * 7;
+    }
+    function knapp9funk() {
+      svar.innerHTML = Number(knapp9.innerText) * 7;
+    }
+    function knapp10funk() {
+      svar.innerHTML = Number(knapp10.innerText) * 7;
+    }
+  </script>
+</body>
+</html>

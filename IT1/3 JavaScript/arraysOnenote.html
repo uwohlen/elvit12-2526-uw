@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+    <meta charset='UTF-8'>
+    <title></title>
+    <style>
+        table {
+            border: solid black 1px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: solid black 1px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sjekk console.log</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Alder</th>
+            </tr>
+        </thead>
+        <tbody id="idTabell"></tbody>
+    </table>
+<script>
+    let tabellEl = document.getElementById("idTabell");
+
+    let navn = ["Anne","Berit","Cecilie","Dagny"];
+    let alder = [23,53,21,22];
+
+    for (let i = 0; i < navn.length; i++) {
+        console.log(navn[i]);
+    }
+
+    for (let x of navn) {
+        console.log(x);
+    }
+
+    let tekst = "";
+    for (let i=0; i<navn.length; i++) {
+        tekst += "<tr><td>" + navn[i] + "</td><td>" + alder[i] + "</td></tr>";
+    }
+
+    tabellEl.innerHTML = tekst;
+
+
+</script>
+</body>
+</html>

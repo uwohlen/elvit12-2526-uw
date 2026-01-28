@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <img class="kryss" data-bilde="stjerne" src="kryss.png">
+  <img class="kryss" data-bilde="stjerne" src="kryss.png">
+  <img class="kryss" data-bilde="hjerte" src="kryss.png">
+  <img class="kryss" data-bilde="hjerte" src="kryss.png">
+
+  <script>
+    let bildeEls = document.getElementsByClassName("kryss");
+
+    for (element of bildeEls) {
+      element.addEventListener("click",bildeFunk);
+    }
+
+    bilde1 = "";
+    bilde2 = "";
+    let vent = false;
+
+    function bildeFunk(event) {
+      if (vent) {
+        console.log("Vent");
+        return;
+      }
+      event.target.src = event.target.dataset.bilde + ".png";
+      if (bilde1 == "") {
+        bilde1 = event.target;
+        console.log(bilde1.dataset.bilde);
+      }
+      else {
+        bilde2 = event.target;
+        console.log(bilde2.dataset.bilde);
+        if (bilde1.dataset.bilde == bilde2.dataset.bilde) {
+          console.log("Match");
+          bilde1 = "";
+          bilde2 = "";
+        }
+        else {
+          vent = true;
+          setTimeout(ventFunk,1500);
+        }
+      }
+    }
+
+    function ventFunk() {
+      bilde1.src = "kryss.png";
+      bilde2.src = "kryss.png";
+      
+      bilde1 = "";
+      bilde2 = "";
+      vent = false;
+    }
+  </script>
+</body>
+</html>

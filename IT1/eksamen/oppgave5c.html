@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 5</title>
+  <style>
+    table,th,td {
+      border: solid black 1px;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Knapper og tabell</h1>
+  <div id="menyID"></div>
+  <div>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th>Navn</th>
+          <th>Alder</th>
+        </tr>
+      </thead>
+      <tbody id="tabellID"></tbody>
+    </table>
+  </div>
+  <script>
+    let menyEl = document.getElementById("menyID");
+    let tabellEl = document.getElementById("tabellID");
+
+    let info = [
+      ["Anne",22],
+      ["Berit",55],
+      ["Cecilie",77],
+      ["Dagny",45]
+    ];
+
+    let lagret = [];
+
+    let tekst = ""
+    for (let i=0; i<info.length; i++) {
+      tekst += "<button class='knappCL' value=" + info[i][1] + ">" + info[i][0] + "</button> ";
+    }
+    menyEl.innerHTML = tekst;
+
+    let knapperEl = document.getElementsByClassName("knappCL");
+
+    for (let knapp of knapperEl) {
+      knapp.addEventListener("click",valgFunk);
+    }
+
+    function valgFunk(event) {
+      let navn = event.target.innerText;
+      let alder = event.target.value;
+      lagret.push([navn,alder]);
+      lagret.sort();
+      console.log(lagret)
+      tabellEl.innerHTML = "";
+      for (let rad of lagret) {
+        tabellEl.innerHTML += "<tr><td>" + rad[0] + "</td><td>" + rad[1] + "</td></tr>";
+      }
+      event.target.disabled = true;
+      event.target.style.cursor = "default";
+    }
+
+  </script>
+</body>
+</html>

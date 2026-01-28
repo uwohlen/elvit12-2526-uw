@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <img class="kryss" data-bilde="stjerne" src="stjerne.png">
+  <img class="kryss" data-bilde="stjerne" src="stjerne.png">
+  <img class="kryss" data-bilde="hjerte" src="hjerte.png">
+  <img class="kryss" data-bilde="hjerte" src="hjerte.png">
+
+  <script>
+    let bildeEls = document.getElementsByClassName("kryss");
+
+    for (element of bildeEls) {
+      element.addEventListener("click",bildeFunk);
+    }
+
+    function bildeFunk(event) {
+      console.log(event.target.dataset.bilde)
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+    <meta charset='UTF-8'>
+    <title></title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Å bygge en funksjon</h1>
+    <ol id="olID">
+    </ol>
+    <p>Skriv inn verdier, med Enter etter hver verdi <input id="innID"></p>
+<script>
+    let listeEl = document.getElementById("olID");
+    let innEl = document.getElementById("innID");
+
+    let navn = ["cathrine","anne","lise"];
+
+    function oppdater() {
+        navn.sort();
+        let tekst = "";
+        for (let i=0; i<navn.length; i++) {
+            tekst += "<li>" + navn[i] + "</li>";
+        }
+        listeEl.innerHTML = tekst;
+    }
+
+    oppdater();
+
+
+    innEl.addEventListener("keydown",skrivFunk);
+    innEl.focus();
+
+    function skrivFunk(event) {
+        if (event.code === "Enter") {
+            navn.push(innEl.value);
+            oppdater();
+
+            innEl.value = "";
+        }
+    }
+
+</script>
+</body>
+</html>

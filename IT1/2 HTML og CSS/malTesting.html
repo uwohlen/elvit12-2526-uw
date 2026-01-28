@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Økning</title>
+  <style>
+    .handCL {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Øk bredden med angitte tall:</h1>
+  <div>
+    <input id='breddeID' type='number'>
+    <button id='lagreID' class='handCL'>Trykk her</button>
+    <p>Resultat: <span id='tilbakeID'></span></p>
+  </div>
+  <script>
+    let breddeEL = document.getElementById('breddeID');
+    let lagreEL = document.getElementById('lagreID');
+    let tilbakeEL = document.getElementById('tilbakeID');
+
+    breddeEL.focus()
+    breddeEL.addEventListener('keydown',breddeFunk);
+    lagreEL.addEventListener('click',lagreFunk);
+    function breddeFunk(event) {
+      if (event.key === 'Enter') {
+        lagreFunk();
+      }
+    }
+    function lagreFunk() {
+      tilbakeEL.innerText = Number(tilbakeEL.innerText) + Number(breddeEL.value);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 5</title>
+  <style>
+    table,th,td {
+      border: solid black 1px;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Knapper og tabell</h1>
+  <div id="menyID"></div>
+  <div>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th>Navn</th>
+          <th>Alder</th>
+        </tr>
+      </thead>
+      <tbody id="tabellID"></tbody>
+    </table>
+  </div>
+  <script>
+    let menyEl = document.getElementById("menyID");
+    let tabellEl = document.getElementById("tabellID");
+
+    //1
+    let navn = ["Anne","Berit","Cecilie","Dagny"];
+    let alder = [22,55,77,45];
+    // Ulempe: kan ikke sorteres
+    //         vanskelig å sjekke navn og tall som hører sammen
+    
+
+    //2
+    let array2DH = [
+      ["Anne","Berit","Cecilie","Dagny"],
+      [22,55,77,45]
+    ];
+    // Ulempe: kan ikke sorteres
+    //         vanskelig å sjekke navn og tall som hører sammen
+    //         vet ikke hva tallene beskriver
+    // kan også skrives: 
+    // let array2DH = [navn,alder];
+    
+
+    //3
+    let array2DV = [
+      ["Anne",22],
+      ["Berit",55],
+      ["Cecilie",77],
+      ["Dagny",45]
+    ];
+    // Fordel: kan sorteres
+    //         lett å sjekke navn og tall som hører sammen
+    // Ulempe: vet ikke hva tallene beskriver
+
+
+    //4
+    let objektH = {
+      navn: ["Anne","Berit","Cecilie","Dagny"],
+      alder: [22,55,77,45]
+    }
+    // Ulempe: kan ikke sorteres
+    //         vanskelig å sjekke navn og tall som hører sammen
+
+
+    //5
+    let objektV = [
+      {
+        navn: "Anne",
+        alder: 22
+      },
+      {
+        navn: "Berit",
+        alder: 55
+      },
+      {
+        navn: "Cecilie",
+        alder: 77
+      },
+      {
+        navn: "Dagny",
+        alder: 45
+      }
+    ];
+    // Fordel: kan sorteres, 
+    //        vet hva tallene betyr
+    //        lett å sjekke navn og tall som hører sammen
+
+    let tekst = ""
+    for (let i=0; i<objektV.length; i++) {
+      tekst += "<button class='knappCL' data-alder=" + objektV[i].alder + ">" + objektV[i].navn + "</button> ";
+    }
+    menyEl.innerHTML = tekst;
+
+    let knapperEl = document.getElementsByClassName("knappCL");
+
+    for (let knapp of knapperEl) {
+      knapp.addEventListener("click",valgFunk);
+    }
+
+    // Alternativ:
+    // menyEl.addEventListener("click",valgFunk);
+    // Ulempe: hvis div'en er større enn knappene: kan klikke på hele div'en istedenfor bare en knapp
+
+    function valgFunk(event) {
+      let navn = event.target.innerText;
+      let alder = event.target.dataset.alder;
+      console.log(navn)
+      tabellEl.innerHTML += "<tr><td>" + navn + "</td><td>" + alder + "</td></tr>";
+      event.target.disabled = true;
+      event.target.style.cursor = "default";
+    }
+
+  </script>
+</body>
+</html>

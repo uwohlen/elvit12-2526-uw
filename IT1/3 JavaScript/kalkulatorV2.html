@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Kalkulator</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Skriv inn et pluss-regnestykke</h1>
+    <form id="idForm">
+        <input name="inndata" type="text" required>
+        <input type="submit" value="Regn ut">
+    </form>
+    <p>Summen er: <span id="idTilbake"></span></p>
+<script>
+    let formEl = document.getElementById("idForm");
+    let tilbakeEl = document.getElementById("idTilbake")
+    
+    formEl.inndata.focus();
+    formEl.addEventListener("submit",innfunk);
+
+    function innfunk (event){
+        event.preventDefault();
+        
+        //Enkel kalkulator
+        let tekst = formEl.inndata.value
+        let ipluss = tekst.indexOf("+");
+        let tall1 = Number(tekst.substr(0,ipluss));
+        let tall2 = Number(tekst.substr(ipluss+1));
+        console.log(ipluss,tall1,tall2);
+        tilbakeEl.innerHTML = tall1 + tall2;
+    }
+</script>
+</body>
+</html>

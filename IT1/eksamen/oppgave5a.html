@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 5</title>
+  <style>
+  </style>
+</head>
+<body>
+  <h1>Knapper og tekstfelt</h1>
+  <button id="anneID">Anne</button>
+  <button id="beritID">Berit</button>
+  <button id="cecilieID">Cecilie</button>
+  <button id="dagnyID">Dagny</button>
+  <p id="tekstID"></p>
+  <script>
+    let anneEL = document.getElementById("anneID");
+    let beritEL = document.getElementById("beritID");
+    let cecilieEL = document.getElementById("cecilieID");
+    let dagnyEL = document.getElementById("dagnyID");
+    let tekstEL = document.getElementById("tekstID");
+
+    anneEL.addEventListener("click",anneFunk);
+    beritEL.addEventListener("click",beritFunk);
+    cecilieEL.addEventListener("click",cecilieFunk);
+    dagnyEL.addEventListener("click",dagnyFunk);
+
+    function anneFunk() {
+      tekstEL.innerText = "Anne er 22 år";
+    }
+
+    function beritFunk() {
+      tekstEL.innerText = "Berit er 55 år";
+    }
+
+    function cecilieFunk() {
+      tekstEL.innerText = "Cecilie er 77 år";
+    }
+
+    function dagnyFunk() {
+      tekstEL.innerText = "Dagny er 45 år";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>7-gangen</h1>
+  <div id="knapperID"></div>
+  <div> <!-- NB! Separate div'er for knapper og svar -->
+    <p id="svarID"></p>
+  </div>
+  <button>Ikke en del av oppgaven, bare for demo</button>
+  <script>
+    let knapperEL = document.getElementById("knapperID");
+    let svarEL = document.getElementById("svarID");
+    
+    let tekst = "";
+    for (let i=1; i<=10; i++) {
+      tekst += "<button class='brukes'>" + i + "</button>";
+    }
+    knapperEL.innerHTML += tekst;
+
+    let knappeliste = document.getElementsByClassName("brukes");
+    for (knapp of knappeliste) {
+      knapp.addEventListener("click",knappfunk);
+    }
+
+    function knappfunk(event) {
+      //console.log(event.target.innerText);
+      svarEL.innerHTML = Number(event.target.innerText) * 7;
+    }
+  </script>
+</body>
+</html>

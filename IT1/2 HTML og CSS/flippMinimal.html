@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .kortCL {
+      position: relative;
+      width: 200px;
+      height: 300px;
+      transform-style: preserve-3d;
+      transition: transform 2s;
+    }
+    .forsideCL, .baksideCL {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+    .forsideCL {
+      background-color: pink;
+    }
+    .baksideCL {
+      background-color: lightblue;
+      transform: rotateY(180deg);
+    }
+    .flippCL {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+  <div id="kortID" class="kortCL">
+    <div class="forsideCL">
+      <p>Foran</p>
+    </div>
+    <div class="baksideCL">
+      <p>Bak</p>
+    </div>
+  </div>
+  <script>
+    let kortEl = document.getElementById("kortID");
+    kortEl.addEventListener("click",flippFunk);
+    function flippFunk() {
+      kortEl.classList.toggle("flippCL");
+    }
+  </script>
+</body>
+</html>

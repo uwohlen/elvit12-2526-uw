@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kryptering</title>
+  </head>
+  <body>
+    <h1>Kryptering</h1>
+    <h2>Dette er en kodet tekst:</h2>
+    <h3 id="kodeID"></h3>
+    <h2>Hva betyr dette?</h2>
+    <input id="svarID">
+    <h2>Tilbakemelding: <span id="tilbakeID"></span></h2>
+    <h3>Trenger du hjelp? Hva er forkortelsen for "Prosessoren"?</h3>
+    <input id="hjelpID">
+    <script>
+      let kodeEL = document.getElementById("kodeID");
+      let svarEL = document.getElementById("svarID");
+      let tilbakeEL = document.getElementById("tilbakeID");
+      let hjelpEL = document.getElementById("hjelpID");
+
+      let alfabet = "";
+      for (let i = 97; i <= 122; i++) {
+        alfabet += String.fromCharCode(i);
+      }
+      alfabet += "æøå";
+      console.log(alfabet);
+      
+      let fasit = "jeg heter unni";
+      let kode = "";
+      for (let x of fasit) {
+        let indeks = alfabet.indexOf(x);
+        let plass = indeks + 1;
+        if (plass >= alfabet.length) {
+          plass -= 29;
+        }
+        if (x !== " ") {
+          kode += alfabet[plass];
+        }
+        else {
+          kode += x;
+        }
+      }
+      console.log(kode);
+      kodeEL.innerText = kode;
+
+      svarEL.focus();
+      svarEL.addEventListener("keydown",svarFunk);
+
+      function svarFunk(event) {
+        if (event.key === "Enter") {
+          if (svarEL.value.toLowerCase() === fasit) {
+            tilbakeEL.innerText = "Riktig!";
+          }
+          else {
+            tilbakeEL.innerText = "Feil!";
+          }
+          svarEL.value = "";
+          svarEL.focus();
+        }
+      }
+
+      hjelpEL.addEventListener("keydown",hjelpFunk);
+
+      function hjelpFunk(event) {
+        if (event.key === "Enter") {
+          if (hjelpEL.value.toUpperCase() === "CPU") {
+            tilbakeEL.innerText = fasit;
+            tilbakeEL.innerText = "Forskyvningen tilbake er -1";
+            svarEL.value = "";
+            svarEL.focus();
+          }
+        }
+      }
+
+    </script>
+    
+  </body>
+</html>

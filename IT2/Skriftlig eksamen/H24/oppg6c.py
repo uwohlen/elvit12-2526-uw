@@ -8,7 +8,7 @@ class Batteri:
     brukEnergi(energi:float) -> None
     visEnerginivå() -> float 
   """
-  batteriID_nr = 0
+  __batteriID_nr = 0
   def __init__(self,energinivå:float, energikapasitet:float) -> None:
     """
     Konstruktøren
@@ -19,8 +19,8 @@ class Batteri:
       Feil bruk resulterer i en print-melding
         må angi parametre som desimaltall, verdier 0-100
     """
-    Batteri.batteriID_nr += 1
-    self.__batteriID:str = "B" + str(Batteri.batteriID_nr)
+    Batteri.__batteriID_nr += 1
+    self.__batteriID:str = "B" + str(Batteri.__batteriID_nr)
     try:
       niva = float(energinivå)
     except:

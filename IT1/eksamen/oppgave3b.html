@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button {
+      width: 60px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gangetabellen</h1>
+  <div id="knapperID"></div>
+  <script>
+    let knapperEL = document.getElementById("knapperID");
+    
+    let tekst = "";
+    for (let i=1; i<=10; i++) {
+      for (let j=1; j<=10; j++) {
+        // alle taggene har en value-attributt. Den brukes vanligvis ikke for button, men vi kan programmere med den
+        tekst += "<button class='brukes' value=" + (i*j) + ">" + i + "x" + j + "</button>";
+      }
+      tekst += "<br>"
+    }
+    knapperEL.innerHTML += tekst;
+
+    let knappeliste = document.getElementsByClassName("brukes");
+    for (knapp of knappeliste) {
+      knapp.addEventListener("click",knappfunk);
+    }
+
+    function knappfunk(event) {
+      event.target.innerHTML = Number(event.target.value);
+      event.target.style.backgroundColor = "cyan";
+    }
+  </script>
+</body>
+</html>

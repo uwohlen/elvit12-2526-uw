@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+<body>
+  <h1>Skriv inn et tall:</h1>
+  <input id="innID" type="number">
+  <h2 id="utID"></h2>
+  <button id="knappID">Lagre</button>
+  <script>
+    let innEl = document.getElementById("innID");
+    let knappEl = document.getElementById("knappID");
+    let utEl = document.getElementById("utID");
+    
+    innEl.focus()
+    innEl.addEventListener("keyup",inputfunk);
+    function inputfunk(event) {
+      if (event.code === "Enter") {
+        knappfunk();
+      }
+    }
+
+    knappEl.addEventListener("click",knappfunk);
+
+    function knappfunk() {
+      utEl.innerHTML = Number(innEl.value) + 5;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .kortholderCL {
+      /*border: solid 1px black;*/
+      width: 200px;
+      height: 300px;
+      /*margin: auto;*/
+    }
+    .kortCL {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 2s;
+    }
+    .forsideCL, .baksideCL {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      color: white;
+      font-size: larger;
+    }
+    .forsideCL {
+      background-color: red;
+    }
+    .baksideCL {
+      background-color: blue;
+      transform: rotateY(180deg);
+    }
+    .flippCL {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="kortholderCL">
+    <div id="kortID" class="kortCL">
+      <div class="forsideCL">
+        <p>Foran</p>
+        <img src="sekskant.png">
+      </div>
+      <div class="baksideCL">
+        <p>Bak</p>
+        <img src="hjerte.png">
+      </div>
+    </div>
+  </div>
+  <script>
+    let kortEl = document.getElementById("kortID");
+    kortEl.addEventListener("click",flippFunk);
+    function flippFunk() {
+      kortEl.classList.toggle("flippCL");
+    }
+  </script>
+</body>
+</html>

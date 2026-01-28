@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <link rel='icon' href='media/favicon.ico'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title></title>
+  <style>
+    .handCL {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Å bygge en funksjon</h1>
+  <ul id="ulID">
+  </ul>
+  <p>Skriv inn verdier, med Enter etter hver verdi <input id="navnID"></p>
+  <script>
+    let punktlisteEl = document.getElementById("ulID");
+    let navnEl = document.getElementById("navnID");
+
+    let personer = ["cathrine","anne","lise"];
+
+    function oppdater() {
+        navn.sort();
+        let tekst = "";
+        for (let i=0; i<navn.length; i++) {
+            tekst += "<li>" + navn[i] + "</li>";
+        }
+        listeEl.innerHTML = tekst;
+    }
+
+    oppdater();
+
+
+    navnEl.addEventListener("keydown",regFunk);
+    navnEl.focus();
+
+    function regFunk(event) {
+      if (event.code === "Enter") {
+        personer.push(navnEl.value);
+        oppdater();
+
+        navnEl.value = "";
+      }
+    }
+
+  </script>
+</body>
+</html>
