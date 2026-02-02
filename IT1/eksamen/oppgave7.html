@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table,th,td {
+      border: solid black 1px;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Delvis gangetabell</h1>
+  <div id="knapperID"></div>
+  <br>
+  <div>
+    <table>
+      <tbody id="tabellID"></tbody>
+    </table>
+  </div>
+  <script>
+    let knapperEl = document.getElementById("knapperID");
+    let tabellEl = document.getElementById("tabellID");
+    let lagret = [];
+
+    let tekst = "";
+    for (let i=1; i<=10; i++) {
+      tekst += "<button class='brukes'>" + i + "</button>";
+    }
+    knapperEl.innerHTML += tekst;
+
+    let knappeliste = document.getElementsByClassName("brukes");
+    for (knapp of knappeliste) {
+      knapp.addEventListener("click",knappfunk);
+    }
+
+    function sorterTall(a,b) {
+      return a-b;
+    }
+
+    function lagTabell(liste) {
+      let tekst = "";
+      for (let i=0; i<lagret.length; i++) {
+        tekst += "<tr>";
+        for (let j=0; j<lagret.length; j++) {
+          tekst += "<td>" + lagret[i]*lagret[j] + "</td>";
+        }
+        tekst += "</tr>";
+      }
+      return tekst;
+    }
+    
+    function knappfunk(event) {
+      lagret.push(Number(event.target.innerText));
+      lagret.sort(sorterTall);
+      console.log(lagret)
+      tabellEl.innerHTML = lagTabell(lagret);
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="utf-8">
+    <!-- 
+      <link rel="icon" href="media/favicon.ico">
+    -->
+    <link rel="stylesheet" href="css/hovedstilark.css">
+	<title></title>
+    <style>
+        canvas {
+            display: block;
+            margin: auto;
+            border: solid;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sektordiagram</h1>
+    <canvas id="idCanvas" width="500" height="400">Feilmelding: Canvas vises ikke</canvas>
+    
+	
+<script>
+    var canvas = document.getElementById("idCanvas");
+    var ctx = canvas.getContext("2d");
+    //finn sentrum av canvas
+    var x = canvas.width/2;
+    var y = canvas.height/2;
+    
+    /*lag en funksjon som kan tegne en sirkelsektor ferdig, så man slipper å gjenta mange linjer*/
+    
+    function tegnsektor(sentrumx,sentrumy,radius,startvinkel,sluttvinkel,farge,tekst) {
+        ctx.beginPath();
+        
+        /*trekk fra 90 grader, slik at første kategori starter
+        rett opp istedenfor mot høyre, det er standard for sektordiagram*/
+        
+        ctx.arc(sentrumx,sentrumy,radius,startvinkel-Math.PI/2,sluttvinkel-Math.PI/2,false); //bue
+        
+        ctx.lineTo(sentrumx,sentrumy); //linje til sentrum
+        
+        ctx.closePath(); //tilbake til start av bue, fullfører kakestykket
+        
+        ctx.fillStyle = farge;
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 1;
+        ctx.fill();
+        ctx.stroke();
+        
+        //tekst
+        ctx.fillStyle = "black";
+        ctx.font = "20px 'Century Gothic'";
+        
+        
+        /* Beregne hvor teksten skal komme, midt mellom start og sluttvinkel. Akkurat som over trekker fra 90 grader.*/
+        
+        var vinkel = (sluttvinkel + startvinkel)/2 - Math.PI/2;
+        
+        /* x og y - koordinater i enhetssirkelen*/
+        
+        var minix = Math.cos(vinkel);
+        var miniy = Math.sin(vinkel);
+        
+        if (minix > 0) {
+            ctx.textAlign = "start";
+        }
+        else {
+            ctx.textAlign = "end"; //ord til venstre må høyrestilles
+        }
+        
+        ctx.textBaseline = "middle"; //fin-innstilling i y-retning
+        
+        /* ganger cos og sin-verdier med radius for å komme utenfor sirkelen, pluss litt til - derfor *1.1 */
+        
+        ctx.fillText(tekst, sentrumx+1.1*minix*radius,sentrumy+1.1*miniy*radius);
+        
+    }
+	
+	function sektordiagram(x,y,verdiarray,tekstarray,fargearray,vektarray) {
+		//Et sektordiagram baserer seg på at summen er 100 %
+		var sumsirkel = 0;
+		for (var i=0; i<verdiarray.length; i++) {
+			sumsirkel += verdiarray[i];
+		}
+		//Regner ut verdier i prosent, og tar tilsvarende prosent av 2*pi
+		var verdieriprosent = [];
+		//Starter på vinkel 0 (eller rett opp siden det trekkes fra pi/2 i funksjonen)
+		var vinkel1 = 0;
+		for (var j=0; j<verdiarray.length; j++) {
+			verdieriprosent.push(verdiarray[j]/sumsirkel);
+			//fra vinkel 1 til vinkel 1 pluss ny sektorvinkel
+			tegnsektor(x,y,100*vektarray[j],vinkel1,vinkel1+2*Math.PI*verdieriprosent[j],fargearray[j],tekstarray[j]);
+			//oppdaterer fra-vinkel til å bli der den forrige sluttet
+			vinkel1 += 2*Math.PI*verdieriprosent[j];
+		}
+	}
+    
+    
+	//Vi har verdier
+	var maned = ["Januar","Februar","Mars","April","Mai"];
+	var farger = ["red","green","orange","blue","yellow"];
+	var verdier = [60,30,90,120,60];
+	//Hvis en eller flere skal utheves, ellers er alle 1
+	var uthev = [1,1.5,1,1,1];
+	
+	//Tegn sektordiagrammet:
+	sektordiagram(x,y,verdier,maned,farger,uthev);
+	
+	
+	
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+		img {
+			border-radius: 0%;
+			transition-property: border-radius;
+			transition-duration: 2s;
+		}
+		img:hover {
+			border-radius: 50%;
+		}
+		h1 {
+			background-color: darksalmon;
+			transition-property: background-color;
+			transition-duration: 3s;
+		}
+		#idBoks {
+			position: absolute;
+			background-color: cadetblue;
+			height: 100px;
+			width: 100px;
+			left: 0px;
+			transition-property: left;
+			transition-duration: 3s;
+		}
+    </style>
+</head>
+<body>
+    <div>
+		<h1 id="idH1">Overskrift</h1>
+		<p>Tekst tekst tekst tekst tekst</p>
+		<img src="solnedgang.jpg" width="250px" height="188px">
+		<br>
+		<button id="idKnapp">Trykk her</button>
+	</div>
+	<div id="idBoks">
+		
+	</div>
+<script>
+	var knappEl = document.querySelector("#idKnapp");
+	var h1El = document.querySelector("#idH1");
+	var boksEl = document.querySelector("#idBoks");
+	var farger = ["darksalmon","darkseagreen","chocolate","cadetblue"];
+	var teller = 0;
+	
+	knappEl.addEventListener("click",knappfunk);
+	
+	function knappfunk() {
+		teller ++;
+		if (teller === farger.length) {
+			teller = 0;
+		}
+		h1El.style.backgroundColor = farger[teller];
+		boksEl.style.left = (teller*200)+"px";
+	}
+	
+	boksEl.addEventListener("transitionend",flyttferdig);
+	
+	function flyttferdig() {
+		boksEl.style.backgroundColor = farger[teller];
+	}
+</script>
+</body>
+</html>

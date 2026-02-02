@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        canvas {
+            border: solid black 1px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="idCanvas" height="400" width="400"></canvas>
+<script>
+    var canvasEl = document.getElementById("idCanvas")
+    var ctx = canvasEl.getContext("2d")
+    
+    ctx.strokeRect(50,100,200,100)
+    
+    ctx.beginPath()
+    ctx.arc(200,200,50,0,2*Math.PI)
+    ctx.stroke()
+
+    //ctx.clearRect(0,0,400,400)
+    
+    ctx.beginPath()
+    ctx.strokeStyle="red"
+    ctx.lineWidth=3
+    ctx.arc(300,300,50,0,2*Math.PI)
+    ctx.stroke()
+    
+
+
+    var i = 0
+    function tegn() {
+        ctx.clearRect(0,0,400,400)
+        i += 2
+        ctx.beginPath()
+        ctx.lineWidth = 5
+        ctx.moveTo(100+i,200)
+        ctx.lineTo(100+i,300)
+        ctx.lineTo(150+i,300)
+        //ctx.lineTo(100,200)
+        ctx.closePath()
+        ctx.fillStyle="green"
+        ctx.stroke()
+        ctx.fill()
+    }
+    
+    //setInterval(tegn,50)
+    
+</script>
+</body>
+</html>
+
+
+
+
+

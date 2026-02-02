@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="CSS/hoved.css">
+    <style>
+        canvas {
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="idCanvas" width="400" height="400"></canvas>
+<script src="JS/hoved.js"></script>
+<script>
+    var canvasEl = document.getElementById("idCanvas")
+    
+    var ctx = canvasEl.getContext("2d")
+    
+    /* Funksjon for å tegne en stjerne
+		ctx - canvas.getContext("2d")-variabel
+		origox, origoy - posisjon av nedre venstre stjernespiss
+		farge - stjernefarge
+		faktor - relativ størrelse, tall mellom 0 og 1
+	*/
+    function stjerne(ctx,origox,origoy,farge="white",faktor=1) {
+		ctx.beginPath();
+		ctx.fillStyle = farge;
+
+		ctx.moveTo(origox,origoy);
+		ctx.lineTo(origox+50*faktor,origoy-36*faktor);
+		ctx.lineTo(origox+100*faktor,origoy);
+		ctx.lineTo(origox+81*faktor,origoy-59*faktor);
+		ctx.lineTo(origox+131*faktor,origoy-95*faktor);
+		ctx.lineTo(origox+69*faktor,origoy-95*faktor);
+		ctx.lineTo(origox+50*faktor,origoy-154*faktor);
+		ctx.lineTo(origox+31*faktor,origoy-95*faktor);
+		ctx.lineTo(origox-31*faktor,origoy-95*faktor);
+		ctx.lineTo(origox+19*faktor,origoy-59*faktor);
+		ctx.closePath();
+		ctx.fill();		
+	}
+    
+
+	/*  Tilfeldig tall mellom (og inkudert) fraOgMed og tilOgMed
+    fraOgMed er et heltall
+    tilOgMed er et heltall
+    Gir et tilfeldig heltall tilbake
+	*/
+	function tilfeldigMellom(fraOgMed,tilOgMed) {
+		var antallVerdier = tilOgMed - fraOgMed + 1
+		var tilfeldig = Math.floor(Math.random()*antallVerdier+fraOgMed)
+		return tilfeldig
+	}
+
+
+	for (var i = 0; i<5; i++) {
+		var x=tilfeldigMellom(50,350)
+		var y=tilfeldigMellom(50,350)
+		var z=Math.random()
+		stjerne(ctx,x,y,"red",z)    
+	}
+    
+    
+</script>
+</body>
+</html>
+
+
+
+
+

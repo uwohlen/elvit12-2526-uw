@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+		img {
+			border-radius: 0%;
+			transition-property: border-radius;
+			transition-duration: 2s;
+		}
+		img:hover {
+			border-radius: 50%;
+		}
+		h1 {
+			background-color: darksalmon;
+			animation-name: farger;
+			animation-duration: 12s;
+			animation-iteration-count: infinite;
+		}
+		#idBoks {
+			position: absolute;
+			background-color: darksalmon;
+			height: 100px;
+			width: 100px;
+			left: 0px;
+			animation-name: flytt;
+			animation-duration: 12s;
+			animation-iteration-count: infinite;
+		}
+		@keyframes farger {
+			  0% { background-color: darksalmon;}
+			 25% { background-color: darkseagreen;}
+			 50% { background-color: chocolate;}
+		 	 75% { background-color: cadetblue;}
+			100% { background-color: darksalmon;}
+		}
+		@keyframes flytt {
+			  0% { left: 0px;   background-color: darksalmon;}
+			 25% { left: 200px; background-color: darkseagreen;}
+			 50% { left: 400px; background-color: chocolate;}
+			 75% { left: 600px; background-color: cadetblue;}
+			100% { left: 0px;   background-color: darksalmon;}
+		}
+    </style>
+</head>
+<body>
+    <div>
+		<h1 id="idH1">Overskrift</h1>
+		<p>Tekst tekst tekst tekst tekst</p>
+		<img src="solnedgang.jpg" width="250px" height="188px">
+		<br>
+	</div>
+	<div id="idBoks">
+		
+	</div>
+<script>	
+	
+</script>
+</body>
+</html>

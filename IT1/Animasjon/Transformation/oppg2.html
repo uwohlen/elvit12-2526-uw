@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+        div {
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background-color: burlywood;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-name: snurr;
+            animation-timing-function: linear;
+        }
+        @keyframes snurr {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="idDiv">
+        <img src="oppg2.png" width="600" height="600">
+    </div>
+<script>
+    var divEl = document.getElementById("idDiv");
+    
+    divEl.addEventListener("mouseover",stopprotasjon);
+    
+    function stopprotasjon() {
+        divEl.style.animationPlayState = "paused";
+    }
+    
+    divEl.addEventListener("mouseout",startrotasjon);
+    
+    function startrotasjon() {
+        divEl.style.animationPlayState = "running";
+    }
+</script>
+</body>
+</html>

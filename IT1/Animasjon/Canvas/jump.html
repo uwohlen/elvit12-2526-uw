@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="CSS/hoved.css">
+    <style>
+        canvas {
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mad Eye Mc Bear</h1>
+    <canvas id="idCanvas" width="400" height="400"></canvas>
+<script src="JS/hoved.js"></script>
+<script>
+    let canvasEl = document.getElementById("idCanvas");
+
+    let ctx = canvasEl.getContext("2d");
+    
+    function trekant(x1,y1,x2,y2,x3,y3,farge="black",LBredde=1) {
+        ctx.beginPath();
+        ctx.lineWidth = LBredde;
+        ctx.fillStyle = farge;
+        ctx.strokeStyle = farge;
+        ctx.moveTo(x1,y1);
+        ctx.lineTo(x2,y2);
+        ctx.lineTo(x3,y3);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+    }
+    
+    function sirkel(x1,y1,radius,fyll=false,farge="black",LBredde=1,v1=0,v2=2*Math.PI,retning=true) {
+        ctx.beginPath();
+        ctx.lineWidth = LBredde;
+        ctx.strokeStyle = farge;
+        ctx.arc(x1,y1,radius,v1,v2,retning);
+        ctx.stroke();
+        if (fyll) {
+            ctx.fillStyle = farge;
+            ctx.fill();
+        }
+    }
+
+    function bue(x1,y1,radius,v1=0,v2=2*Math.PI,retning=true,farge="black",LBredde=1) {
+        ctx.beginPath();
+        ctx.lineWidth = LBredde;
+        ctx.strokeStyle = farge;
+        ctx.arc(x1,y1,radius,v1,v2,retning);
+        ctx.stroke();
+    }
+
+    function tre(i,x3) {
+        let faktor = faktorer[i];
+        ctx.fillStyle = "brown";
+        let xplace = 350;
+        let yplace = 370;
+        ctx.fillRect(xplace+x3-faktor,yplace-2*faktor,2*faktor,2*faktor);
+        trekant(xplace+x3-5*faktor,yplace-2*faktor,xplace+x3+5*faktor,yplace-2*faktor,xplace+x3,yplace-5*faktor,"green");
+        trekant(xplace+x3-4*faktor,yplace-4*faktor,xplace+x3+4*faktor,yplace-4*faktor,xplace+x3,yplace-7*faktor,"green");
+        trekant(xplace+x3-3*faktor,yplace-6*faktor,xplace+x3+3*faktor,yplace-6*faktor,xplace+x3,yplace-9*faktor,"green");
+    }
+
+    function oval_f(x,r,a,b) {
+        return (b/a)*Math.sqrt(Math.pow(r*a,2)-Math.pow(x,2))
+    }
+
+    function oval(origox,origoy,r,a,b,farge="black",LBredde=1) {
+        ctx.beginPath();
+        ctx.lineWidth = LBredde;
+        ctx.fillStyle = farge;
+        ctx.strokeStyle = farge;
+
+        let dx = 2*r*a/100;
+        ctx.moveTo(origox+r*a,origoy);
+
+        for (let i=1; i<=100; i++) {
+            ctx.lineTo(origox+r*a-dx*i,origoy+oval_f(r*a-dx*i,r,a,b));
+        }
+        for (let i=99; i>0; i--) {
+            ctx.lineTo(origox+r*a-dx*i,origoy-oval_f(r*a-dx*i,r,a,b));
+        }
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+    }
+    
+
+    
+
+
+
+    let i=0;
+    let left = true;
+    let up = true;
+    let flyttx = 50;
+    let flytty = 100;
+    let hopp = 0;
+    let grense = 90;
+    let x3 = 100;
+    let antall = 5
+    let faktorer = [];
+    function velgfaktor() {
+        for (let s=0; s<antall; s++) {
+            faktorer.push(10*(Math.random()+1));
+        }
+    }
+    velgfaktor();
+    let ballx = 600;
+
+    function tegn() {
+        ctx.clearRect(0,0,400,400);
+
+        ctx.fillStyle = "azure";
+        ctx.fillRect(0,0,400,400);
+
+        //Øyebevegelse
+        if (left) {
+            i -= 1/10;
+            if (i<-6) {
+                left = false;
+            }
+        }
+        else {
+            i += 1/10;
+            if (i>6) {
+                left = true;
+            }
+        }
+
+        //Figurbevegelse
+        if (up && hopp !== 0) {
+            flytty -= hopp/5;
+            if (flytty < grense) {
+                up = false;
+            }
+        }
+        else if (hopp > 0) {
+            flytty += hopp/5;
+            if (flytty > 100) {
+                up = true;
+                grense = 90;
+                hopp = 0;
+            }
+        }
+
+        //Tegn tre
+        x3 -= 1;
+        for (let k=0; k<antall; k ++) {
+            tre(k,x3+100*k);
+        }
+        if (x3 < -900) {
+            x3 = 100;
+            faktorer = [];
+            velgfaktor();
+        }
+        
+        //Tegn figur
+        //Hode
+        sirkel(75+flyttx,70+flytty,50,true,"orange");
+        //Ører
+        sirkel(30+flyttx,30+flytty,20,true,"orange");
+        sirkel(120+flyttx,30+flytty,20,true,"orange");
+        //Kropp
+        oval(75+flyttx,170+flytty,8,6,10,"orange");
+        oval(75+flyttx,170+flytty,5,6,10,"#ffb833");
+    
+        //sirkel(75+flyttx, 170+flytty,70,true,"orange");
+        //sirkel(75+flyttx, 170+flytty,50,true,"#ffb833");
+        //Armer 
+        sirkel(20+flyttx, 150+flytty,20,true,"orange");
+        sirkel(130+flyttx, 150+flytty,20,true,"orange");
+        sirkel(0+flyttx, 150+flytty,20,true,"orange");
+        sirkel(150+flyttx, 150+flytty,20,true,"orange");
+        //Bein
+        sirkel(50+flyttx, 250+flytty-2*hopp,20,true,"orange");
+        sirkel(100+flyttx, 250+flytty-2*hopp,20,true,"orange");
+        //Øyne
+        sirkel(50+flyttx,60+flytty,10,true,"white");
+        sirkel(50+flyttx,60+flytty,3,true,"blue");
+        sirkel(100+flyttx,60+flytty,10,true,"white");
+        sirkel(100+flyttx+i,60+flytty,3,true,"blue");
+        //Nese
+        sirkel(75+flyttx,70+flytty,5,true);
+        //Munn
+        bue(75+flyttx,75+flytty,30,Math.PI/8,7*Math.PI/8,false);
+        
+        //Bakke
+        ctx.fillStyle = "green";
+        ctx.fillRect(0,370,400,30);
+
+        //Ball
+        ballx -= 2;
+        if (ballx < -100) {
+            ballx = Math.random()*200+500;
+        }
+        sirkel(ballx,340,30,true,farge="blue");
+
+        let dxh2 = Math.pow(ballx - (100+flyttx),2);
+        let dxv2 = Math.pow(ballx - (50+flyttx),2);
+        let dy2 = Math.pow(340 - (250+flytty-2*hopp),2);
+        let disth = Math.sqrt(dxh2+dy2);
+        let distv = Math.sqrt(dxv2+dy2);
+        let distmin = 50; //radius bein og radius ball
+        if (distv < distmin || disth < distmin) {
+            //console.log(disth, distv);
+            clearInterval(spill);
+        }
+
+    }
+
+    let spill = setInterval(tegn,10);
+
+    addEventListener("keydown",hoppfunk);
+
+    function hoppfunk() {
+        hopp = 4;
+        grense = 20;
+    }
+    
+    
+</script>
+</body>
+</html>
+
+
+
+
+

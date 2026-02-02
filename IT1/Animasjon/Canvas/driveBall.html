@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="CSS/hoved.css">
+    <style>
+        canvas {
+            border: solid black 1px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="idCanvas" width="400" height="400"></canvas>
+<script src="JS/hoved.js"></script>
+<script>
+    var canvasEl = document.getElementById("idCanvas")
+    var ctx = canvasEl.getContext("2d")
+    
+    var rx = tilfeldigMellom(10,390)
+    var ry = tilfeldigMellom(10,390)
+    
+    ctx.beginPath()
+    ctx.arc(rx,ry,10,0,2*Math.PI)
+    ctx.fillStyle="red"
+    ctx.stroke()
+    ctx.fill()
+    
+    var x = 200
+    var y = 200
+    
+    ctx.beginPath()
+    ctx.arc(x,y,10,0,2*Math.PI)
+    ctx.fillStyle="blue"
+    ctx.stroke()
+    ctx.fill()
+    
+    addEventListener("keydown",startfunk)
+    addEventListener("keyup",stoppfunk)
+    
+    var left = false
+    var up = false
+    var right = false
+    var down = false
+    var dx
+    var dy
+    
+    function startfunk(event) {
+        //console.log(event.keyCode)
+        //37 = left, 38 = up, 39 = right, 40 = down
+        if (event.keyCode === 37)
+            left = true
+        else if (event.keyCode === 38)
+            up = true
+        else if (event.keyCode === 39)
+            right = true
+        else if (event.keyCode === 40)
+            down = true
+        if (left || up || down || right)
+            drivefunk()
+    }
+    
+    function stoppfunk(event) {
+        if (event.keyCode === 37)
+            left = false
+        else if (event.keyCode === 38)
+            up = false
+        else if (event.keyCode === 39)
+            right = false
+        else if (event.keyCode === 40)
+            down = false
+    }
+    
+    function drivefunk() {
+        ctx.clearRect(0,0,400,400)
+        
+        ctx.beginPath()
+        ctx.arc(rx,ry,10,0,2*Math.PI)
+        ctx.fillStyle="red"
+        ctx.stroke()
+        ctx.fill()
+        
+        if (left && x>10)
+            x-=5
+        if (up && y>10)
+            y-=5
+        if (down && y < 390)
+            y+=5
+        if (right && x<390)
+            x+=5
+        
+        ctx.beginPath()
+        ctx.arc(x,y,10,0,2*Math.PI)
+        ctx.fillStyle="blue"
+        ctx.stroke()
+        ctx.fill()
+
+        var distance = Math.sqrt(Math.pow(x-rx,2)+Math.pow(y-ry,2))
+        if (distance < 22) {
+            removeEventListener("keydown",startfunk)
+            removeEventListener("keyup",stoppfunk)
+            dx = (130 - x)/1.5
+            dy = (300 - y)/1.5
+            bang()
+        }
+    }
+    
+    var i = 0.1
+    function bang() {
+        ctx.clearRect(0,0,400,400)
+        stjerne(ctx,x+i*dx,y+i*dy,"red",i)
+        i += 0.1
+        if (i<1.5)
+            setTimeout(bang,20)
+    }
+    
+    
+    /*Disse funksjonene kan ligge i hoved.js: */
+    
+    
+    /*  Tilfeldig tall mellom (og inkudert) fraOgMed og tilOgMed
+    fraOgMed er et heltall
+    tilOgMed er et heltall
+    Gir et tilfeldig heltall tilbake
+*/
+function tilfeldigMellom(fraOgMed,tilOgMed) {
+    var antallVerdier = tilOgMed - fraOgMed + 1
+    var tilfeldig = Math.floor(Math.random()*antallVerdier+fraOgMed)
+    return tilfeldig
+}
+    /* Funksjon for å tegne en stjerne
+    ctx - canvas.getContext("2d")-variabel
+    origox, origoy - posisjon av nedre venstre stjernespiss
+    farge - stjernefarge
+    faktor - relativ størrelse, tall mellom 0 og 1 (eller større...)
+*/
+function stjerne(ctx,origox,origoy,farge="white",faktor=1) {
+    ctx.beginPath();
+    ctx.fillStyle = farge;
+
+    ctx.moveTo(origox,origoy);
+    ctx.lineTo(origox+50*faktor,origoy-36*faktor);
+    ctx.lineTo(origox+100*faktor,origoy);
+    ctx.lineTo(origox+81*faktor,origoy-59*faktor);
+    ctx.lineTo(origox+131*faktor,origoy-95*faktor);
+    ctx.lineTo(origox+69*faktor,origoy-95*faktor);
+    ctx.lineTo(origox+50*faktor,origoy-154*faktor);
+    ctx.lineTo(origox+31*faktor,origoy-95*faktor);
+    ctx.lineTo(origox-31*faktor,origoy-95*faktor);
+    ctx.lineTo(origox+19*faktor,origoy-59*faktor);
+    ctx.closePath();
+    ctx.fill();		
+}
+
+    
+    
+</script>
+</body>
+</html>
+
+
+
+
+

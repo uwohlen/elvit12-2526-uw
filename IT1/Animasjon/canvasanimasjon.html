@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    canvas {
+      border: solid 1px black;
+      background-color: darkblue;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="idCanvas" width="400" height="400"></canvas>
+<script src="canvasanimasjon.js"></script>
+<script>
+  let canvasEl = document.querySelector("#idCanvas");
+  let ctx = canvasEl.getContext("2d");
+
+  let alle = [];
+
+  for (let i=0; i<50; i++) {
+    let xpos = Math.floor(Math.random()*400);
+    let ypos = Math.floor(Math.random()*(-400));
+    alle.push([xpos,ypos]);
+  }
+  console.log(alle)
+
+  function tegn() {
+    ctx.clearRect(0,0,400,400)
+    for (let i=0; i<50; i++) {
+      alle[i][1] ++
+      if (alle[i][1] > 400) {
+        alle[i][1] = Math.floor(Math.random()*-50);
+        alle[i][0] = Math.floor(Math.random()*400);
+      }
+      stjerne(ctx,alle[i][0],alle[i][1],"white",0.1);
+    }
+    
+  }
+
+  setInterval(tegn,10);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="CSS/hoved.css">
+    <style>
+        body {
+            margin: 0;
+        }
+        canvas {
+            border: solid black 1px;
+            background-color: white;
+            cursor:crosshair;
+        }
+        input {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="idCanvas" width="400" height="400"></canvas>
+    <input id="idFarge" type="color">
+    <input id="idStrek" type="range" min=1 max=10 step=1 value=1>
+<script src="JS/hoved.js"></script>
+<script>
+    var canvasEl = document.getElementById("idCanvas")
+    var ctx = canvasEl.getContext("2d")
+    var fargeEl = document.getElementById("idFarge")
+    var strekEl = document.getElementById("idStrek")
+    
+    canvasEl.addEventListener("mousedown",startfunk)
+    
+    function startfunk (event) {
+        ctx.beginPath()
+        ctx.strokeStyle = fargeEl.value
+        ctx.lineWidth = strekEl.value
+        ctx.moveTo(event.clientX,event.clientY)
+        canvasEl.addEventListener("mousemove",tegnfunk)
+    }
+    
+    function tegnfunk(event) {
+        ctx.lineTo(event.clientX,event.clientY)
+        ctx.stroke()
+    }
+    
+    canvasEl.addEventListener("mouseup",stoppfunk)
+    
+    function stoppfunk(event) {
+        canvasEl.removeEventListener("mousemove",tegnfunk)
+    }
+    
+</script>
+</body>
+</html>
+
+
+
+
+

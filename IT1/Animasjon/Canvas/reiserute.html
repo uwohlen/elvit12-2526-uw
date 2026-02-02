@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="hoved.css">
+	<style>
+		/*For utseende*/
+		body {
+			background-color: lemonchiffon;
+		}
+	
+		#idCanvas {
+			background-image: url(stortkartostfold.gif);
+			border: solid;
+			position: fixed; /*slik at clientX og Y tilsvarer bildet*/
+			top: 0;
+			left: 0;
+		}
+		#idtekst {
+			position: absolute;
+			left: 600px;
+			margin-left: 30px;
+			
+		}
+		/*#bilde {
+			position: absolute;
+			z-index: -1;
+			
+		}*/
+	</style>
+</head>
+<body>
+	<!-- For statisk innhold -->
+
+	<canvas id="idCanvas" width="599" height="735"></canvas>
+	<div id="idtekst">
+		<h1>Legg opp reiseruta</h1>
+		<p>Klikk på stedene du vil dra til.</p>
+		<p id="idTotal"></p>
+		<table>
+			<thead>
+				<th>Sted</th>
+				<th>Avstand</th>
+				<th>Tid</th>
+			</thead>
+			<tbody id="idrute">
+			</tbody>
+		</table>
+	</div>
+
+
+	
+<script>
+	var rute = document.getElementById("idrute");
+	var total = document.getElementById("idTotal");
+	var lerret = document.getElementById("idCanvas");
+	var ctx = lerret.getContext("2d");
+	ctx.strokeStyle = "black";
+	
+	var verdier = [
+		["Askim",263,156],
+		["Halden",341,525],
+		["Fredrikstad",160,463],
+		["Moss",59,265],
+		["Ørje",461,251]
+	];
+	
+	var steder = [];
+	for (var k=0; k<verdier.length; k++) {
+		steder.push(verdier[k][0]);
+	}
+	
+	var avstander = [
+		[0],
+		[62.3],
+		[58.8,37.9],
+		[44.6,65.3,40.5],
+		[33.2,60.1,78.5,77.6]		
+	];
+	
+	var sted;
+	var reiserute = [];
+	var avstand = [];
+	
+	function tegn(xpos,ypos,farge) {
+		ctx.beginPath();
+		ctx.arc(xpos,ypos,10,0,Math.PI*2);
+		ctx.fillStyle = farge;
+		ctx.fill();
+		ctx.stroke();
+	}
+	
+	function tegnlinje(startsted,stoppsted) {
+		ctx.beginPath();
+		ctx.moveTo(verdier[startsted][1],verdier[startsted][2]);
+		ctx.lineTo(verdier[stoppsted][1],verdier[stoppsted][2]);
+		ctx.stroke();
+	}
+
+	for (var i=0; i<verdier.length; i++) {
+		tegn(verdier[i][1],verdier[i][2],"grey");
+	}
+
+	lerret.addEventListener("mousemove",visfelter);
+	lerret.addEventListener("click",velgsted);
+	
+	function visfelter(event) {
+		var x=event.clientX;
+		var y=event.clientY;
+		//console.log(x,y);
+		
+		var plass = false;
+		
+		for (var j=0; j<verdier.length; j++) {
+			if (Math.abs(x-verdier[j][1]) <= 20 && Math.abs(y-verdier[j][2]) <= 20) {
+				plass = true;
+				sted = verdier[j][0];
+			}
+		}
+		
+		if (plass) {
+			lerret.style.cursor = "pointer";
+		}
+		else {
+			lerret.style.cursor = "default";
+			sted = "";
+		}
+	}
+
+	var nyttsted=-1;
+	var forrigeted=-1;
+	function velgsted() {
+		if (lerret.style.cursor == "pointer") {
+			//console.log(sted);
+			//reiserute.push(sted);
+			forrigested = nyttsted;
+			nyttsted = steder.indexOf(sted);
+			tegn(verdier[nyttsted][1],verdier[nyttsted][2],"red");
+			
+			if (forrigested == -1) {
+				//console.log(nyttsted);
+				//avstand.push(0);
+			}
+			else {
+				
+				reiserute.push(steder[forrigested] + "-" + steder[nyttsted]);
+				//console.log(reiserute);
+				if (nyttsted > forrigested) {
+					avstand.push(avstander[nyttsted][forrigested]);
+				}
+				else if (forrigested > nyttsted) {
+					avstand.push(avstander[forrigested][nyttsted]);
+				}
+				else {
+					avstand.push(0);
+				}
+				tegnlinje(forrigested,nyttsted);
+				
+				var totalavstand = 0;
+				for (var j=0; j<avstand.length; j++) {
+					totalavstand += avstand[j];
+				}
+				var tid = Math.round(totalavstand / 20);
+				total.innerHTML = "Reiseruta så langt er " + totalavstand.toFixed(1) + " km, som vil ta " + tid + " timer å sykle";
+			}
+			
+			var htmltekst = "";
+			for (var i=0; i<reiserute.length; i++) {
+				htmltekst += "<tr><td>" + reiserute[i] + "</td><td>" + avstand[i] + "</td><td>" + (avstand[i]/20).toFixed(0) + "</td></tr>"
+			}
+			rute.innerHTML = htmltekst;
+			
+		}
+	}
+	  
+	  
+  </script>
+</body>
+</html>

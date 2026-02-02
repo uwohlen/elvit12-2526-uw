@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="utf-8">
+    <!-- 
+      <link rel="icon" href="media/favicon.ico">
+    -->
+    <link rel="stylesheet" href="css/hovedstilark.css">
+	<title></title>
+    <style>
+        #idCanvas {
+            display: block;
+            margin: auto;
+            /*border: solid;*/
+            background-color: darksalmon;
+            /*NB! bruk av height og width her forstørrer/forminsker canvas og innholdet, men gir ikke endring i antall pixler*/
+            /*height: 200px;
+            width: 200px;*/
+        }
+    </style>
+</head>
+<body>
+    
+    <canvas id="idCanvas" width="400" height="400">Feilmelding: klokken vises ikke</canvas>
+	
+<script>
+    var lerret = document.getElementById("idCanvas");
+    var ctx = lerret.getContext("2d");
+    
+    
+    //kan endre antall pixler som vises:
+    //lerret.width = 200; //gjemmer deler av klokka
+    //lerret.height = 400;
+    
+    //Bruker variabler istedenfor hardkoding.
+    var bredde = lerret.width;
+    var hoyde = lerret.height;
+    
+    var xsentrum = bredde/2;
+    var ysentrum = hoyde/2;
+
+    tegn();
+    
+    window.onload = oppstart;
+    
+    function oppstart() {
+        setInterval(tegn,1000);
+    }
+    
+    /*
+    Funksjonen rettlinje 
+    tegner en rett linje ut fra sentrum (xsentrum,ysentrum). 
+    
+    Antall - hvor langt har man kommet rundt klokka (1-12 for timer, 1-60 for min/sek)
+    
+    Inndelinger - antall inndelinger av klokka (12 eller 60)
+    
+    Fra - hvor starter streken (i prosent av canvas-bredden, avstand fra sentrum)
+    
+    Til - hvor slutter streken (i prosent av canvas-bredden, avstand fra sentrum)
+    
+    Linjebredde - default value er 2
+    
+    Tekst - skal tallet (Antall) vises som tekst, 35% av canvas-bredden fra sentrum ... verdi "ja" for å vise tallene, default value er "nei"
+    
+    */
+    function rettlinje(antall,inndelinger,fra,til,linjebredde=2,tekst="nei") {
+        var vinkel = antall*2*Math.PI/inndelinger - Math.PI/2;
+        var xpos = Math.cos(vinkel);
+        var ypos = Math.sin(vinkel);
+        ctx.beginPath();
+        ctx.moveTo(xsentrum+xpos*bredde*fra,ysentrum+ypos*bredde*fra);
+        ctx.lineTo(xsentrum+xpos*bredde*til,ysentrum+ypos*bredde*til);
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = linjebredde;
+        ctx.stroke(); 
+        //før hver stroke, bør det være en strokeStyle og en lineWidth
+        
+        if (tekst == "ja") {
+            ctx.font= bredde*0.05 + "px 'Comic Sans MS'";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "black";
+            ctx.fillText(antall,xsentrum+xpos*bredde*0.35,ysentrum+ypos*bredde*0.35);
+            //før hver fill eller fillText bør det være en fillStyle
+            //før hver fillText bør det være en textAlign, textBaseline og font
+        }
+    }
+    
+    function tegn() {
+        
+        ctx.clearRect(0,0,bredde,hoyde);
+        ctx.lineCap = "round"
+        
+        //klokkebakgrunn - sirkel
+        ctx.beginPath();
+        ctx.arc(xsentrum,ysentrum,bredde*0.44,0,2*Math.PI);
+        ctx.fillStyle = "lightsalmon";
+        ctx.fill();
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.stroke();        
+        
+        //streker eller tall for hver time
+        for (var i=1; i<=12; i++) {
+            rettlinje(i,12,0.22,0.28,2,"ja");
+        }
+        
+        //streker for hvert minutt/sekund
+        for (var j=1; j<=60; j++) {
+            rettlinje(j,60,0.25,0.26);
+        }
+
+        var tid = new Date();
+        var s = tid.getSeconds();
+        var m = tid.getMinutes() + s/60;
+        var t = tid.getHours() + m/60;
+
+        //Timeviser
+        rettlinje(t,12,0,0.13,4);
+        
+        //Minuttviser
+        rettlinje(m,60,0,0.25,4);
+        
+        //Sekundviser
+        rettlinje(s,60,0,0.25,1);
+        
+        //Liten sirkel i midten - penere layout
+        ctx.beginPath();
+        ctx.arc(xsentrum,ysentrum,5,0,2*Math.PI);
+        ctx.fillStyle = "darksalmon";
+        ctx.fill();
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+    
+</script>
+</body>
+</html>

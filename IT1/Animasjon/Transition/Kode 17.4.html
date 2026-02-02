@@ -1,0 +1,65 @@
+<html>
+<head>
+  <title>Bokser som danser</title>
+  <meta charset="UTF-8">
+  <style>
+      body {
+        background-color: lightgray;
+      }
+
+      .innpakning {
+        width: 590px;
+        height: 300px;
+        margin: 50px auto;
+        background-color: black;	
+        position: relative;
+      }
+
+      .boks {
+        position: absolute;
+        top: 0px;
+        width: 10px;
+        height: 10px;
+        background-color: red;
+
+        
+        animation-name: sprett;
+        animation-duration: 2s;
+        animation-iteration-count: 3;
+        animation-timing-function: ease-in-out;
+        /*animation-fill-mode: forwards;*/
+      }
+      @keyframes sprett {
+        0% 		{ top: 0px; }
+        50%		{ top: 290px; }
+        100%	{ top: 0px; }
+      }
+  </style>
+</head>
+<body>
+
+    <div class="innpakning">
+    </div>
+
+<script>
+
+    var innpakningEl = document.querySelector(".innpakning");
+
+    var antallBokser = 30;
+
+    for (var i = 0; i < antallBokser; i++) {
+
+        var nyBoks = document.createElement("div");
+        
+        nyBoks.className = "boks"; 
+        
+        nyBoks.style.left = i * 20 + "px";
+        
+        nyBoks.style.animationDelay = i * 0.2 + "s";
+        
+        innpakningEl.appendChild(nyBoks); 
+    }
+</script>  
+  
+</body>
+</html>

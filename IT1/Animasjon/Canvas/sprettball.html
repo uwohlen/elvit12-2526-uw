@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="CSS/hoved.css">
+    <style>
+        canvas {
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Overskrift</h1>
+    <canvas id="idCanvas" width="400" height="400"></canvas>
+    <p>Mer tekst</p>
+<script src="JS/hoved.js"></script>
+<script>
+    var canvasEl = document.getElementById("idCanvas")
+    
+    var ctx = canvasEl.getContext("2d")
+    
+    setInterval(oppdater,1)
+    
+    var x = 50
+    var y = 150
+    var venstre = false
+    var ned = false
+    
+    function oppdater() {
+        if (venstre) {
+            x --
+        }
+        else {
+            x ++
+        }
+        if (ned) {
+            y += 2
+        }
+        else {
+            y -= 0.5
+        }
+        
+        if (x>400) {
+            venstre = true
+        }
+        if (x<0) {
+            venstre = false
+        }
+        if (y>400) {
+            ned = false
+        }
+        if (y<0) {
+            ned = true
+        }
+        ctx.clearRect(0,0,400,400)
+        ctx.beginPath()
+        ctx.lineWidth = 1
+        ctx.fillStyle = "red"
+        ctx.arc(x,y,10,0,2*Math.PI,false)
+        ctx.stroke()
+        ctx.fill()     
+    }
+   
+    
+    
+    
+    
+    
+</script>
+</body>
+</html>
+
+
+
+
+

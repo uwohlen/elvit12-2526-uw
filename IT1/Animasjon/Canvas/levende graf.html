@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="CSS/hovedstilark.css">
+    <style>
+        #idCanvas {
+            border: solid;
+        }
+    </style>
+</head>
+<body>
+	<canvas id="idCanvas"></canvas>
+	<br>
+	<p>Amplitude 
+		<input id="idAmplitude" type="range" min=-10 max=10 value=5 step=1> 
+		<input id="idAmplitudeTekst"> <input id="idchkAmp" type="checkbox" checked></p>
+	<p>Frekvens 
+		<input id="idFrekvens" type="range" min=1 max=5 value=1 step=0.1> 
+		<input id="idFrekvensTekst"> <input id="idchkFrek" type="checkbox" checked></p>
+	<button id="idKnapp">Test</button>
+<script src="JS/funksjoner.js"></script>
+<script>
+    var lerret = document.querySelector("#idCanvas");
+	var amplitudeEl = document.querySelector("#idAmplitude");
+	var amplitudeTekstEl = document.querySelector("#idAmplitudeTekst");
+	var chkAmpEl = document.querySelector("#idchkAmp");
+	var FrekvensEl = document.querySelector("#idFrekvens");
+	var FrekvensTekstEl = document.querySelector("#idFrekvensTekst");
+	var knappEl = document.querySelector("#idKnapp");
+	var chkFrekEl = document.querySelector("#idchkFrek");
+	
+	amplitudeTekstEl.value = amplitudeEl.value;
+	FrekvensTekstEl.value = (Number(FrekvensEl.value)).toFixed(2);
+	
+	amplitudeEl.addEventListener("change",ampfunk);
+	function ampfunk() {
+		amplitudeTekstEl.value = amplitudeEl.value;	
+		tegnfunk();
+	}
+	
+	FrekvensEl.addEventListener("change",Frekvensfunk);
+	function Frekvensfunk() {
+		FrekvensTekstEl.value = (Number(FrekvensEl.value)).toFixed(2);	
+		tegnfunk();
+	}
+	
+    lerret.width = 500;
+    lerret.height = 400;
+    
+    var ctx = lerret.getContext("2d");
+    
+    var ox = 50;
+    var oy = 200;
+    
+    // Graf
+	
+	function tegnfunk() {
+		ctx.clearRect(0,0,500,400);
+		// Akser
+		ctx.beginPath();
+		ctx.moveTo(ox,oy);
+		ctx.lineTo(ox+360,oy);
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.moveTo(ox,oy+100);
+		ctx.lineTo(ox,oy-100);
+		ctx.stroke();
+    
+		ctx.beginPath();
+		ctx.moveTo(ox,oy-10*Number(amplitudeEl.value)*Math.sin(Number(FrekvensEl.value)*0));
+		for (i=1; i<360; i++) {
+			ctx.lineTo(ox+i,oy-10*Number(amplitudeEl.value)*Math.sin(Number(FrekvensEl.value)*2*Math.PI*i/360))
+		}
+		ctx.stroke();
+		
+	}
+	
+	tegnfunk();
+    
+    function tegnfunk2() {
+		if (chkAmpEl.checked) {
+			if (opp) {
+				a++;
+			}
+			else {
+				a--;
+			}
+			if (a>=10) {
+				opp=false;
+			}
+			else if (a<=-10) {
+				opp=true;
+			}
+		}
+		if (chkFrekEl.checked) {
+			if (wide) {
+				b+=0.25;
+			}
+			else {
+				b-=0.25;
+			}
+			if (b>=5) {
+				wide = false;
+			}
+			else if (b<=1) {
+				wide = true;
+			}
+		}
+		ctx.clearRect(0,0,500,400);
+		// Akser
+		ctx.beginPath();
+		ctx.moveTo(ox,oy);
+		ctx.lineTo(ox+360,oy);
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.moveTo(ox,oy+100);
+		ctx.lineTo(ox,oy-100);
+		ctx.stroke();
+    
+		ctx.beginPath();
+		ctx.moveTo(ox,oy-10*a*Math.sin(b*0));
+		for (i=1; i<360; i++) {
+			ctx.lineTo(ox+i,oy-10*a*Math.sin(b*2*Math.PI*i/360))
+		}
+		ctx.stroke();
+		amplitudeEl.value = a;
+		amplitudeTekstEl.value = a;
+		FrekvensEl.value = b;
+		FrekvensTekstEl.value = b.toFixed(2);
+		
+	}
+	
+    knappEl.addEventListener("click",startfunk);
+	var tegn;
+	var a;
+	var b;
+	var opp;
+	var wide;
+	
+	function startfunk() {
+		if (knappEl.innerHTML === "Test") {
+			a=Number(amplitudeEl.value);
+			b=Number(FrekvensEl.value);
+			opp=true;
+			wide = true;
+			tegn = setInterval(tegnfunk2,200);
+			knappEl.innerHTML = "Stopp";	
+		}
+		else {
+			clearInterval(tegn);
+			knappEl.innerHTML = "Test";
+		}
+		
+	}
+    
+</script>
+</body>
+</html>

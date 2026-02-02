@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="utf-8">
+    <link rel="icon" href="bilder/favicon.ico">
+	<title>Vindmølleblad</title>
+    
+    <style>
+        #tegneFlate {
+		  border-style: solid;
+		}
+    </style>
+</head>
+<body>
+    <canvas id="tegneFlate" width="400" height="400"></canvas>
+    <br>
+	<button id="stille">Stille</button>
+	<button id="lettbris">Lett bris</button>
+	<button id="stivkuling">Stiv kuling</button>
+    
+  
+<script>
+    window.onload = oppstart
+
+    var ctx
+    var nyOrigoX = 200
+    var nyOrigoY = 200
+    var x=0
+    var fart = 0.01
+    
+    function oppstart() {
+        ctx = document.getElementById("tegneFlate").getContext("2d")
+        document.getElementById("stille").onclick = tegnstille
+        document.getElementById("lettbris").onclick = tegnlettbris
+        document.getElementById("stivkuling").onclick = tegnstivkuling
+        tegn()
+    }
+  
+  function tegnstille() {
+    fart = 0
+    tegn()
+  }
+  function tegnlettbris() {
+    fart = 0.01
+    setInterval(tegn,10)
+  }
+  function tegnstivkuling() {
+    fart = 0.05
+    setInterval(tegn,10)
+  }
+    
+    function tegn() {
+        
+        ctx.clearRect(0,0,400,400)
+        x += fart
+        
+        //Blad 1
+        ctx.beginPath()
+        ctx.moveTo(nyOrigoX,nyOrigoY)
+
+        ctx.lineTo(nyOrigoX + 100*Math.cos(0+x),
+                   nyOrigoY + 100*Math.sin(0+x))
+        ctx.lineWidth = 5
+        ctx.stroke()
+
+        //Blad 2
+        ctx.beginPath()
+        ctx.moveTo(nyOrigoX,nyOrigoY)
+
+        ctx.lineTo(nyOrigoX - 100*Math.cos(Math.PI/3-x),
+                   nyOrigoY + 100*Math.sin(Math.PI/3-x))
+        ctx.lineWidth = 5
+        ctx.stroke()
+        
+        //Blad 3
+        ctx.beginPath()
+        ctx.moveTo(nyOrigoX,nyOrigoY)
+
+        ctx.lineTo(nyOrigoX - 100*Math.cos(Math.PI/3+x),
+                   nyOrigoY - 100*Math.sin(Math.PI/3+x))
+        ctx.lineWidth = 5
+        ctx.stroke()
+        
+        
+        ctx.beginPath()
+        ctx.arc(nyOrigoX,nyOrigoY,10,0,2*Math.PI)
+        ctx.fillStyle = "red"
+        ctx.fill()
+        ctx.lineWidth = 1
+        ctx.stroke()
+    }
+    
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

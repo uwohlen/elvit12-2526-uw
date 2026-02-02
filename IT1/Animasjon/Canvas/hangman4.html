@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="utf-8">
+    <link rel="icon" href="bilder/favicon.ico">
+	<title>Hangman</title>
+    
+    <style>
+        #tegneFlate {
+		  border-style: solid;
+		}
+    </style>
+</head>
+<body>
+    <h1>Hangman</h1>
+    <p id="idlosning">Skriv oppgaven: <input id="txtOppgave"></p>
+    <canvas id="tegneFlate" width="400" height="400"></canvas>
+    <br>
+    <p>Skriv inn en bokstav du gjetter skal være med: <input id="txtSvar" maxlength="1"></p>
+    <p id="tilbakemelding">Svaret er: </p>
+    <p id="brukt">Brukte bokstaver: </p>
+
+	
+<script>
+    window.onload = oppstart
+
+    var ctx
+    var teller = 0
+    var fasit = []
+    var resultat = []
+    var bom = true
+    var riktig = 0
+    var losningEl = document.querySelector("#idlosning");
+        
+    function oppstart() {
+        ctx = document.getElementById("tegneFlate").getContext("2d")
+        document.getElementById("txtOppgave").focus()
+        document.getElementById("txtOppgave").onkeyup = lagreFasit
+    }
+    
+    function lagreFasit(evt) {
+        if (evt.keyCode == 13) {
+            var inn = document.getElementById("txtOppgave").value
+            
+            fasit = inn.split("")
+                
+            for (var j=0; j<inn.length; j++) {
+                resultat[j] = "_"
+            }
+            
+            
+            document.getElementById("txtOppgave").value = ""
+            losningEl.style.display = "none";
+            document.getElementById("tilbakemelding").innerHTML += resultat
+            document.getElementById("txtSvar").focus()
+            document.getElementById("txtSvar").onkeyup = tegn
+        }
+    }
+    
+    function tegn(evt) {
+        console.log(evt.keyCode)
+    if (evt.keyCode >= 65 && evt.keyCode <= 90 || evt.keyCode == 192 || evt.keyCode == 221 || evt.keyCode == 222) {
+        
+        var bokstav = document.getElementById("txtSvar").value
+
+        
+        document.getElementById("brukt").innerHTML += bokstav
+        
+        for (var i = 0; i < fasit.length; i++) {
+            if (bokstav.toLowerCase() == fasit[i].toLowerCase()) {
+                resultat[i] = fasit[i]
+                bom = false
+                riktig ++
+            }
+        }
+        
+        if (riktig == fasit.length) {
+            document.getElementById("txtSvar").disabled = true
+            document.getElementById("tilbakemelding").innerHTML = "Svaret er: " + resultat.join("")    
+        }
+        else {
+            document.getElementById("tilbakemelding").innerHTML = "Svaret er: " + resultat
+
+            if (bom) {
+                teller ++
+            } 
+
+            if (teller == 1) {
+                tegnstrek(100,300,300,300)
+            }
+            else if (teller == 2) {
+                tegnstrek(150,300,150,100)
+            }
+            else if (teller == 3) {
+                tegnstrek(150,100,250,100)
+            }
+            else if (teller == 4) {
+                tegnstrek(150,150,200,100)
+            }
+            else if (teller == 5) {
+                tegnstrek(250,100,250,120)
+            }
+            else if (teller == 6) {
+                ctx.beginPath()
+                ctx.arc(250,135,15,0,2*Math.PI)
+                ctx.stroke()
+            }
+            else if (teller == 7) {
+                tegnstrek(250,150,250,220)
+            }
+            else if (teller == 8) {
+                tegnstrek(250,170,220,200)
+            }
+            else if (teller == 9) {
+                tegnstrek(250,170,280,200)
+            }
+            else if (teller == 10) {
+                tegnstrek(250,220,210,270)
+            }
+            else if (teller == 11) {
+                tegnstrek(250,220,290,270)
+                document.getElementById("txtSvar").disabled = true
+            }
+        }
+    }
+        document.getElementById("txtSvar").value = ""
+        bom = true
+               
+    }
+    
+    function tegnstrek(frax,fray,tilx,tily) {
+        ctx.beginPath()
+        ctx.moveTo(frax,fray)
+        ctx.lineTo(tilx,tily)
+        ctx.stroke()
+    }
+    
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

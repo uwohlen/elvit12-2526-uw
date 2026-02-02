@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="CSS/hoved.css">
+    <style>
+        canvas {
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ovaler</h1>
+    <canvas id="idCanvas" width="400" height="400"></canvas>
+<script src="JS/hoved.js"></script>
+<script>
+    let canvasEl = document.getElementById("idCanvas");
+
+    let ctx = canvasEl.getContext("2d");
+    
+    ctx.beginPath();
+    ctx.lineWidth = 1;
+    ctx.fillStyle = "grey";
+    ctx.strokeStyle = "black";
+
+    let origox = 200;
+    let origoy = 200;
+    let r = 12;
+    let a = 10;
+    let b = 6;
+    let dx = 2*r*a/100;
+    ctx.moveTo(origox+r*a,origoy);
+
+    function f(x) {
+        return (b/a)*Math.sqrt(Math.pow(r*a,2)-Math.pow(x,2))
+    }
+
+    for (let i=1; i<=100; i++) {
+        ctx.lineTo(origox+r*a-dx*i,origoy+f(r*a-dx*i));
+    }
+    for (let i=99; i>0; i--) {
+        ctx.lineTo(origox+r*a-dx*i,origoy-f(r*a-dx*i));
+    }
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+
+    
+    
+</script>
+</body>
+</html>
+
+
+
+
+

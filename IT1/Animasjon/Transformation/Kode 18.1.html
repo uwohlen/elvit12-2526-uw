@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title>Transformasjoner</title>
+  <meta charset="UTF-8">
+  <style>
+  body {
+    background-color: black;
+  }
+  .innpakning {
+    background-color: yellow;
+    width: 600px;
+    height: 200px;
+    margin: 100px auto;
+    display: flex;
+  }
+  .boks {
+    flex-grow: 1;
+    margin: 5px;
+  }
+  .boks1 {
+    background-color: red;
+    transform: translate(-20px, 50px);
+  }
+  .boks2 {
+    background-color: blue;
+    transform: rotate(20deg);
+  }
+  .boks3 {
+    background-color: green;
+    transform: scale(0.8, 1.6) skew(40deg);
+  }
+  </style>
+</head>
+<body>
+
+<div class="innpakning">
+  <div class="boks boks1"> </div>
+  <div class="boks boks2"> </div>
+  <div class="boks boks3"> </div>
+</div>
+
+</body>
+</html>

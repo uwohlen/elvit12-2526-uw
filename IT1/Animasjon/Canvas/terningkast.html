@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="CSS/hovedstilark.css">
+    <!--
+    <link rel="icon" href="media/favicon.ico">
+    -->
+    <title>Relativ frekvens ved terningkast</title>
+    <style>
+        #idCanvas {
+            display: block;
+			background-color: floralwhite;
+        }
+    </style>
+</head>
+<body>
+    <h1>Relativ frekvens for terningkast</h1>
+	<h2>Vi kaster en terning flere ganger, og ser på frekvensen av de ulike verdiene.</h2>
+	<button id="id1">Kast 1 terning</button>
+	<button id="id10">Kast 10 terninger</button>
+	<button id="id100">Kast 100 terninger</button>
+	<button id="id1000">Kast 1000 terninger</button>
+	<button id="id1000000">Kast 1000000 terninger</button>
+	<h3 id="idverdier">Verdi:</h3>
+    <canvas id="idCanvas" width="600" height="400"></canvas>
+    
+<script>
+    var canvas = document.getElementById("idCanvas");
+	var ctx = canvas.getContext("2d");
+	var btn1 = document.getElementById("id1");
+	var btn10 = document.getElementById("id10");
+	var btn100 = document.getElementById("id100");
+	var btn1000 = document.getElementById("id1000");
+	var btn1000000 = document.getElementById("id1000000");
+	var verdiertxt = document.getElementById("idverdier");
+	var verdier = [];
+	
+	btn1.addEventListener("click",kast1funk);
+	btn10.addEventListener("click",kast10funk);
+	btn100.addEventListener("click",kast100funk);
+	btn1000.addEventListener("click",kast1000funk);
+	btn1000000.addEventListener("click",kast1000000funk);
+
+	function kast1funk() {
+		verdier.push(Math.floor(Math.random()*6+1));
+		oppdater(verdier);	
+	}
+	function kast10funk() {
+		for (var i=0; i<10; i++){
+			verdier.push(Math.floor(Math.random()*6+1));
+		}
+		oppdater(verdier);	
+	}
+	function kast100funk() {
+		for (var i=0; i<100; i++){
+			verdier.push(Math.floor(Math.random()*6+1));
+		}
+		oppdater(verdier);	
+	}
+	function kast1000funk() {
+		for (var i=0; i<1000; i++){
+			verdier.push(Math.floor(Math.random()*6+1));
+		}
+		oppdater(verdier);	
+	}
+	function kast1000000funk() {
+		for (var i=0; i<1000000; i++){
+			verdier.push(Math.floor(Math.random()*6+1));
+		}
+		oppdater(verdier);	
+	}
+	
+	function oppdater(verdiliste) {
+		//console.log(verdiliste);
+		if (verdiliste.length <= 60) {
+			verdiertxt.innerHTML = "Verdier: " + verdiliste;
+		}
+		var antall = [0,0,0,0,0,0];
+		for (var i=0; i<verdiliste.length; i++) {
+			antall[verdiliste[i]-1] += 1/verdiliste.length;
+		}
+		//console.log(antall);
+		var navn = ["Enere","Toere","Treere","Firere","Femmere","Seksere"];
+		var soyletittel = "Relativ frekvens ved " + verdiliste.length + " terningkast";
+		tegnsoylediagram(antall,navn,soyletittel);
+	}
+	
+	function tegnsoylediagram(hoyder,titler,overskrift) {
+		ctx.clearRect(0,0,600,400)
+		ctx.strokeStyle = "black";
+		ctx.lineWidth = 1;
+
+		ctx.beginPath();
+		ctx.moveTo(50,350);
+		ctx.lineTo(550,350);
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(50,350);
+		ctx.lineTo(50,90);
+		ctx.stroke();
+		
+		ctx.strokeStyle = "lightgrey";
+		for (var m=1; m<=10; m++) {
+			ctx.beginPath();
+			ctx.moveTo(50,350-m*25);
+			ctx.lineTo(550,350-m*25);
+			ctx.stroke();
+			
+			ctx.font = "12px 'Century Gothic'";
+			ctx.fillText((m/10).toFixed(1),25,355-m*25)
+		}
+
+		ctx.strokeStyle = "red";
+		for (var i = 0; i<hoyder.length;i++) {
+			ctx.strokeRect(60+80*i,350-hoyder[i]*250,60,hoyder[i]*250);
+			
+			ctx.font = "12px 'Century Gothic'";
+			ctx.textAlign = "center";
+			ctx.fillText(titler[i],90+80*i,370);
+			ctx.fillText(hoyder[i].toFixed(3),90+80*i,350-hoyder[i]*250-10);
+		}
+
+		
+		ctx.font = "20px 'Century Gothic'";
+		ctx.textAlign = "center";
+		ctx.fillText(overskrift,300,50);
+
+	}
+    
+    
+</script>
+</body>
+</html>
+
+
+
+

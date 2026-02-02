@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+		.sirkel {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: burlywood;
+			width: 300px;
+			height: 200px;
+			border-radius: 10px;
+			transition-property: border-radius;
+			transition-duration: 2s;
+		}
+		.sirkel:hover {
+			border-radius: 50%;
+		}
+		.flytt {
+			border: solid black 1px;
+			width: 150px;
+			background-color: blue;
+			position: absolute;
+			left: 0px;
+			transition-property: left background-color;
+			transition-duration: 5s;
+			transition-timing-function: ease-in-out;
+		}
+    </style>
+</head>
+<body>
+    <div class="sirkel">
+		<h1>Overskrift</h1>
+	</div>
+	<div id="idDivMedKnapp" class="flytt">
+		<button id="idKnapp">Flytt</button>
+	</div>
+<script>
+	
+	var divEl = document.getElementById("idDivMedKnapp")
+    var knappEl = document.getElementById("idKnapp")
+	knappEl.addEventListener("click",flyttfunk)
+	function flyttfunk() {
+		var bredde = (window.innerWidth/2) + "px"
+		divEl.style.left = bredde
+		divEl.style.backgroundColor = "red"
+	}
+</script>
+</body>
+</html>
+
+
+
+
+

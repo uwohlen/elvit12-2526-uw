@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>Sannsynlighetskalkulator for normalfordelingen</h1>
+    <p>Skriv inn Forventningsverdi og standardavvik, nedre og øvre grense:</p>
+    <input id="idMy"    type="number" placeholder="Forventningsverdi">
+    <input id="idSigma" type="number" placeholder="Standardavvik">
+    <input id="ida"     type="number" placeholder="Nedre grense">
+    <input id="idb"     type="number" placeholder="Øvre grense">
+    <button id="idKnapp">Beregn</button>
+	<h2>Resultat: <span id="idSpan"></span></h2>
+	<canvas id="idCanvas"></canvas>
+	<p>Grafen er tegnet innenfor 5 standardavvik. Verdier utenfor dette påvirker ikke sannsynligheten (med 4 desimalers nøyaktighet).</p>
+<script>
+    let spanEl  = document.getElementById("idSpan");
+    let myEl    = document.getElementById("idMy");
+    let sigmaEl = document.getElementById("idSigma");
+    let aEl     = document.getElementById("ida");
+    let bEl     = document.getElementById("idb");
+    let knappEl = document.getElementById("idKnapp");
+  
+	//Bytt ut med ønsket funksjon etter return:
+    function f(x) {
+        let my = Number(myEl.value);
+        let sigma = Number(sigmaEl.value);
+        return (1/(sigma*Math.sqrt(2*Math.PI)))*Math.exp(-Math.pow((x-my)/sigma,2)/2);
+	}
+	
+    knappEl.addEventListener("click",regnut)
+	
+    function regnut() {
+        let inn = 100000;        
+        var a = Number(aEl.value);
+        var b = Number(bEl.value);
+        var h = (b-a)/inn;
+        
+        var sum = 0;
+        for (var i=0; i<inn; i++) {
+            sum += f(a+i*h)*h;
+        }
+        
+        spanEl.innerHTML = "Sannsynligheten er " + sum.toFixed(4);
+        tegnfunk(a,b,inn,h);
+    }
+	
+    //Tegner graf:
+    function tegnfunk(a,b,inn,h) {
+
+        let my = Number(myEl.value);
+        let sigma = Number(sigmaEl.value);
+        let sigmaNr = 5;
+        let vs = my - sigmaNr*sigma;
+        let hs = my + sigmaNr*sigma;
+        let h2 = (hs-vs)/inn;
+        let wdth = 800;
+        let hght = 400;
+
+        var canvasEl = document.getElementById("idCanvas")
+        canvasEl.width = wdth;
+        canvasEl.height = hght;
+        canvasEl.style.border = "solid 1px black";
+        var lengde = wdth - 100;
+        var hoyde = hght - 100;
+        var maks = 0
+        for (var i=0; i<=inn; i++) {
+            if (Math.abs(f(vs+i*h2)) > maks) {
+                maks = Math.abs(f(vs+i*h2))
+            }
+        }
+        
+		var faktorx = lengde/(hs-vs)
+		var origox = 50
+		
+        var faktory = hoyde/maks
+        
+        var origoy = 350
+        
+        var ctx = canvasEl.getContext("2d")
+        ctx.clearRect(0,0,800,400)
+        ctx.beginPath()
+		ctx.moveTo(0,origoy)
+        ctx.lineTo(800,origoy)
+        ctx.stroke()
+    
+        ctx.beginPath()
+        ctx.strokeStyle = "grey";
+        ctx.moveTo(origox+a-vs,origoy-f(vs)*faktory)
+        for (i=1; i<=inn; i++) {
+            ctx.rect(origox+(a-vs+(i-1)*h)*faktorx,origoy-f(a+(i-1)*h)*faktory, h*faktorx,f(a+(i-1)*h)*faktory)
+        }
+        ctx.stroke()
+        
+        ctx.beginPath()
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 3;
+        ctx.moveTo(origox,origoy-f(vs)*faktory)
+        for (i=1; i<=inn; i++) {
+            ctx.lineTo(origox+(i*h2)*faktorx,origoy-f(vs+i*h2)*faktory)
+        }
+        ctx.stroke()
+
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        for (i=0; i<=2*sigmaNr; i++) {
+            ctx.moveTo(origox+i*(lengde/(2*sigmaNr)), origoy-5);
+            ctx.lineTo(origox+i*(lengde/(2*sigmaNr)), origoy+5);
+        }
+        ctx.stroke();
+		
+		ctx.textAlign = "center"
+		ctx.textBaseline = "middle"
+		ctx.fillStyle = "red";
+        ctx.font = "20px 'Times New Roman'"
+		ctx.fillText("μ-3σ",origox+lengde/2-3*lengde/(2*sigmaNr),365);
+		ctx.fillText("μ-2σ",origox+lengde/2-2*lengde/(2*sigmaNr),365);
+		ctx.fillText("μ-σ",origox+lengde/2-lengde/(2*sigmaNr),365);
+        ctx.fillText("μ",origox+lengde/2,365);
+		ctx.fillText("μ+σ",origox+lengde/2+lengde/(2*sigmaNr),365);
+		ctx.fillText("μ+2σ",origox+lengde/2+2*lengde/(2*sigmaNr),365);
+		ctx.fillText("μ+3σ",origox+lengde/2+3*lengde/(2*sigmaNr),365);
+        ctx.fillStyle = "black"
+		ctx.font = "20px 'Century Gothic'"
+		ctx.fillText(a,origox+(a-vs)*faktorx,385)
+		ctx.fillText(b,origox+(a-vs+inn*h)*faktorx,385)
+        
+    }
+
+    //Nice to have:
+    myEl.focus()
+    myEl.addEventListener("keyup",funk0)
+    sigmaEl.addEventListener("keyup",funk0)
+    aEl.addEventListener("keyup",funk0)
+    bEl.addEventListener("keyup",funk0)
+
+    function funk0 (event) {
+        if (event.keyCode === 13) {
+            if (event.target.id === "idMy") { 
+                sigmaEl.focus()
+            }
+            else if (event.target.id === "idSigma") { 
+                aEl.focus()
+            }
+            else if (event.target.id === "ida") { 
+                bEl.focus()
+            }
+            else if (event.target.id === "idb") { 
+                regnut()
+            }
+        }
+    }
+	
+</script>
+</body>
+</html>
+
+
+
+
+

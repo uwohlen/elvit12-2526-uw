@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        #idDiv1 {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-size: cover;
+            animation-name: bildevisning;
+            animation-duration: 15s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+        }
+        @keyframes bildevisning {
+            0%   {background-image: url(andalsnes.JPG); transform: rotate(0deg);}
+            33%  {background-image: url(romsdalshorn.JPG); transform: rotate(120deg);}
+            67%  {background-image: url(utstyr.JPG); transform: rotate(240deg);}
+            100% {background-image: url(andalsnes.JPG); transform: rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <h1 id="idH1">Åndalsnes</h1>
+    <div id="idDiv1" class="bilde0"></div>
+    <button id="idBtn1">Pause</button>
+    
+<script>  
+    var h1 = document.getElementById("idH1");
+    var div1 = document.getElementById("idDiv1");
+    var btn1 = document.getElementById("idBtn1");
+    btn1.addEventListener("click",pause);
+    
+    var bytt = true;
+    
+    function pause() {
+        if (bytt) {
+            div1.style.animationPlayState = "paused";
+            bytt = false;
+            btn1.innerHTML = "Vis flere bilder"
+        }
+        else {
+            div1.style.animationPlayState = "running";
+            bytt = true;
+            btn1.innerHTML = "Pause";
+        }
+    }
+    
+</script>
+</body>
+</html>

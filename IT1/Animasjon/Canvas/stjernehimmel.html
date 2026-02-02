@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="utf-8">
+    <!--
+    <link rel="stylesheet" href="CSS/hovedstilark.css">
+    <link rel="icon" href="media/favicon.ico">
+    -->
+    <title></title>
+    <style>
+		/*Style for svart nattehimmel bak nettsiden 
+          Flyttet til funksjonen slik at funksjonen
+          kan brukes i andre programmer uten å endre
+          style-taggen*/
+        /*canvas {
+            position: absolute;
+			top: 0;
+			left: 0;
+			background-color: black;
+			z-index: -1;
+        }*/
+		#idForan {
+			color: red;
+		}
+    </style>
+</head>
+<body>
+    <div id="idCanvasDiv">Her kommer canvas</div>
+	<div id="idForan">
+		<h1>Dette er i forgrunnen.</h1>
+		<h2>Stjernene er bak teksten, men ikke et bakgrunnsbilde.</h2>
+		<h3>Resten av nettsiden her...</h3>
+	</div>
+    
+<script>
+	/* Funksjon for å tegne en stjerne
+		ctx - canvas.getContext("2d")-variabel
+		origox, origoy - posisjon av nedre venstre stjernespiss
+		farge - stjernefarge
+		faktor - relativ størrelse, tall mellom 0 og 1
+	*/
+	function stjerne(ctx,origox,origoy,farge="white",faktor=1) {
+		ctx.beginPath();
+		ctx.fillStyle = farge;
+
+		ctx.moveTo(origox,origoy);
+		ctx.lineTo(origox+50*faktor,origoy-36*faktor);
+		ctx.lineTo(origox+100*faktor,origoy);
+		ctx.lineTo(origox+81*faktor,origoy-59*faktor);
+		ctx.lineTo(origox+131*faktor,origoy-95*faktor);
+		ctx.lineTo(origox+69*faktor,origoy-95*faktor);
+		ctx.lineTo(origox+50*faktor,origoy-154*faktor);
+		ctx.lineTo(origox+31*faktor,origoy-95*faktor);
+		ctx.lineTo(origox-31*faktor,origoy-95*faktor);
+		ctx.lineTo(origox+19*faktor,origoy-59*faktor);
+		ctx.closePath();
+		ctx.fill();		
+	}
+	
+	/* Funksjon for å tegne et canvas med stjerner på hele skjermen
+		antall - antall stjerner som ønskes
+		body må ha en div med id: idCanvasDiv
+	*/
+	function stjernehimmel(antall=100) {
+		var vindusbredde = window.innerWidth;
+		var vindushoyde = window.innerHeight;
+
+		var divEl = document.getElementById("idCanvasDiv");
+
+		divEl.innerHTML = "<canvas id='idCanvas' width='" + vindusbredde + "' height='" + vindushoyde + "'></canvas>"
+
+		var canvas = document.getElementById("idCanvas");
+		/*Style for svart nattehimmel bak nettsiden*/
+        canvas.style.position = "absolute";
+		canvas.style.top = 0;
+		canvas.style.left = 0;
+		canvas.style.backgroundColor = "black";
+		canvas.style.zIndex = -1;
+        
+		var ctx = canvas.getContext("2d");
+
+		for (var i=0; i<antall; i++) {
+			var plassx = Math.floor(Math.random()*vindusbredde);
+			var plassy = Math.floor(Math.random()*vindushoyde);
+			var stor = Math.random()*0.07;
+            
+            //ønsker stjerner av forskjellige farger, flest hvite (75%)
+            //men også en god del gule (24%) Få røde (1%)
+            var fargetall = Math.random()*antall; 
+            if (fargetall < antall*0.75) {
+                farge = "white";
+            }
+            else if (fargetall < antall - antall*0.01) {
+                farge = "yellow";
+            }
+            else {
+                farge = "red";
+            }
+			stjerne(ctx,plassx,plassy,farge,stor);
+		}
+	}
+	
+	stjernehimmel();
+	
+	//Tegn bakgrunnen på nytt hvis vindusstørrelsen endres
+	addEventListener("resize",forny);
+	
+	function forny() {
+		stjernehimmel();
+	}
+    
+    setInterval(stjernehimmel,3000);
+	
+</script>
+</body>
+</html>
+
+
+
+

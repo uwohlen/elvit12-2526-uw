@@ -1,0 +1,16 @@
+body {
+    background-color: lemonchiffon;
+}
+button, .hand {
+    cursor: pointer;
+}
+table, th, td {
+    border: solid black 1px;
+    border-collapse: collapse;
+}
+/*Utseende for søylediagram i <span>*/
+.soyle {
+    background-color: red;
+    display:inline-block;
+    height: 20px;
+}

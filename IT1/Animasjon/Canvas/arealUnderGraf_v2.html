@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>Areal under graf - som sum av rektangler</h1>
+    <p>Skriv inn nedre og øvre grense, og hvor mange inndelinger:</p>
+    <input id="ida"   type="number" placeholder="Nedre grense">
+    <input id="idb"   type="number" placeholder="Øvre grense">
+    <input id="idInn" type="number" placeholder="Inndelinger">
+    <button id="idKnapp">Trykk</button>
+	<p>Antall desimaler: <input id="idDes" type="number" value="2" min="0" max="5" step="1"></p>
+    <h2>Resultat: <span id="idSpan"></span></h2>
+	<canvas id="idCanvas"></canvas>
+	
+<script>
+    var spanEl  = document.getElementById("idSpan")
+    var aEl     = document.getElementById("ida")
+    var bEl     = document.getElementById("idb")
+    var innEl   = document.getElementById("idInn")
+    var knappEl = document.getElementById("idKnapp")
+	var desEl   = document.getElementById("idDes")
+  
+	//Bytt ut med ønsket funksjon etter return:
+    function f(x) {
+        return -Math.pow(x,2)+2*x
+	}
+	
+	//Eksemplene i boka:
+	//120
+	//0.1*Math.pow(x,2)+2
+	//3.5-0.5*x
+	//3*Math.pow(x,2)-12*x+13
+	//5*(5*Math.pow(x+0.5,3)+Math.pow(x+0.5,2))*Math.exp(-x)
+	//500000*Math.pow(1.03,x)
+	
+    knappEl.addEventListener("click",regnut)
+	
+    function regnut() {
+        var a = Number(aEl.value)
+        var b = Number(bEl.value)
+        var inn = Number(innEl.value)
+        var h = (b-a)/inn
+		
+        var sum = 0
+        for (var i=0; i<inn; i++) {
+            sum += f(a+i*h)*h
+        }
+        
+        spanEl.innerHTML = "Tilnærmet verdi av integralet delt i " + inn + " rektangler fra x = " + aEl.value + " til x = " + bEl.value + " er " + sum.toFixed(Number(desEl.value))
+        tegnfunk(a,b,inn,h)
+    }
+	
+    //Tegner graf:
+    function tegnfunk(a,b,inn,h) {
+        var canvasEl = document.getElementById("idCanvas")
+        canvasEl.width = "500"
+        canvasEl.height = "400"
+        canvasEl.style.border = "solid 1px black"
+        var lengde = 400
+        var hoyde = 300
+        var maks = 0
+        var negativ = false
+        for (var i=0; i<=inn; i++) {
+            if (Math.abs(f(a+i*h)) > maks) {
+                maks = Math.abs(f(a+i*h))
+            }
+            if (f(a+i*h) < 0) {
+                negativ = true
+            }
+        }
+        
+		if (a<0) {
+			var faktorx = lengde/(b-a)
+			var origox = 50-a*faktorx
+        }
+		else {
+			var faktorx = lengde/b	
+			var origox = 50
+		}
+        var faktory = hoyde/maks
+        
+        var origoy = 350
+        if (negativ) {
+            origoy = 200
+            faktory = faktory/2
+        }
+        
+        var ctx = canvasEl.getContext("2d")
+        ctx.clearRect(0,0,500,400)
+        ctx.beginPath()
+        ctx.moveTo(origox,0)
+        ctx.lineTo(origox,400)
+		ctx.moveTo(0,origoy)
+        ctx.lineTo(500,origoy)
+        ctx.stroke()
+        
+        ctx.beginPath()
+        ctx.fillStyle = "lightblue"
+        ctx.moveTo(origox+a*faktorx,origoy-f(a)*faktory)
+        for (i=1; i<=inn; i++) {
+			
+            ctx.rect(origox+(a+(i-1)*h)*faktorx,origoy-f(a+(i-1)*h)*faktory, h*faktorx,f(a+(i-1)*h)*faktory)
+			
+            ctx.fillRect(origox+(a+(i-1)*h)*faktorx,origoy-f(a+(i-1)*h)*faktory, h*faktorx,f(a+(i-1)*h)*faktory)
+			
+            ctx.lineTo(origox+(a+i*h)*faktorx,origoy-f(a+i*h)*faktory)
+        }
+        ctx.stroke()
+		
+		ctx.fillStyle = "red"
+		ctx.font = "20px 'Century Gothic"
+		ctx.textAlign = "center"
+		ctx.textBaseline = "middle"
+		ctx.fillText(a,origox+a*faktorx,380)
+		ctx.fillText(b,origox+(a+inn*h)*faktorx,380)
+		ctx.textAlign = "start"
+		ctx.fillText(maks.toFixed(0),5,50)
+    }
+
+    //Nice to have:
+    aEl.focus()
+    aEl.addEventListener("keyup",funk0)
+    bEl.addEventListener("keyup",funk0)
+    innEl.addEventListener("keyup",funk)
+
+    function funk0 (event) {
+        if (event.keyCode === 13) {
+            if (event.target.id === "ida") {
+                bEl.focus()
+            }
+            else {
+                innEl.focus()
+            }
+        }
+    }
+	
+    function funk(event) {
+        if(event.keyCode === 13)
+        {
+            regnut()
+        }
+    }
+</script>
+</body>
+</html>
+
+
+
+
+

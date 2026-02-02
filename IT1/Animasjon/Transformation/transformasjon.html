@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        div {
+            /*border: solid;*/
+            padding: 5px;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+			margin: 0;
+        }
+        #idHeader {
+            height: 70px;
+        }
+        #idBildeMeny {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #idDiv1, #idDiv2, #idDiv3 {
+            text-align: center;
+            border-radius: 50%;
+            background-size:cover;
+            background-repeat: no-repeat;
+        }
+        #idDiv1 {
+            background-image: url(andalsnes.JPG); 
+            transform: rotate(-15deg);
+            width: 400px;
+            height: 300px;
+        }
+        #idDiv2 {
+            background-image: url(romsdalshorn.JPG); 
+            border: solid;
+            width: 300px;
+            height: 400px;
+        }
+        #idDiv3 {
+            background-image: url(utstyr.JPG); 
+            transform: rotate(15deg);
+            color: white;
+            width: 400px;
+            height: 300px;
+        }
+        #idH1 {
+            transform: skewX(20deg);
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="idHeader">
+        <h1 id="idH1">På klatretur</h1>
+    </div>
+    <div id="idBildeMeny">
+        <div id="idDiv1">
+            <h2>Åndalsnes</h2>
+        </div>
+        <div id="idDiv2">
+            <br>
+            <h2>Romsdalshornet</h2>
+        </div>
+        <div id="idDiv3">
+            <h2>Klatreutstyr</h2>
+        </div>
+    </div>
+	<div id="idContent">
+		<p>Fargen på tittelbanneret er: <input id="idFargeH" type="color"> <span id="idtekstFH"></span></p>
+		<p>Fargen på menybanneret er: <input id="idFargeM" type="color"> <span id="idtekstFM"></span></p>	
+	</div>
+<script>  
+    var header = document.getElementById("idHeader");
+    var bildemeny = document.getElementById("idBildeMeny");
+    var fargeH = document.getElementById("idFargeH");
+	var fargeM = document.getElementById("idFargeM");
+	var tekstFH = document.getElementById("idtekstFH");
+	var tekstFM = document.getElementById("idtekstFM");
+    
+	fargeH.addEventListener("change",visfargeH);
+	function visfargeH() {
+    	header.style.backgroundColor = fargeH.value;
+		tekstFH.innerHTML = fargeH.value;
+	}
+	
+	fargeM.addEventListener("change",visfargeM);
+	function visfargeM() {
+    	bildemeny.style.backgroundColor = fargeM.value;
+		tekstFM.innerHTML = fargeM.value;
+	}
+    
+</script>
+</body>
+</html>

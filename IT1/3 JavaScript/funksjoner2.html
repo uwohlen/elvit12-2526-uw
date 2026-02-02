@@ -22,16 +22,16 @@
 
     let personer = ["cathrine","anne","lise"];
 
-    function oppdater() {
+    function oppdater(navn) {
         navn.sort();
         let tekst = "";
         for (let i=0; i<navn.length; i++) {
             tekst += "<li>" + navn[i] + "</li>";
         }
-        listeEl.innerHTML = tekst;
+        return tekst;
     }
 
-    oppdater();
+    punktlisteEl.innerHTML = oppdater(personer) + "<li>Siste verdi</li>";
 
 
     navnEl.addEventListener("keydown",regFunk);

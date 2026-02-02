@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        .rund{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: burlywood;
+            width: 300px;
+            height: 300px;
+            text-align: center;
+            border-radius: 0; /* må angis hvis ulik default */
+            transition-property: border-radius;
+            transition-duration: 2s;
+        }
+        .rund:hover {
+            border-radius: 50%;
+        }
+        .divMedKnapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            border: solid 1px black;
+            position: absolute;
+            left: 0px;
+            transition-property: all; /*vs flere eller all*/
+            transition-duration: 5s;
+            transition-timing-function: ease-in-out; /*vs linear*/
+            transition-delay: 1s;
+        }
+        .flytt {
+            left: 500px;
+            
+        }
+        .tilbake {
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="rund">
+        <h1>Overskrift</h1>
+        <p>Avsnitt</p>
+    </div>
+    <br>
+	<div id="idFlytt" class="divMedKnapp">
+        <button id="idKnapp">Flytt</button>
+    </div>
+<script>
+    flyttDivEl = document.getElementById("idFlytt")
+	knappEl = document.getElementById("idKnapp")
+    knappEl.addEventListener("click",flyttfunk)
+    var skift = true
+    function flyttfunk() {
+        if (skift) {
+            flyttDivEl.style.borderRadius = "50%"
+            //flyttDivEl.style.left = "500px"
+            flyttDivEl.classList.add("flytt")
+            flyttDivEl.classList.remove("tilbake")
+            skift = false
+        }
+        else {
+            //flyttDivEl.style.left = "0px"
+            flyttDivEl.classList.remove("flytt")
+            flyttDivEl.classList.add("tilbake")
+            skift = true
+        }
+    }
+    
+    flyttDivEl.addEventListener("transitionend",sluttfunk)
+    
+    function sluttfunk() {
+        flyttDivEl.style.borderRadius = 0
+        if (skift) {
+            knappEl.innerHTML = "Flytt igjen"
+        }
+        else {
+            knappEl.innerHTML = "Tilbake"
+        }
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
