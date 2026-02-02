@@ -27,6 +27,8 @@
     var nyOrigoY = 200
     var x=0
     var fart = 0.01
+    var bris
+    var kuling
     
     function oppstart() {
         ctx = document.getElementById("tegneFlate").getContext("2d")
@@ -38,15 +40,21 @@
   
   function tegnstille() {
     fart = 0
+    clearInterval(bris)
+    clearInterval(kuling)
     tegn()
   }
   function tegnlettbris() {
     fart = 0.01
-    setInterval(tegn,10)
+    clearInterval(bris)
+    clearInterval(kuling)
+    bris = setInterval(tegn,10)
   }
   function tegnstivkuling() {
     fart = 0.05
-    setInterval(tegn,10)
+    clearInterval(bris)
+    clearInterval(kuling)
+    kuling = setInterval(tegn,10)
   }
     
     function tegn() {
