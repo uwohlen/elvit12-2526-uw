@@ -1,0 +1,379 @@
+"05994: Tid brukt til ulike aktiviteter en gjennomsnittsdag blant alle (timer og minutter), etter alle aktiviteter, kjønn, statistikkvariabel, år og alder"
+
+[
+  {
+    "alle aktiviteter": "I alt",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 24
+  },
+  {
+    "alle aktiviteter": "I alt",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 24
+  },
+  {
+    "alle aktiviteter": "I alt",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 24
+  },
+  {
+    "alle aktiviteter": "Inntektsgivende arbeid, arbeidsreiser mv.",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 3.47
+  },
+  {
+    "alle aktiviteter": "Inntektsgivende arbeid, arbeidsreiser mv.",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 4.34
+  },
+  {
+    "alle aktiviteter": "Inntektsgivende arbeid, arbeidsreiser mv.",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 2.59
+  },
+  {
+    "alle aktiviteter": " Inntektsgivende arbeid",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 3.25
+  },
+  {
+    "alle aktiviteter": " Inntektsgivende arbeid",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 4.09
+  },
+  {
+    "alle aktiviteter": " Inntektsgivende arbeid",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 2.41
+  },
+  {
+    "alle aktiviteter": " Arbeidsreiser",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.22
+  },
+  {
+    "alle aktiviteter": " Arbeidsreiser",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.25
+  },
+  {
+    "alle aktiviteter": " Arbeidsreiser",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.18
+  },
+  {
+    "alle aktiviteter": "Husholdsarbeid i alt",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 3.18
+  },
+  {
+    "alle aktiviteter": "Husholdsarbeid i alt",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 2.41
+  },
+  {
+    "alle aktiviteter": "Husholdsarbeid i alt",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 3.56
+  },
+  {
+    "alle aktiviteter": " Husarbeid",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 1.25
+  },
+  {
+    "alle aktiviteter": " Husarbeid",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.51
+  },
+  {
+    "alle aktiviteter": " Husarbeid",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 1.59
+  },
+  {
+    "alle aktiviteter": " Vedlikeholdsarbeid",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.27
+  },
+  {
+    "alle aktiviteter": " Vedlikeholdsarbeid",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.36
+  },
+  {
+    "alle aktiviteter": " Vedlikeholdsarbeid",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.17
+  },
+  {
+    "alle aktiviteter": " Omsorgsarbeid",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.33
+  },
+  {
+    "alle aktiviteter": " Omsorgsarbeid",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.24
+  },
+  {
+    "alle aktiviteter": " Omsorgsarbeid",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.42
+  },
+  {
+    "alle aktiviteter": " Kjøp av varer og tjenester",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.24
+  },
+  {
+    "alle aktiviteter": " Kjøp av varer og tjenester",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.21
+  },
+  {
+    "alle aktiviteter": " Kjøp av varer og tjenester",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.26
+  },
+  {
+    "alle aktiviteter": " Annet husholdsarbeid",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.12
+  },
+  {
+    "alle aktiviteter": " Annet husholdsarbeid",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.11
+  },
+  {
+    "alle aktiviteter": " Annet husholdsarbeid",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.13
+  },
+  {
+    "alle aktiviteter": " Reiser i samband med husholdsarbeid",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.19
+  },
+  {
+    "alle aktiviteter": " Reiser i samband med husholdsarbeid",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.19
+  },
+  {
+    "alle aktiviteter": " Reiser i samband med husholdsarbeid",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.19
+  },
+  {
+    "alle aktiviteter": "Utdanning i alt",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.25
+  },
+  {
+    "alle aktiviteter": "Utdanning i alt",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.22
+  },
+  {
+    "alle aktiviteter": "Utdanning i alt",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.27
+  },
+  {
+    "alle aktiviteter": "Personlig behov i alt",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 9.58
+  },
+  {
+    "alle aktiviteter": "Personlig behov i alt",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 9.46
+  },
+  {
+    "alle aktiviteter": "Personlig behov i alt",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 10.11
+  },
+  {
+    "alle aktiviteter": " Nattesøvn",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 7.57
+  },
+  {
+    "alle aktiviteter": " Nattesøvn",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 7.5
+  },
+  {
+    "alle aktiviteter": " Nattesøvn",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 8.04
+  },
+  {
+    "alle aktiviteter": " Annen personlig pleie",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.59
+  },
+  {
+    "alle aktiviteter": " Annen personlig pleie",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.54
+  },
+  {
+    "alle aktiviteter": " Annen personlig pleie",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 1.04
+  },
+  {
+    "alle aktiviteter": " Måltider",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 1.03
+  },
+  {
+    "alle aktiviteter": " Måltider",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 1.03
+  },
+  {
+    "alle aktiviteter": " Måltider",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 1.04
+  },
+  {
+    "alle aktiviteter": "Fritid i alt",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 6.24
+  },
+  {
+    "alle aktiviteter": "Fritid i alt",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 6.28
+  },
+  {
+    "alle aktiviteter": "Fritid i alt",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 6.2
+  },
+  {
+    "alle aktiviteter": " Idrett og friluftsliv",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.31
+  },
+  {
+    "alle aktiviteter": " Idrett og friluftsliv",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.34
+  },
+  {
+    "alle aktiviteter": " Idrett og friluftsliv",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.28
+  },
+  {
+    "alle aktiviteter": " Underholdning og kulturbruk",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.14
+  },
+  {
+    "alle aktiviteter": " Underholdning og kulturbruk",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.14
+  },
+  {
+    "alle aktiviteter": " Underholdning og kulturbruk",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.14
+  },
+  {
+    "alle aktiviteter": " Sosialt samvær",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 1.45
+  },
+  {
+    "alle aktiviteter": " Sosialt samvær",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 1.32
+  },
+  {
+    "alle aktiviteter": " Sosialt samvær",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 1.57
+  },
+  {
+    "alle aktiviteter": " Lesing",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.35
+  },
+  {
+    "alle aktiviteter": " Lesing",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.32
+  },
+  {
+    "alle aktiviteter": " Lesing",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.39
+  },
+  {
+    "alle aktiviteter": " Fjernsynsseing",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 1.48
+  },
+  {
+    "alle aktiviteter": " Fjernsynsseing",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 2.01
+  },
+  {
+    "alle aktiviteter": " Fjernsynsseing",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 1.35
+  },
+  {
+    "alle aktiviteter": " Annen fritid i alt",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.57
+  },
+  {
+    "alle aktiviteter": " Annen fritid i alt",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 1
+  },
+  {
+    "alle aktiviteter": " Annen fritid i alt",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.55
+  },
+  {
+    "alle aktiviteter": " Reiser i samband med fritid",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.34
+  },
+  {
+    "alle aktiviteter": " Reiser i samband med fritid",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.35
+  },
+  {
+    "alle aktiviteter": " Reiser i samband med fritid",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.32
+  },
+  {
+    "alle aktiviteter": "Annet, uoppgitt",
+    "kjønn": "Alle",
+    "Tidsbruk 2000 I alt": 0.08
+  },
+  {
+    "alle aktiviteter": "Annet, uoppgitt",
+    "kjønn": "Menn",
+    "Tidsbruk 2000 I alt": 0.08
+  },
+  {
+    "alle aktiviteter": "Annet, uoppgitt",
+    "kjønn": "Kvinner",
+    "Tidsbruk 2000 I alt": 0.07
+  }
+]
