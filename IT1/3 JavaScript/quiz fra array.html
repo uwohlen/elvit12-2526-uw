@@ -35,7 +35,7 @@
     let svarAvgittEL = document.getElementById("svarAvgittID");
     
     //Bruker arrays for å lette utvidelse med flere spørsmål
-    var media = [
+    let media = [
         "<video height='300' controls><source src='media/oslo.mp4' type='video/mp4'></video>",
         "<img src='media/london.jpg' height='300'>",
         "<audio controls><source src='media/maker.mp3' type='audio/mpeg'></audio>",
@@ -43,7 +43,7 @@
         "<img src='media/andalsnes.JPG' height='300'>"
     ]
     
-    var spm = [
+    let spm = [
         "Hva heter Norges hovedstad?",
         "Hvilke byer ligger i Europa?",
         "Hvilken innsjø er Norges største?",
@@ -51,7 +51,7 @@
         "Hvilken by er dette?"
     ];
     
-    var alternativer = [
+    let alternativer = [
         ["Oslo","Stockholm","København","Madrid"],
         ["Oslo","New York","London","Mos Eisley","Trondheim"],
         ["Røssvatnet","Mjøsa","Femunden"],
@@ -59,7 +59,7 @@
         ["Molde","Ålesund","Åndalsnes"]
     ];
     
-    var fasit = [
+    let fasit = [
         [1,-1,-1,-1],
         [1/3,-1,1/3,-1,1/3],
         [-1,1,-1],
@@ -67,7 +67,7 @@
         [-1,-1,1]
     ];
     
-    var typeboks = [
+    let typeboks = [
         "radio",
         "checkbox",
         "radio",
@@ -82,18 +82,18 @@
         spmEL.innerHTML = spm[nr];
         
         let tekst = "";
-        for (var j=0; j<alternativer[nr].length; j++) {
+        for (let j=0; j<alternativer[nr].length; j++) {
             tekst += "<input class='altClass' type='" + typeboks[nr] + "' name='svaralternativer' value="+ fasit[nr][j] +">" + alternativer[nr][j] + "<br>";
         }
         alternativEL.innerHTML = tekst;
     }
     
-    var i = 0;
+    let i = 0;
     visSpm(i);
     
-    var poeng = [];
-    var svar = [];
-    var riktigsvar=[];
+    let poeng = [];
+    let svar = [];
+    let riktigsvar=[];
     
     svarAvgittEL.addEventListener("click",svarAvgittFunk);
     
@@ -102,9 +102,9 @@
         svar[i] = "";
         riktigsvar[i] = "";
         
-        var sjekkbokser = document.getElementsByClassName("altClass");
+        let sjekkbokser = document.getElementsByClassName("altClass");
         
-        for (var k=0; k<sjekkbokser.length; k++) {
+        for (let k=0; k<sjekkbokser.length; k++) {
             if (fasit[i][k] > 0) {
                 riktigsvar[i] += alternativer[i][k] + " ";
             }
@@ -126,8 +126,8 @@
             
             tekst = "<table><tr><th>Spørsmål</th><th>Fasit</th><th>Svar avgitt</th><th>Poeng</th>";
             
-            var totalpoeng = 0;
-            for (var m=0; m<spm.length; m++) {
+            let totalpoeng = 0;
+            for (let m=0; m<spm.length; m++) {
                 totalpoeng += poeng[m];
                 
                 tekst += "<tr><td>" + spm[m] 
