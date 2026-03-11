@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Quiz</title>
+    <style>
+        body {
+            background-color: lemonchiffon;
+        }
+        button, input[type="button"], input[type="radio"], input[type="checkbox"] {
+            cursor: pointer;
+        }
+        table, th, td {
+            border: solid 1px black;
+            padding: 5px;
+            border-collapse: collapse;
+        }
+        /*#mediaID {
+            height: 300px;
+        }*/
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <div id="mediaID"></div>
+    <p id="spmID"></p>
+    <p id="alternativID"></p>
+    <button id="svarAvgittID">Svar avgitt</button>
+
+<script>
+    let mediaEL = document.getElementById("mediaID");
+    let spmEL = document.getElementById("spmID");
+    let alternativEL = document.getElementById("alternativID");
+    let svarAvgittEL = document.getElementById("svarAvgittID");
+        
+    //Bruker array av objekter for å lette utvidelse med flere spørsmål
+
+    let info = [
+        {
+            media: "<video height='300' controls><source src='media/oslo.mp4' type='video/mp4'></video>",
+            spm: "Hva heter Norges hovedstad?",
+            alternativer: ["Oslo","Stockholm","København","Madrid"],
+            fasit: [1,-1,-1,-1],
+            typeboks: "radio"
+        },
+        {
+            media: "<img src='media/london.jpg' height='300'>",
+            spm: "Hvilke byer ligger i Europa?",
+            alternativer: ["Oslo","New York","London","Mos Eisley","Trondheim"],
+            fasit:  [1/3,-1,1/3,-1,1/3],
+            typeboks: "checkbox"
+        },
+        {
+            media: "<audio controls><source src='media/maker.mp3' type='audio/mpeg'></audio>",
+            spm: "Hvilken innsjø er Norges største?",
+            alternativer: ["Røssvatnet","Mjøsa","Femunden"],
+            fasit: [-1,1,-1],
+            typeboks: "radio"
+        },
+        {
+            media: "",
+            spm: "Går det bra uten mediafil?",
+            alternativer: ["Ja","Nei"],
+            fasit: [1,-1],
+            typeboks: "radio"
+        },
+        {
+            media: "<img src='media/andalsnes.JPG' height='300'>",
+            spm: "Hvilken by er dette?",
+            alternativer: ["Molde","Ålesund","Åndalsnes"],
+            fasit: [-1,-1,1],
+            typeboks: "radio"
+        }
+        /*
+        ,
+        {
+            media: "",
+            spm: "",
+            alternativer: [],
+            fasit: [],
+            typeboks: "radio"
+        }
+        */
+
+    ]
+
+    function visSpm(nr) {
+        mediaEL.innerHTML = info[nr].media;
+        spmEL.innerHTML = info[nr].spm;
+        
+        let tekst = "";
+        for (let j=0; j<info[nr].alternativer.length; j++) {
+            tekst += "<input class='altClass' type='" + info[nr].typeboks + "' name='svaralternativer' value="+ info[nr].fasit[j] +">" + info[nr].alternativer[j] + "<br>";
+        }
+        alternativEL.innerHTML = tekst;
+    }
+    
+    let i = 0;
+    visSpm(i);
+    
+    let poeng = [];
+    let svar = [];
+    let riktigsvar=[];
+    
+    svarAvgittEL.addEventListener("click",svarAvgittFunk);
+    
+    function svarAvgittFunk() {
+        poeng[i] = 0;
+        svar[i] = "";
+        riktigsvar[i] = "";
+        
+        let sjekkbokser = document.getElementsByClassName("altClass");
+        
+        for (let k=0; k<sjekkbokser.length; k++) {
+            if (info[i].fasit[k] > 0) {
+                riktigsvar[i] += info[i].alternativer[k] + " ";
+            }
+            if (sjekkbokser[k].checked) {
+                poeng[i] += Number(sjekkbokser[k].value);
+                svar[i] += info[i].alternativer[k] + " ";
+            }
+        }
+        
+        i++;
+        if (i < info.length) {
+            visSpm(i);
+        }
+        else {
+            mediaEL.innerHTML = "";
+            spmEL.innerHTML = "";
+            alternativEL.innerHTML = "";
+            svarAvgittEL.style.visibility = "hidden";
+            
+            tekst = "<table><tr><th>Spørsmål</th><th>Fasit</th><th>Svar avgitt</th><th>Poeng</th>";
+            
+            let totalpoeng = 0;
+            for (let m=0; m<info.length; m++) {
+                totalpoeng += poeng[m];
+                
+                tekst += "<tr><td>" + info[m].spm 
+                    + "</td><td>" + riktigsvar[m]
+                    + "</td><td>" + svar[m]
+                    + "</td><td>" + (poeng[m]).toFixed(1)
+                    + "</td></tr>";
+            }
+            
+            tekst += "</table>";
+            spmEL.innerHTML = tekst;
+            
+            spmEL.innerHTML += "<br><p>Du fikk " + totalpoeng.toFixed(1) + " poeng totalt.</p>";
+            
+            if (totalpoeng > 0) {
+                mediaEL.innerHTML = "<img src='media/smile.png' height='150'>";
+            }
+            else {
+                mediaEL.innerHTML = "<img src='media/frown.png' height='150'>";
+            }
+        }
+    }
+
+</script>
+
+        
+   
+</body>
+</html>         
