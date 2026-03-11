@@ -37,7 +37,7 @@
                     sum += this.karakterer[j];
                 }
                 let snitt = sum / this.karakterer.length;
-                return snitt.toFixed(1);
+                return snitt;
             }
         }
 
@@ -59,7 +59,7 @@ console.log(elever);
         
         for (let i=0; i<elever.length; i++) {
             tekst += "<tr><td>" + elever[i].navn + "</td><td>" + elever[i].klasse 
-            + "</td><td>" + elever[i].alder + "</td><td>" + elever[i].karakterer + "</td><td>" + elever[i].snitt() + "</td></tr>";
+            + "</td><td>" + elever[i].alder + "</td><td>" + elever[i].karakterer + "</td><td>" + elever[i].snitt().toFixed(1) + "</td></tr>";
         }
 
         tabEl.innerHTML = tekst+"</tbody>";
