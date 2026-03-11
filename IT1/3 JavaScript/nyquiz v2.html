@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title></title>
+    <style>
+        table, th, td {
+            border: solid 1px black;
+            padding: 5px;
+            border-collapse: collapse;
+        }
+        div {
+            padding: 5px;
+        }
+        label, input[type="radio"], input[type="checkbox"]  {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quizzz!</h1>
+
+    <div>
+        <input id="idNavn" type="text" placeholder="Skriv navnet ditt her:">
+    </div>
+
+    <div id="idQuiz">
+    </div>
+
+    <div>
+        <button id="idFerdig">Svaret avgitt</button>
+        <p id="idPoeng"></p>
+    </div>
+
+    <script>
+        //linker til nettsiden
+        let navnEl = document.getElementById("idNavn");
+        let quizEl = document.getElementById("idQuiz");
+        let ferdigEl = document.getElementById("idFerdig");
+        let poengEl = document.getElementById("idPoeng");
+        navnEl.focus()
+        
+        //quiz spørsmål, svar, og multimedia
+        let quiz = [
+            {
+                media: "<video height='300' controls><source src='media/oslo.mp4' type='video/mp4'></video>",
+                spm: "Hva heter Norges hovedstad?",
+                alternativer: ["Oslo","Stockholm","København","Madrid"],
+                fasit: [1,-1,-1,-1],
+                typeboks: "radio"
+            },
+            {
+                media: "<img src='media/london.jpg' height='300'>",
+                spm: "Hvilke byer ligger i Europa?",
+                alternativer: ["Oslo","New York","London","Mos Eisley","Trondheim"],
+                fasit:  [1/3,-1,1/3,-1,1/3],
+                typeboks: "checkbox"
+            },
+            {
+                media: "<audio controls><source src='media/maker.mp3' type='audio/mpeg'></audio>",
+                spm: "Hvilken innsjø er Norges største?",
+                alternativer: ["Røssvatnet","Mjøsa","Femunden"],
+                fasit: [-1,1,-1],
+                typeboks: "radio"
+            },
+            {
+                media: "",
+                spm: "Går det bra uten mediafil?",
+                alternativer: ["Ja","Nei"],
+                fasit: [1,-1],
+                typeboks: "radio"
+            },
+            {
+                media: "<img src='media/andalsnes.JPG' height='300'>",
+                spm: "Hvilken by er dette?",
+                alternativer: ["Molde","Ålesund","Åndalsnes"],
+                fasit: [-1,-1,1],
+                typeboks: "radio"
+            }
+            /*
+            ,
+            {
+                media: "",
+                spm: "",
+                alternativer: [],
+                fasit: [],
+                typeboks: "radio"
+            }*/
+
+        ]
+
+        //legger quizen inn på nettsiden
+        let quiztekst = "";
+        for (let i=0; i<quiz.length; i++) {
+            quiztekst += "<div>" + quiz[i].media + "</div>";
+            quiztekst += "<p>" + quiz[i].spm + "</p>";
+            quiztekst += "<p>";
+            for (let j=0; j<quiz[i].alternativer.length; j++) {
+                quiztekst += "<input id='id" + i + j + "' class='altClass' type='" + quiz[i].typeboks + "' name='svaralternativer" + i + "' value="+ quiz[i].fasit[j] +"><label for='id" + i + j +"'>" + quiz[i].alternativer[j] + "</label><br>";
+            }
+            quiztekst += "</p>";
+        }
+        quizEl.innerHTML = quiztekst;
+        
+        //respons på besvarelsen
+        ferdigEl.addEventListener("click",ferdigfunk);
+
+        function ferdigfunk() {
+            let poeng = 0;
+
+            let sjekkbokser = document.getElementsByClassName("altClass");
+        
+            for (let k=0; k<sjekkbokser.length; k++) {
+                if (sjekkbokser[k].checked) {
+                    poeng += Number(sjekkbokser[k].value);
+                }
+            }
+            
+            poengEl.innerHTML = navnEl.value + " fikk " + poeng.toFixed(1) + " poeng.";
+        }
+
+    </script>
+
+        
+   
+</body>
+</html>         

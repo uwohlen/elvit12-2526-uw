@@ -48,15 +48,15 @@
 
         overskrifter.push("Snitt");
 
-        for (let i=0; i<resultat.length; i++) {
+        for (let elev of resultat) {
             let sum = 0;
-            for (let j=0; j<resultat[i][3].length; j++){
-                sum += resultat[i][3][j];
+            for (let karakter of elev[3]){
+                sum += karakter;
             }
-            let snitt = sum / resultat[i][3].length;
-            resultat[i].push(Math.round(snitt*10)/10);
+            let snitt = sum / elev[3].length;
+            elev.push(Math.round(snitt*10)/10);
         }
-
+        console.log(resultat)
         resultat.sort(sammenlign4)
 
         let tekst = "<tr>";

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title></title>
+    <style>
+        table, th, td {
+            border: solid 1px black;
+            padding: 5px;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <table id="idTab">
+
+    </table>
+    <script>
+        let tabEl = document.getElementById("idTab");
+
+        let elever = [
+            {
+                Navn: "Per",
+                Klasse: "3STA",
+                "Alder (år)": 20,
+                Karakterer:[5,3,4,4,5,3,4,5,6],
+                Snitt: function() {
+                    let sum = 0;
+                    for (let j=0; j<this.Karakterer.length; j++){
+                        sum += this.Karakterer[j];
+                    }
+                    let snitt = sum / this.Karakterer.length;
+                    return snitt;
+                }
+            },
+            {
+                Navn: "Pål",
+                Klasse: "3STA",
+                "Alder (år)": 19,
+                Karakterer: [4,3,4,5,3,4,5,6,4],
+                Snitt: function() {
+                    let sum = 0;
+                    for (let j=0; j<this.Karakterer.length; j++){
+                        sum += this.Karakterer[j];
+                    }
+                    let snitt = sum / this.Karakterer.length;
+                    return snitt;
+                }
+            },
+            {
+                Navn: "Espen",
+                Klasse: "3STB",
+                "Alder (år)": 18,
+                Karakterer: [2,3,4,5,3,4,5,6,4],
+                Snitt: function() {
+                    let sum = 0;
+                    for (let j=0; j<this.Karakterer.length; j++){
+                        sum += this.Karakterer[j];
+                    }
+                    let snitt = sum / this.Karakterer.length;
+                    return snitt;
+                }
+            },
+            {
+                Navn: "Kari",
+                Klasse: "3STB",
+                "Alder (år)": 19,
+                Karakterer: [2,3,4,6,2,1,3,5,5],
+                Snitt: function() {
+                    let sum = 0;
+                    for (let j=0; j<this.Karakterer.length; j++){
+                        sum += this.Karakterer[j];
+                    }
+                    let snitt = sum / this.Karakterer.length;
+                    return snitt;
+                }
+            }     
+        ];   
+
+        
+        console.log(elever);
+
+        let tekst = "<thead><tr>";
+        for (let nokkel in elever[0]) {
+            tekst += "<th>" + nokkel + "</th>";
+        } 
+        tekst += "</tr></thead><tbody>";
+        
+        for (let i=0; i<elever.length; i++) {
+            tekst += "<tr><td>" + elever[i].Navn + "</td><td>" + elever[i].Klasse 
+            + "</td><td>" + elever[i]["Alder (år)"] + "</td><td>" + elever[i].Karakterer + "</td><td>" + elever[i].Snitt().toFixed(1) + "</td></tr>";
+        }
+
+        tabEl.innerHTML = tekst+"</tbody>";
+
+    </script>
+</body>
+</html>
