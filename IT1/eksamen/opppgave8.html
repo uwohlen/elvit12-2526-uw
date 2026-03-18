@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title></title>
+  <style>
+    table, td, th {
+      padding: 5px;
+      border: black 1px solid;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead id="overskriftID"></thead>
+    <tbody id="tabellID"></tbody>
+  </table>
+  <p id="oppsummeringID"></p>
+  <script>
+    let overskriftEL = document.getElementById("overskriftID");
+    let tabellEL = document.getElementById("tabellID");
+    let oppsummeringEL = document.getElementById("oppsummeringID");
+
+    let info = [
+      {
+        navn: "Lise",
+        alder: 16,
+        hobbier: ["Klatring", "Padling", "Skøyter"]
+      },
+      {
+        navn: "Lotte",
+        alder: 17,
+        hobbier: ["Fotball"]
+      },
+      {
+        navn: "Nils",
+        alder: 18,
+        hobbier: ["Klatring"]
+      },
+      {
+        navn: "Leif",
+        alder: 17,
+        hobbier: ["Klatring", "Håndball"]
+      }
+    ];
+
+    function sorterAlder(a,b) {
+      return a.alder - b.alder;
+    }
+
+    info.sort(sorterAlder);
+
+    let tekst = "<tr>";
+    for (let nokkel in info[0]) {
+      tekst += "<th>" + nokkel[0].toUpperCase() + nokkel.substring(1) + "</th>";
+    }
+    tekst += "</tr>";
+    overskriftEL.innerHTML = tekst;
+
+    tekst = "";
+    for (let person of info) {
+      tekst += "<tr>";
+      for (let nokkel in person) {
+        if (nokkel === "hobbier") {
+          tekst += "<td>" + person[nokkel].join(", ") + "</td>";
+        }
+        else {
+          tekst += "<td>" + person[nokkel] + "</td>";
+        }
+      }
+      tekst += "</tr>";
+    }
+
+    tabellEL.innerHTML = tekst;
+
+
+    let total = 0;
+    let antall = 0;
+    for (let person of info) {
+      total += person.alder;
+      if (person.hobbier.includes("Klatring")) {
+        antall ++;
+      }
+    }
+    let snitt = total/info.length;
+    oppsummeringEL.innerHTML = "Gjennomsnittsalder: " + snitt.toFixed(1);
+    oppsummeringEL.innerHTML += "<br>Antall personer som driver med klatring: " + antall;
+    
+    // Oppdagelse: om man bruker for - in for arrays: så får man indeksene
+    for (let person in info) {
+      console.log(person);
+      console.log(info[person].navn);
+    }
+
+  </script>
+</body>
+</html>

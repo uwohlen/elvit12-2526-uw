@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title></title>
+  <style>
+    table, td, th {
+      padding: 5px;
+      border: black 1px solid;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead id="overskriftID"></thead>
+    <tbody id="tabellID"></tbody>
+  </table>
+  <p id="oppsummeringID"></p>
+  <script>
+    let overskriftEL = document.getElementById("overskriftID");
+    let tabellEL = document.getElementById("tabellID");
+    let oppsummeringEL = document.getElementById("oppsummeringID");
+
+    let overskrifter = ["Navn","Alder","Hobbier"];
+
+    let info = [
+      ["Lise",16,["Klatring", "Padling", "Skøyter"]],
+      ["Lotte",17,["Fotball"]],
+      ["Nils",18,["Klatring"]],
+      ["Leif",17,["Klatring", "Håndball"]]
+    ];
+
+    function sorterAlder(a,b) {
+      return a[1] - b[1];
+    }
+
+    info.sort(sorterAlder);
+
+    let tekst = "<tr>";
+    for (let verdi of overskrifter) {
+      tekst += "<th>" + verdi + "</th>";
+    }
+    tekst += "</tr>";
+    overskriftEL.innerHTML = tekst;
+
+    tekst = "";
+    for (let person of info) {
+      tekst += "<tr>";
+      for (let verdi of person) {
+        if (verdi === "hobbier") {
+          tekst += "<td>" + verdi.join(", ") + "</td>";
+        }
+        else {
+          tekst += "<td>" + verdi + "</td>";
+        }
+      }
+      tekst += "</tr>";
+    }
+
+    tabellEL.innerHTML = tekst;
+
+
+    let total = 0;
+    let antall = 0;
+    for (let person of info) {
+      total += person[1];
+      for(let hobby of person[2]) {
+        if (hobby === "Klatring") {
+          antall ++;
+        }
+      }
+    }
+    let snitt = total/info.length;
+    oppsummeringEL.innerHTML = "Gjennomsnittsalder: " + snitt.toFixed(1);
+    oppsummeringEL.innerHTML += "<br>Antall personer som driver med klatring: " + antall;
+    
+  </script>
+</body>
+</html>
