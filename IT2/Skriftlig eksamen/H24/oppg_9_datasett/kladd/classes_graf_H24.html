@@ -1,0 +1,34 @@
+<html>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      <div class="mermaid">
+    
+        classDiagram
+          class Firkant {
+            bredde : int
+            farge
+            hoyde : int
+            obj
+            vindu
+            x : int
+            y : int
+            tegn(bredde: int, farge, radius: int)
+          }
+          class Knapp {
+            font
+            tekst : str
+            vis_tekst()
+          }
+          class Nedtrekk {
+            alt_farge
+            alt_obj : list
+            alternativer : list
+            vis : bool
+            lag_alt_obj(bredde: int, hoyde: int, font, skift: int)
+          }
+          Knapp --|> Firkant
+          Nedtrekk --|> Knapp
+  
+       </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+  <body>
+    <script src="uml.js"></script>
+    <h1>UML-diagram for oppgave 9, Eksamen Høst 2024</h1>
+    <p>En nedtrekksmeny kan ha null (sjelden), 1 (sjelden) eller flere Knapper, men en knapp kan være i ingen eller 1 nedtrekksmeny</p>
+      <div class="mermaid">
+    
+        classDiagram
+          class Firkant {
+            bredde : int
+            farge : str
+            hoyde : int
+            obj : Rect
+            vindu: Surface
+            x : int
+            y : int
+            tegn(bredde: int, farge: str, radius: int) None
+          }
+          class Knapp {
+            font : Font
+            tekst : str
+            vis_tekst() None
+          }
+          class Nedtrekk {
+            alt_farge : str
+            alt_obj : list[Knapp]
+            alternativer : list
+            vis : bool
+            lag_alt_obj(bredde: int, hoyde: int, font: pg.font.Font, skift: int) None
+          }
+          Knapp --|> Firkant
+          Nedtrekk --|> Knapp
+          Nedtrekk *-- Knapp : Nedtrekk lager Knapper 0..1 / *
+       </div>
+  </body>
+</html>

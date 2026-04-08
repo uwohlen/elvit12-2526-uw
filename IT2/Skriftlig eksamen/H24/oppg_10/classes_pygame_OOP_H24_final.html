@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <script src="uml.js"></script>
+      <h1>UML-diagram for oppgave 10, Eksamen Høst 2024</h1>
+      <div class="mermaid">
+        classDiagram
+          class Firkant {
+            bredde : int
+            farge : str
+            hoyde : int
+            obj : Rect
+            vindu : Surface
+            x : int
+            y : int
+            tegn(bredde: int, farge: str, radius: int) None
+          }
+          class Person {
+            PADDING : int
+            dag : int
+            dod_prosent : float
+            farge : str
+            nysmittet : bool
+            side : int
+            bli_smittet() None
+            sjekk_tilstand() None
+            tegn(bredde: int, farge, radius: int) None
+          }
+          class Populasjon {
+            antall : int
+            befolkning : list[Person]
+            smitte_prosent : float
+            vindu : Surface
+            oppdater_tilstand() None
+            skap_ny_befolkning() None
+            smitt_naboer() None
+            smitten_tar_tak() None
+          }
+          Person --|> Firkant
+          Populasjon *-- Person : Populasjon lager Personer 0..1 / *  
+       </div>
+  </body>
+</html>
