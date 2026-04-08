@@ -1,0 +1,36 @@
+<html>
+  <body>
+    <script src="uml.js"></script>  
+      <h1>Lekseprøve april-25: Banksparing, tabell og graf</h1>
+      <p>Tabell-ruter er firkanter med tekst. Nedtrekksmenyer er en hovedfirkant, og en liste med firkanter, alle med tekst</p>
+      <div class="mermaid">
+        classDiagram
+          class Firkant {
+            bredde : int
+            farge : str
+            hoyde : int
+            obj: Rect
+            vindu: Surface
+            x : int
+            y : int
+            tegn(bredde: int, farge: str, radius: int) None
+          }
+          class Knapp {
+            font : Font
+            tekst : str
+            vis_tekst(align: str) None
+          }
+          class Nedtrekk {
+            alt_farge : str
+            alt_obj : list[Knapp]
+            alternativer : list
+            vis : bool
+            lag_alt_obj(bredde: int, hoyde: int, font: pg.font.Font, skift: int) None
+          }
+          Knapp --|> Firkant
+          Nedtrekk --|> Knapp
+          Nedtrekk *-- Knapp : Nedtrekk lager Knapper 0..1 / *
+  
+       </div>
+  </body>
+</html>

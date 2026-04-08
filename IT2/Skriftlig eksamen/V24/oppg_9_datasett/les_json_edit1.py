@@ -1,8 +1,7 @@
 import json
 
-
+# kopierte tegnet fra csv-filen og byttet ut overalt i json-filen
 filnavn = "05994_20240126-145813-json_edit1.json"
-
 
 with open(filnavn, encoding="Windows 1252") as fil:
   next(fil)
