@@ -15,4 +15,4 @@ for info in data:
   for key,value in info.items():
     print(key, " : ", value)
 
-
+# programmet feiler pga. et tegn i json-filen som ikke er riktig kodet

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tidsbruk 9a</title>
+  <style>
+    table, td, th {
+      border: 1px solid black;
+      padding: 5px;
+      border-collapse: collapse;
+    }
+
+  </style>
+</head>
+<body>
+  <select id="velg">
+    <option>Start</option>
+    <option>Alle</option>
+    <option>Menn</option>
+    <option>Kvinner</option>
+  </select>
+  <table>
+    <thead>
+      <tr>
+        <th>Nr</th>
+        <th>Aktivitet</th>
+        <th>Kjønn</th>
+        <th>Tidsbruk</th>
+      </tr>
+    </thead>
+    <tbody id="tabell">
+    </tbody>
+  </table>
+</body>
+<p id="total"></p>
+<script src="tidsbruk.js"></script>
+<script>
+  //console.log(innhold);
+  let tabellEl = document.querySelector("#tabell");
+  let velgEl = document.querySelector("#velg");
+  let totalEl = document.querySelector("#total");
+
+  function fylltabell(kjonn) {
+    let tekst = "";
+    let nr = 1;
+    let totaltid = 0;
+    for (let i = 0; i < innhold.length; i++) {
+      if (innhold[i]["kjønn"] === kjonn || kjonn === "Start") {
+        let timer = Math.floor(innhold[i]["Tidsbruk 2000 I alt"])
+        let minutter = Math.round((innhold[i]["Tidsbruk 2000 I alt"] - timer)*100);
+        let tid = timer + minutter/60;
+        totaltid += tid;
+        let minuttertekst = "";
+        if (minutter === 0) {
+          minuttertekst = "00";
+        }
+        else if (minutter < 10) {
+          minuttertekst = "0" + String(minutter);
+        }
+        else {
+          minuttertekst = String(minutter);
+        }
+        tekst += "<tr><td>" + nr + "</td><td>" + innhold[i]["alle aktiviteter"] + "</td><td>" + innhold[i]["kjønn"] + "</td><td style='text-align:right;'>" + String(timer) + ":" + minuttertekst + "</td></tr>";
+        nr ++;
+      }
+    }
+    tabellEl.innerHTML = tekst;
+    if (kjonn !== "Start") {
+      totalEl.innerHTML = "Total tid brukt på aktiviteter er: " + totaltid + " timer";
+    }
+    else {
+      totalEl.innerHTML = "";
+    }
+  }
+  fylltabell("Start")
+  velgEl.addEventListener("change",endrefunk);
+
+  function endrefunk(event) {
+    //console.log(event.target.value)
+    fylltabell(event.target.value);
+  }
+</script>
+</html>

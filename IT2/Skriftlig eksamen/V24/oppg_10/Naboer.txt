@@ -1,0 +1,18 @@
+Naboer
+0 - svart blir hvit
+1 - svart blir hvit
+2 - svart fortsetter som svart
+3 - svart fortsetter som svart, hvit blir svart
+4 - svart blir hvit
+5 - svart blir hvit
+6 - svart blir hvit
+7 - svart blir hvit
+8 - svart blir hvit
+
+kan si at alle blir hvit, 
+bortsett fra
+3 blir alltid svart
+2 fortsetter som før (ingen endring)
+
+if 3 blir svart
+else if not 2 blir hvit

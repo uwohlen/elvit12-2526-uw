@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tidsbruk 9a</title>
+  <style>
+    table, td, th {
+      border: 1px solid black;
+      padding: 5px;
+      border-collapse: collapse;
+    }
+
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Nr</th>
+        <th>Aktivitet</th>
+        <th>Kjønn</th>
+        <th>Tidsbruk</th>
+      </tr>
+    </thead>
+    <tbody id="tabell">
+    </tbody>
+  </table>
+</body>
+<script src="tidsbruk.js"></script>
+<script>
+  //console.log(innhold);
+  let tabellEl = document.querySelector("#tabell");
+  let tekst = "";
+
+  for (let i = 0; i < innhold.length; i++) {
+    let timer = Math.floor(innhold[i]["Tidsbruk 2000 I alt"])
+    let minutter = Math.round((innhold[i]["Tidsbruk 2000 I alt"] - timer)*100);
+    let minuttertekst = "";
+    if (minutter === 0) {
+      minuttertekst = "00";
+    }
+    else if (minutter < 10) {
+      minuttertekst = "0" + String(minutter);
+    }
+    else {
+      minuttertekst = String(minutter);
+    }
+    tekst += "<tr><td>" + (i+1) + "</td><td>" + innhold[i]["alle aktiviteter"] + "</td><td>" + innhold[i]["kjønn"] + "</td><td style='text-align:right;'>" + String(timer) + ":" + minuttertekst + "</td></tr>";
+  }
+
+  tabellEl.innerHTML = tekst;
+</script>
+</html>
