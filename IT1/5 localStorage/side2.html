@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side 2</title>
+  <style>
+    table,th,td {
+      border: 1px black solid;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Side 2</h1>
+  <h2>Lagret tekst: <span id="tekstID"></span></h2>
+  <table>
+    <tbody id="tabellID"></tbody>
+  </table>
+  <a href="side1.html"><h1>Side 1</h1></a>
+  <script>
+    let tekstEl = document.getElementById("tekstID");
+
+    if (localStorage.godkjentLagringInfo) {
+      tekstEl.innerText = localStorage.godkjentLagringInfo;
+    }
+
+    localStorage.removeItem("godkjentLagringInfo")
+    
+
+
+
+    /*
+
+    let tabellEl = document.getElementById("tabellID");
+    let info = [];
+    if (localStorage.EksempelLagringAvListe){
+      info = JSON.parse(localStorage.EksempelLagringAvListe);
+    }
+    //info = JSON.parse(localStorage.getItem("EksempelLagringAvListe"));
+    
+    let tekst = "";
+    for (let i = 0; i < info.length; i++) {
+      tekst += "<tr>";
+      for (let j = 0; j < info[i].length; j++) {
+        tekst += "<td>" + info[i][j] + "</td>";
+      }
+      tekst += "</tr>";
+    }
+    tabellEl.innerHTML = tekst;
+
+    //localStorage.clear() // fjerner alle
+    */
+  </script>
+</body>
+</html>

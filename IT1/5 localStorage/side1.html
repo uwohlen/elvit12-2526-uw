@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side 1</title>
+  <style>
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Side 1</h1>
+  <h2>Skriv noe: <input id="tekstID"></h2>
+  <div id="visLagreID">
+    <button id="lagreID">Er det ok om vi lagrer denne informasjonen?</button>
+  </div>
+  <a href="side2.html"><h1>Side 2</h1></a>
+  <script>
+    let tekstEl = document.getElementById("tekstID")
+    let lagreEl = document.getElementById("lagreID");
+    let visLagreEl = document.getElementById("visLagreID");
+
+    if (localStorage.godkjentLagringInfo) {
+      visLagreEl.style.display = "none";
+    }
+
+    lagreEl.addEventListener("click",lagreFunk);
+
+    function lagreFunk() {
+      localStorage.godkjentLagringInfo = tekstEl.value;
+    }
+
+
+
+    /*
+    let liste = [
+      ["a",1,2],
+      ["b",3,4]
+    ]
+
+
+    localStorage.EksempelLagringAvListe = JSON.stringify(liste);
+    
+    //localStorage.setItem("EksempelLagringAvListe",JSON.stringify(liste));
+    */
+  </script>
+</body>
+</html>
