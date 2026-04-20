@@ -20,18 +20,18 @@
   </table>
   <a href="side1.html"><h1>Side 1</h1></a>
   <script>
-    let tekstEl = document.getElementById("tekstID");
+    let tekstEL = document.getElementById("tekstID");
 
     if (localStorage.godkjentLagringInfo) {
-      tekstEl.innerText = localStorage.godkjentLagringInfo;
+      tekstEL.innerText = localStorage.godkjentLagringInfo;
     }
 
-    localStorage.removeItem("godkjentLagringInfo")
+    //localStorage.removeItem("godkjentLagringInfo")
     
 
 
 
-    /*
+    
 
     let tabellEl = document.getElementById("tabellID");
     let info = [];
@@ -51,7 +51,7 @@
     tabellEl.innerHTML = tekst;
 
     //localStorage.clear() // fjerner alle
-    */
+    
   </script>
 </body>
 </html>
