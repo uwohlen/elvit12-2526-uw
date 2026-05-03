@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppg 8</title>
+</head>
+<body>
+  <h1>Registrering av kjæledyr</h1>
+  <div>
+    <h2>Hvilke kjæledyr har du hatt eller ønsker du å ha?</h2>
+    <h4>Fyll inn og avslutt med Enter. Du kan registrere flere typer dyr.</h4>
+    <p>Skriv type kjæledyr i flertall: <input type="text" id="dyrID" placeholder="f.eks. hunder"></p>
+    <p>Hvor mange har du hatt gjennom livet, eller vil du ha? <input type="number" id="antallID"></p>
+  </div>
+  <div>
+    <p>Liste over mine (ønskede) dyr:</p>
+    <ol id="listeID">
+    </ol>
+    <p>Totalt antall dyr: <span id="totalID"></span></p>
+  </div>
+  <div>
+    <button id="lagreID">Lagre, og se en liste med andres dyr i tillegg</button>
+  </div>
+  <script>
+    // Variabler for html-tags
+    let dyrEL = document.getElementById("dyrID");
+    let antallEL = document.getElementById("antallID");
+    let lagreEL = document.getElementById("lagreID");
+    let listeEL = document.getElementById("listeID");
+    let totalEL = document.getElementById("totalID");
+    // Andre variabler
+    let mine = [];
+
+    console.log(dyrEL.tabIndex,antallEL.tabIndex,lagreEL.tabIndex)
+
+    // Start
+    dyrEL.focus();
+    
+    // Lyttere - interaksjon
+    dyrEL.addEventListener("keydown",dyrFunk);
+    antallEL.addEventListener("keydown",antallFunk);
+    lagreEL.addEventListener("click",lagreFunk);
+
+
+    // Funksjoner
+    function dyrFunk(event) {
+      if (event.code == "Enter") {
+        antallEL.focus();
+      }
+    }
+
+    function antallFunk(event) {
+      if (event.code == "Enter") {
+        mine.push([dyrEL.value,Number(antallEL.value)]);
+        mine.sort(sammenlign1D);
+        let tekst = "";
+        let total = 0;
+        for (let linje of mine) {
+          tekst += "<li>" + linje[0] + " - " + linje[1] + "</li>";
+          total += linje[1];
+        }
+        listeEL.innerHTML = tekst;
+        totalEL.innerHTML = total;
+        dyrEL.value = "";
+        antallEL.value = "";
+        dyrEL.focus();
+      }
+    }
+
+    function lagreFunk() {
+      let gamle = [];
+      if (localStorage.alleMineDyrGjennomLivet != undefined) {
+        gamle = JSON.parse(localStorage.alleMineDyrGjennomLivet);
+      }
+      let alle = gamle.concat(mine);
+      localStorage.alleMineDyrGjennomLivet = JSON.stringify(alle);
+      window.open("tabIndexS2.html","_self");
+    }
+
+    // Sammenligningsfunksjon for sort()-funksjonen til 2D-arrays
+    // Sorterer på kolonne med index 1
+    // Sorterer fra størst til minst (Descending)
+    function sammenlign1D(a,b) {
+      if (a[1] > b[1]) {
+        return -1;
+      }
+      else if (a[1] < b[1]) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    }
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppg 8</title>
+  <style>
+    table,th,td {
+      border: solid 1px black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    div {
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registrering av kjæledyr</h1>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <td>Dyr</td>
+          <td>Antall</td>
+        </tr>
+      </thead>
+      <tbody id="tabellID"></tbody>
+    </table>
+  </div>
+  <div>
+    <button id="slettID" tabindex="2">Slett alle registrerte kjæledyr</button>
+    <br><br>
+    <button tabindex="3">Knapp som ikke brukes til noe</button>
+    <br><br>
+    <a href="tabIndex.html" tabindex="1"><button>Registrer flere kjæledyr</button></a>
+  </div>
+  <script>
+    console.log(localStorage.alleMineDyrGjennomLivet) // første gangen: undefined
+    
+    let tabellEL = document.getElementById("tabellID");
+    let slettEL = document.getElementById("slettID");
+
+    function oppdater_tabell() {
+      if (localStorage.alleMineDyrGjennomLivet == undefined) {
+        tabellEL.innerHTML = "<tr><td>Ingen dyr registrert</td><td>0</td></tr>";
+      }
+      else {
+        let alle = JSON.parse(localStorage.alleMineDyrGjennomLivet);
+        alle.sort()
+        if (alle.length == 0) {
+          tabellEL.innerHTML = "<tr><td>Ingen dyr registrert</td><td>0</td></tr>";
+        }
+        else {
+          let tekst = "";
+          for (let linje of alle) {
+            tekst += "<tr>";
+            for (let kolonne of linje) {
+              tekst += "<td>" + kolonne + "</td>";
+            }
+            tekst += "</tr>";
+          }
+          tabellEL.innerHTML = tekst;
+        }
+      }
+    }
+    oppdater_tabell();
+
+    slettEL.addEventListener("click",slettFunk);
+
+    function slettFunk() {
+      localStorage.removeItem("alleMineDyrGjennomLivet");
+      oppdater_tabell();
+    }
+  </script>
+</body>
+</html>
