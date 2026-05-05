@@ -11,7 +11,7 @@ with open(filnavn,encoding="Windows-1252") as fil:
     alt.append(linje)
 
 """
-# Det går ikke an å oversette, fordi æ, ø og å har samme verdi "ï¿½" i datasettet
+# Det går ikke an å oversette, fordi æ, ø og å har samme verdi "ï¿½" eller "�" i datasettet
 for i in range(len(alt)):
   for j in range(len(alt[i])):
     alt[i][j] = alt[i][j].replace("ï¿½","å")

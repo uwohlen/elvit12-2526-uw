@@ -1,15 +1,14 @@
 import json
 
-filnavn = "kvadrater.json"
+filnavn = "Global YouTube Statistics.json"
 
 with open(filnavn, encoding="utf-8") as fil:
   data = json.load(fil)
 
-print(data)
+#print(data[6])
 
-for info in data:
-  for key,value in info.items():
-    print(key, value)
+for key,value in data[6].items():
+  print(key, value)
 
 
 
