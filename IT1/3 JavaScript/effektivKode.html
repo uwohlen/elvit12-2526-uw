@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang='no'>
+<head>
+    <meta charset='UTF-8'>
+    <title></title>
+    <style>
+    </style>
+</head>
+<body>
+    
+<script>
+    /* Ueffektiv sortering */
+    function sorterArray(original) {
+        let listen = Array.from(original); //ikke ødelegge originalen
+        let temp1 = []; //midlertidig lagring av sortert info
+
+        let antall = listen.length //hvor mange runder må vi ta
+
+        let i = 0;
+
+        while (i < antall) {
+            let j = 0;
+            let storst = listen[j]; //tar vare på den første verdien
+            let indeks = j;
+            j++;
+            while (j < listen.length) {
+                if (listen[j] > storst) { //sjekker nye verdier mot gamle
+                    storst = listen[j]; //tar vare på ny verdi hvis den er større
+                    indeks = j; //tar vare på plasseringen av størst verdi
+                }
+                j++;
+            } // når vi har gått gjennom hele lista...
+            temp1.push(storst);  //lagrer største poengverdi
+            
+            listen.splice(indeks,1); //fjerner største verdi
+            
+            i++; //tar en runde til for å finne nest største verdi... osv.
+        }
+        return temp1 //gi tilbake de sorterte listene
+    }
+
+    let liste = [];
+    for (let i = 0; i < 100; i++) {
+        //liste.push(Math.floor(Math.random()*100)+1);
+        liste.push(i);
+    }
+
+
+    console.time("amatørtid");
+    let testing1 = sorterArray(liste);
+    console.timeEnd("amatørtid");
+
+    console.time("sorteringstid");
+    liste.sort(sorterTall);
+    console.timeEnd("sorteringstid");
+
+
+function sorterTall(a,b) {
+    return b-a;
+}
+
+console.time("mindreEnn90");
+    for (let i = 0; i < liste.length; i++) {
+        if (liste[i] <= 90) {
+            let a = liste[i];
+            //console.log("mindreEnn90");
+        }
+        else {
+            let b = liste[i];
+            //console.log("else");
+        }
+    }
+console.timeEnd("mindreEnn90");
+    
+
+console.time("merEnn90");
+    for (let i = 0; i < liste.length; i++) {
+        if (liste[i] > 90) {
+            let c = liste[i];
+            //console.log("størreEnn90");
+        }
+        else {
+            let d = liste[i];
+            //console.log("else");
+        }
+    }
+console.timeEnd("merEnn90");
+
+
+</script>
+</body>
+</html>
